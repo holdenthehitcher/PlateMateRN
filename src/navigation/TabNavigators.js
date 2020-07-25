@@ -6,7 +6,7 @@ import * as React from "react";
 import SetupScreen from "../screens/Setup/SetupScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
 import PortionScreen from "../screens/Portion/PortionScreen";
-import AddFoodScreen from "../screens/Add/AddFoodScreen";
+import FoodListScreen from "../screens/FoodList/FoodListScreen";
 import PortionAdjustmentScreen from "../screens/Adjust/AdjustScreen";
 
 const BottomTab = createBottomTabNavigator();
@@ -36,8 +36,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="AddFood"
-        component={AddFoodNavigator}
+        name="Foods List"
+        component={FoodListNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -99,13 +99,17 @@ function PortionNavigator() {
   );
 }
 
-const AddFoodStack = createStackNavigator();
+const FoodListStack = createStackNavigator();
 
-function AddFoodNavigator() {
+function FoodListNavigator() {
   return (
-    <AddFoodStack.Navigator>
-      <AddFoodStack.Screen name="AddFoodScreen" component={AddFoodScreen} options={{ headerTitle: "Add A Food" }} />
-    </AddFoodStack.Navigator>
+    <FoodListStack.Navigator>
+      <FoodListStack.Screen
+        name="FoodListScreen"
+        component={FoodListScreen}
+        options={{ headerTitle: "List of Foods" }}
+      />
+    </FoodListStack.Navigator>
   );
 }
 

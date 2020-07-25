@@ -16,9 +16,9 @@ export default {
               HomeScreen: "two",
             },
           },
-          AddFood: {
+          FoodList: {
             screens: {
-              AddFoodScreen: "three",
+              FoodListScreen: "three",
             },
           },
           PortionAdjustment: {

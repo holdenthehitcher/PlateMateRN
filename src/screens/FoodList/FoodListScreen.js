@@ -1,7 +1,8 @@
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import AddFoodList from "./AddFoodList";
+import AddFoodModal from "./AddFoodModal";
+import AllFoodsList from "./AllFoodsList";
 
 export default function AddFoodScreen() {
   return (
@@ -9,7 +10,8 @@ export default function AddFoodScreen() {
       <Text style={styles.title}>Add Foods</Text>
       <View style={styles.separator} />
       <View style={{ flex: 1 }}>
-        <AddFoodList />
+        <AddFoodModal />
+        <AllFoodsList />
       </View>
     </View>
   );

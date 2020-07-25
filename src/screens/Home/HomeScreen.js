@@ -7,6 +7,9 @@ export default function HomeScreen() {
       <Text style={styles.title}>Home</Text>
       <View style={styles.separator} />
       <View>
+        <Button title="Food List"></Button>
+      </View>
+      <View>
         <Button title="Portion Calculator"></Button>
       </View>
       <View>

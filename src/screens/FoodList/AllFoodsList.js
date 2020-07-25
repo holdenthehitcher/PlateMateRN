@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { TouchableHighlight, TouchableOpacity } from "react-native-gesture-handler";
 
-const AddFoodList = () => {
+const AllFoodsList = () => {
   const Food = ({ item }) => (
     <View>
       {/*add swipe to delete item*/}
@@ -42,4 +42,4 @@ const AddFoodList = () => {
   );
 };
 
-export default AddFoodList;
+export default AllFoodsList;

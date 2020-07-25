@@ -26,7 +26,8 @@ function CreateProfile() {
   }
   */
 
-  // State Values for Child Input Components
+  // State Values for Child Input Components //
+  // 1. state Hooks - 2. handle callbacks used in child components - 3. calculations
   const [feet, setFeet] = useState(5);
   const [inches, setInches] = useState(9);
   const handleFeet = (feet) => setFeet(feet);
