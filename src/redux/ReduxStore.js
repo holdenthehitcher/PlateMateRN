@@ -7,8 +7,8 @@ import { FoodsActions } from "./FoodsListRedux";
 export const ConfigureStore = () => {
   const store = createStore(
    combineReducers({
-      FoodsActions,
-      ProfileActions,
+      allFoods: FoodsActions,
+      stats: ProfileActions,
     })
   )
 

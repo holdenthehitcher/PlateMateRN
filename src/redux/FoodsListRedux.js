@@ -47,3 +47,9 @@ export const FoodsActions = (state = initialState, action) => {
       return state;
   }
 };
+
+const mapStateToProps = (state = initialState) => {
+  return {
+    todos: FoodsActions(state.allFoods)
+  }
+}

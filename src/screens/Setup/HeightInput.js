@@ -2,14 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Modal, StyleSheet, Picker, Button, Slider } from "react-native";
 import { Icon } from "react-native-elements";
 
-const HeightInput = () => {
-  const [feet, setFeet] = useState(5);
-  const [inches, setInches] = useState(9);
-
+const HeightInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-
-  const heightCm = feet * 30.48 + inches * 2.54;
-  const formulaHeight = 6.25 * heightCm;
 
   return (
     <>
@@ -21,25 +15,25 @@ const HeightInput = () => {
               <Text>"What's Your Exercise Level?"</Text>
               <Icon name="close" onPress={() => setModalVisible(!modalVisible)} />
             </View>
-            <Text>{feet} Feet</Text>
+            <Text>{props.feet} Feet</Text>
             <Slider
               step={1}
               style={{ width: 200, height: 40 }}
               minimumValue={3}
               maximumValue={8}
-              onValueChange={(feet) => setFeet(feet)}
-              value={feet}
+              onValueChange={(feet) => props.handleFeet(feet)}
+              value={props.feet}
               minimumTrackTintColor="#FFFFFF"
               maximumTrackTintColor="#000000"
             />
-            <Text>{inches} Inches</Text>
+            <Text>{props.inches} Inches</Text>
             <Slider
               step={1}
               style={{ width: 200, height: 40 }}
               minimumValue={0}
               maximumValue={12}
-              onValueChange={(inches) => setInches(inches)}
-              value={inches}
+              onValueChange={(inches) => props.handleInches(inches)}
+              value={props.inches}
               minimumTrackTintColor="#FFFFFF"
               maximumTrackTintColor="#000000"
             />
