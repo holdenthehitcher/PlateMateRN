@@ -1,8 +1,11 @@
+import DEFAULT_FOODS from "./DEFAULT_FOODS";
+
+/// Action Types
+
 export const ADD_FOOD = "ADD_FOOD";
 export const DELETE_FOOD = "DELETE_FOOD";
-export const TOGGLE_FOOD = "TOGGLE_FOOD";
 
-// foods Action Creators
+// Actions || Action Creators
 
 export const addFood = (newFoodItem) => ({
   type: ADD_FOOD,
@@ -14,42 +17,25 @@ export const deleteFood = (id) => ({
   payload: id,
 });
 
-export const toggleFood = (addedToList) => ({
-  type: TOGGLE_FOOD,
-  payload: addedToList,
-});
-
-/// foods reducer
+// Reducers
 
 const initialState = {
-  allFoods: [],
+  allFoods: DEFAULT_FOODS,
 };
 
 export const FoodsActions = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case ADD_FOOD:
-      const newFood = { ...action.payload, id: state.allFoods.length + 1 };
-      return { ...state, allFoods: state.allFoods.concat(newFood)};
+      const { name, calories, image } = action.payload;
+      const newFood = { name, calories, image, id: Math.random() };
+      return { ...state, allFoods: [...state.allFoods, newFood] };
     case DELETE_FOOD:
       return {
         ...state,
         allFoods: state.allFoods.filter((item) => item.id !== action.payload),
       };
-    case TOGGLE_FOOD: {
-      const { id } = action.payload;
-      const currentFood = state.allFoods[id];
-      return {
-        ...state,
-        [id]: { ...currentFood, addedToList: !currentFood.addedToList },
-      };
-    }
     default:
       return state;
   }
 };
-
-const mapStateToProps = (state = initialState) => {
-  return {
-    todos: FoodsActions(state.allFoods)
-  }
-}

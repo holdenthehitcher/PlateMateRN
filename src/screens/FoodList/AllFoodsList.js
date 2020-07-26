@@ -1,31 +1,29 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
-import { ListItem, SearchBar } from "react-native-elements";
-import { useSelector, useDispatch } from "react-redux";
+import { ListItem, SearchBar, Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { deleteFood } from "../../redux/FoodsListRedux";
 
-import { TouchableHighlight, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 
-const AllFoodsList = () => {
-  const Food = ({ item }) => (
-    <View>
-      {/*add swipe to delete item*/}
-      <Text>
-        {item.name} - {item.calories} Calories
-      </Text>
-      <TouchableOpacity onPress={() => deleteFood(item)}>
-        <Text> Remove </Text>
-      </TouchableOpacity>
-    </View>
-  );
+//maps state from store
+const mapStateToProps = (state) => {
+  return {
+    foods: state.foodsActions.allFoods,
+  };
+};
 
-  const FoodItemDemo = [
-    {
-      id: 0,
-      name: "Fishstick",
-      calories: 35,
-    },
-  ];
+// maps actions
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delete: (id) => dispatch(deleteFood(id)),
+  };
+};
 
+const AllFoodsList = (props) => {
   return (
     <>
       <View>
@@ -33,13 +31,28 @@ const AllFoodsList = () => {
       </View>
       <View>
         <FlatList
-          data={FoodItemDemo}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <Food item={item} />}
+          data={props.foods}
+          keyExtractor={(food) => food.id.toString()}
+          renderItem={({ item }) => (
+            <ListItem
+              key={item.id}
+              title={`${item.name} - ${item.calories} Kcal/g`}
+              bottomDivider
+              rightIcon={
+                <Icon
+                  name="delete"
+                  size={20}
+                  onPress={() => {
+                    props.delete(item.id);
+                  }}
+                />
+              }
+            />
+          )}
         />
       </View>
     </>
   );
 };
 
-export default AllFoodsList;
+export default connect(mapStateToProps, mapDispatchToProps)(AllFoodsList);

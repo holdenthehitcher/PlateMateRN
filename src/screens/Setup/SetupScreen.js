@@ -8,7 +8,7 @@ export default function SetupScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Create Your Profile</Text>
       <View style={styles.separator} />
-      <CreateProfile path="/screens/SetupScreen.tsx" />
+      <CreateProfile />
     </View>
   );
 }

@@ -8,72 +8,73 @@ import SexInput from "./SexInput";
 import WeightInput from "./WeightInput";
 import PhysicalActivityInput from "./PhysicalActivityInput";
 import GoalWeightInput from "./GoalWeightInput";
+import { setProfile } from "../../redux/ProfileStatsRedux";
 
 const mapStateToProps = (state) => {
   return {
-    stats: state.stats,
+    stats: state.profileActions.stats,
   };
 };
 
-const mapDispatchToProps = {
-  editProfile: (formulaHeight, formulaAge, sex, formulaWeight, stressFactor, goalWeight, dailyCalories) =>
-    editProfile(formulaHeight, formulaAge, sex, formulaWeight, stressFactor, goalWeight, dailyCalories),
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProfile: (stats) => dispatch(setProfile(stats)),
+  };
 };
 
-function CreateProfile() {
-  /*handleProfileUpdate(props) {
-    const {goalWeight} = props;
-  }
-  */
+const CreateProfile = (props) => {
+  const [stats, setStats] = useState(props.stats);
 
-  // State Values for Child Input Components //
-  // 1. state Hooks - 2. handle callbacks used in child components - 3. calculations
-  const [feet, setFeet] = useState(5);
-  const [inches, setInches] = useState(9);
-  const handleFeet = (feet) => setFeet(feet);
-  const handleInches = (inches) => setInches(inches);
-  const height = feet * 30.48 + inches * 2.54;
-  const formulaHeight = 6.25 * height;
-
-  const [age, setAge] = useState(35);
-  const handleAge = (years) => setAge(years);
-  const formulaAge = age * -5;
-
-  const [sex, setSex] = useState(5);
-  const handleSex = (sex) => setSex(sex);
-
-  const [weight, setWeight] = useState(200);
-  const handleWeight = (pounds) => setWeight(pounds);
-  const weightKg = weight / 2.2;
-  const formulaWeight = weightKg * 10;
-
-  const [exerciseValue, setExerciseValue] = useState(1.2);
-  const handleStressFactor = (value) => setExerciseValue(value);
-
-  const [goalWeight, setGoalWeight] = useState(150);
-  const handleGoalWeight = (weight) => setGoalWeight(weight);
-
-  const dailyCalories = 0;
+  const updateStats = (key, value) =>
+    setStats({
+      ...stats,
+      [key]: value,
+    });
 
   return (
     <View>
       <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
         <Text>Enter Your Starting Stats:</Text>
-        <HeightInput feet={feet} inches={inches} handleFeet={handleFeet} handleInches={handleInches} />
-        <AgeInput age={age} handleAge={handleAge} />
-        <SexInput sex={sex} handleSex={handleSex} />
-        <WeightInput weight={weight} handleWeight={handleWeight} />
-        <PhysicalActivityInput exerciseValue={exerciseValue} handleStressFactor={handleStressFactor} />
+        <HeightInput
+          feet={stats.feet}
+          inches={stats.inches}
+          handleFeet={(value) => updateStats("feet", value)}
+          handleInches={(value) => updateStats("inches", value)}
+        />
+        <AgeInput
+          age={stats.age}
+          handleAge={(value) => updateStats("age", value)}
+        />
+        <SexInput
+          sex={stats.sex}
+          handleSex={(value) => updateStats("sex", value)}
+        />
+        <WeightInput
+          weight={stats.weight}
+          handleWeight={(value) => updateStats("weight", value)}
+        />
+        <PhysicalActivityInput
+          exerciseValue={stats.stressFactor}
+          handleStressFactor={(value) => updateStats("stressFactor", value)}
+        />
       </View>
-      <GoalWeightInput goalWeight={goalWeight} handleGoalWeight={handleGoalWeight} />
+      <GoalWeightInput
+        goalWeight={stats.goalWeight}
+        handleGoalWeight={(value) => updateStats("goalWeight", value)}
+      />
       <View style={styles.helpContainer}>
         <TouchableOpacity style={styles.helpLink}>
-          <Button title="Create Profile" onPress={() => {}} />
+          <Button
+            title="Create Profile"
+            onPress={() => {
+              props.setProfile(stats);
+            }}
+          />
         </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

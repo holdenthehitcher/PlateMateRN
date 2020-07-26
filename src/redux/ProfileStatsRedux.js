@@ -1,44 +1,35 @@
+import PROFILE_STATS from "./PROFILE_STATS";
+
 /// action types
-export const PROFILE_LOADING = "PROFILE_LOADING";
-export const PROFILE_FAILED = "PROFILE_FAILED";
-export const EDIT_PROFILE = "EDIT_PROFILE";
+export const SET_PROFILE = "SET_PROFILE";
 
 /// action creator
 
-export const profileLoading = () => ({
-  type: PROFILE_LOADING,
-});
-
-export const profileFailed = (errMess) => ({
-  type: PROFILE_FAILED,
-  payload: errMess,
-});
-
-export const editProfile = (item) => ({
-  type: EDIT_PROFILE,
-  payload: item,
+export const setProfile = (newStats) => ({
+  type: SET_PROFILE,
+  payload: newStats,
 });
 
 /// reducer
 
+const initialState = {
+  stats: PROFILE_STATS,
+};
+
 export const ProfileActions = (
-  state = {
-    isLoading: true,
-    errMess: null,
-    stats: [],
-  },
+  state = initialState,
   action
 ) => {
   switch (action.type) {
-    case PROFILE_LOADING:
-      return { ...state, isLoading: true, stats: [] };
-    case PROFILE_FAILED:
-      return { ...state, isLoading: false, errMess: action.payload };
-    case EDIT_PROFILE:
-      const changedItems = state.stats.filter((item) => item !== action.payload);
-      return { ...state, isLoading: true, changedItems };
+    case SET_PROFILE:
+      return {
+        ...state,
+        stats: {
+          ...state.stats,
+          ...action.payload,
+        },
+      };
     default:
       return state;
   }
 };
-

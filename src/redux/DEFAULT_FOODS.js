@@ -1,4 +1,4 @@
-const FoodsList = [
+const DEFAULT_FOODS = [
   {
     id: 0,
     name: "Salmon",
@@ -29,4 +29,4 @@ const FoodsList = [
   },
 ];
 
-export default FoodsList;
+export default DEFAULT_FOODS;
