@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { ListItem } from "react-native-elements";
 
-const Food = ({ item }) => {
+const Food = ({ item}) => {
+
   return (
     <>
       {item.addedToList === true && (
@@ -18,6 +19,10 @@ const Food = ({ item }) => {
 };
 
 const MealFoodsList = (props) => {
+  useEffect(() => {
+  }, [props.effect]);
+  
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList

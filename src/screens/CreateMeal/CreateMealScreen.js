@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,19 +7,24 @@ import {
   Text,
   View,
 } from "react-native";
+import ChooseNewFood from './ChooseNewFood';
 import MealFoodsList from "./MealFoodsList";
 
 export default function PortionScreen() {
+
+  const [effect, setEffect] = useState(false);
+
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Menu Portion Calculator</Text>
       <View style={styles.separator} />
       <View>
         <TouchableOpacity style={styles.helpLink}>
-          <Button title="Choose Foods" onPress={() => {}}></Button>
+          <ChooseNewFood effect={effect} setEffect={setEffect}/>
         </TouchableOpacity>
         <Text>This Meal's Foods</Text>
-        <MealFoodsList />
+        <MealFoodsList effect={effect}/>
         <TouchableOpacity style={styles.helpLink}>
           <Button title="Portion Your Meal" onPress={() => {}}></Button>
         </TouchableOpacity>
