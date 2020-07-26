@@ -4,26 +4,8 @@ import { ListItem, SearchBar, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { deleteFood } from "../../redux/FoodsListRedux";
 
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
-
-//maps state from store
-const mapStateToProps = (state) => {
-  return {
-    foods: state.foodsActions.allFoods,
-  };
-};
-
-// maps actions
-const mapDispatchToProps = (dispatch) => {
-  return {
-    delete: (id) => dispatch(deleteFood(id)),
-  };
-};
-
 const AllFoodsList = (props) => {
+  
   return (
     <>
       <View>
@@ -53,6 +35,20 @@ const AllFoodsList = (props) => {
       </View>
     </>
   );
+};
+
+//maps state from store
+const mapStateToProps = (state) => {
+  return {
+    foods: state.foodsActions.allFoods,
+  };
+};
+
+// maps actions
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delete: (id) => dispatch(deleteFood(id)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllFoodsList);

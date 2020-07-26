@@ -4,7 +4,7 @@ const DEFAULT_FOODS = [
     name: "Salmon",
     calories: 10,
     image: "",
-    addedToList: false,
+    addedToList: true,
   },
   {
     id: 1,

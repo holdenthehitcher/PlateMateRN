@@ -5,7 +5,7 @@ import * as React from "react";
 
 import SetupScreen from "../screens/Setup/SetupScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
-import PortionScreen from "../screens/Portion/PortionScreen";
+import CreateMealScreen from "../screens/CreateMeal/CreateMealScreen";
 import FoodListScreen from "../screens/FoodList/FoodListScreen";
 import PortionAdjustmentScreen from "../screens/Adjust/AdjustScreen";
 
@@ -13,40 +13,53 @@ const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator initialRouteName="Setup" tabBarOptions={{ activeTintColor: "black" }}>
+    <BottomTab.Navigator
+      initialRouteName="Setup"
+      tabBarOptions={{ activeTintColor: "black" }}
+    >
       <BottomTab.Screen
         name="Setup"
         component={SetupNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Portion"
-        component={PortionNavigator}
+        name="Create Meal"
+        component={CreateMealNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
         name="Foods List"
         component={FoodListNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
         name="PortionAdjustment"
         component={PortionAdjustmentNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -80,22 +93,26 @@ const HomeStack = createStackNavigator();
 function HomeNavigator() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={{ headerTitle: "Home" }} />
+      <HomeStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: "Home" }}
+      />
     </HomeStack.Navigator>
   );
 }
 
-const PortionStack = createStackNavigator();
+const CreateMealStack = createStackNavigator();
 
-function PortionNavigator() {
+function CreateMealNavigator() {
   return (
-    <PortionStack.Navigator>
-      <PortionStack.Screen
-        name="PortionScreen"
-        component={PortionScreen}
-        options={{ headerTitle: "Portion Your Meal with PlateMate" }}
+    <CreateMealStack.Navigator>
+      <CreateMealStack.Screen
+        name="CreateMealScreen"
+        component={CreateMealScreen}
+        options={{ headerTitle: "Choose Your Foods" }}
       />
-    </PortionStack.Navigator>
+    </CreateMealStack.Navigator>
   );
 }
 
