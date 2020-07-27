@@ -7,7 +7,7 @@ import SetupScreen from "../screens/Setup/SetupScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
 import CreateMealScreen from "../screens/CreateMeal/CreateMealScreen";
 import FoodListScreen from "../screens/FoodList/FoodListScreen";
-import PortionAdjustmentScreen from "../screens/Adjust/AdjustScreen";
+import PortionScreen from "../screens/Portion/PortionScreen";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -54,8 +54,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="PortionAdjustment"
-        component={PortionAdjustmentNavigator}
+        name="Portion"
+        component={PortionNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -130,16 +130,16 @@ function FoodListNavigator() {
   );
 }
 
-const PortionAdjustmentStack = createStackNavigator();
+const PortionStack = createStackNavigator();
 
-function PortionAdjustmentNavigator() {
+function PortionNavigator() {
   return (
-    <PortionAdjustmentStack.Navigator>
-      <PortionAdjustmentStack.Screen
-        name="PortionAdjustmentScreen"
-        component={PortionAdjustmentScreen}
+    <PortionStack.Navigator>
+      <PortionStack.Screen
+        name="PortionScreen"
+        component={PortionScreen}
         options={{ headerTitle: "Adjust Your Portion Size" }}
       />
-    </PortionAdjustmentStack.Navigator>
+    </PortionStack.Navigator>
   );
 }

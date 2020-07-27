@@ -7,6 +7,7 @@ const PROFILE_STATS = {
   stressFactor: 1.2,
   goalWeight: 150,
   dailyCalories: 2000,
+  caloriesLeft: 2000,
 };
 
 export default PROFILE_STATS;

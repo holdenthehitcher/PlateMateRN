@@ -21,9 +21,9 @@ export default {
               FoodListScreen: "three",
             },
           },
-          PortionAdjustment: {
+          Portion: {
             screens: {
-              PortionAdjustmentScreen: "four",
+              PortionScreen: "four",
             },
           },
         },

@@ -10,18 +10,6 @@ import PhysicalActivityInput from "./PhysicalActivityInput";
 import GoalWeightInput from "./GoalWeightInput";
 import { setProfile } from "../../redux/ProfileStatsRedux";
 
-const mapStateToProps = (state) => {
-  return {
-    stats: state.profileActions.stats,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setProfile: (stats) => dispatch(setProfile(stats)),
-  };
-};
-
 const CreateProfile = (props) => {
   const [stats, setStats] = useState(props.stats);
   const [newDailyCalories, setNewDailyCalories] = useState(
@@ -84,6 +72,7 @@ const CreateProfile = (props) => {
               {
                 calculateDailyCalories(stats);
                 updateStats("dailyCalories", newDailyCalories);
+                updateStats("caloriesLeft", newDailyCalories);
                 props.setProfile(stats);
               }
             }}
@@ -151,5 +140,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    stats: state.profileActions.stats,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProfile: (stats) => dispatch(setProfile(stats)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProfile);

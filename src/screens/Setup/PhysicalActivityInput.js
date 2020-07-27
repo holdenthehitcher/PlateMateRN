@@ -3,7 +3,6 @@ import { View, Text, Modal, StyleSheet, Picker, Button } from "react-native";
 import { Icon } from "react-native-elements";
 
 const PhysicalActivityInput = (props) => {
-  
   const [modalVisible, setModalVisible] = useState(false);
   const items = [
     { label: "I Am an Extreme Exerciser", stressFactor: 1.9 },
@@ -15,17 +14,36 @@ const PhysicalActivityInput = (props) => {
 
   return (
     <>
-      <Button title="Physical Activity Level" onPress={() => setModalVisible(!modalVisible)}></Button>
-      <Modal animated transparent visible={modalVisible} animationType="slide" onRequestClose={() => !modalVisible}>
+      <Button
+        title="Physical Activity Level"
+        onPress={() => setModalVisible(!modalVisible)}
+      ></Button>
+      <Modal
+        animated
+        transparent
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => !modalVisible}
+      >
         <View style={styles.container}>
           <View style={styles.pickerContainer}>
             <View style={styles.header}>
               <Text>"What's Your Exercise Level?"</Text>
-              <Icon name="close" onPress={() => setModalVisible(!modalVisible)} />
+              <Icon
+                name="close"
+                onPress={() => setModalVisible(!modalVisible)}
+              />
             </View>
-            <Picker selectedValue={props.exerciseValue} onValueChange={(value) => props.handleStressFactor(value)}>
+            <Picker
+              selectedValue={props.exerciseValue}
+              onValueChange={(value) => props.handleStressFactor(value)}
+            >
               {items.map(({ label, stressFactor }) => (
-                <Picker.Item key={stressFactor} value={stressFactor} label={label} />
+                <Picker.Item
+                  key={stressFactor}
+                  value={stressFactor}
+                  label={label}
+                />
               ))}
             </Picker>
           </View>

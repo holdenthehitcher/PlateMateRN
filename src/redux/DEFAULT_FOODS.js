@@ -5,6 +5,8 @@ const DEFAULT_FOODS = [
     calories: 10,
     image: "",
     addedToList: true,
+    amount: 5,
+    amountType: "grams",
   },
   {
     id: 1,
@@ -12,6 +14,8 @@ const DEFAULT_FOODS = [
     calories: 8,
     image: "",
     addedToList: false,
+    amount: 2,
+    amountType: "cups",
   },
   {
     id: 2,
@@ -19,13 +23,17 @@ const DEFAULT_FOODS = [
     calories: 4,
     image: "",
     addedToList: false,
+    amount: 1 / 2,
+    amountType: "cups",
   },
   {
     id: 3,
     name: "Olive oil",
     calories: 12,
     image: "",
-    addedToList: false,
+    addedToList: true,
+    amount: 2,
+    amountType: "Tbsp",
   },
 ];
 

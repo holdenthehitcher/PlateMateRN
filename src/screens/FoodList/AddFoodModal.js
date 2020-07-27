@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Modal, StyleSheet, Picker, Button, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  StyleSheet,
+  Picker,
+  Button,
+  TextInput,
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 
 const AddFoodModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [amountModalVisible, setAmountModalVisible] = useState(false);
   const [foodValues, setFoodValues] = useState({});
 
   const updateFoodValues = (key, value) =>
@@ -13,16 +22,42 @@ const AddFoodModal = (props) => {
       ...foodValues,
       [key]: value,
     });
-    
+
+  const items = [
+    { label: "Cups", amountType: "Cups" },
+    { label: "Teaspoons", amountType: "tsp." },
+    { label: "Tablespoons", amountType: "Tbsp." },
+    { label: "Ounces", amountType: "oz." },
+    { label: "Pounds", amountType: "Lbs." },
+    { label: "Fluid Ounces", amountType: "fl. oz." },
+    { label: "Grams", amountType: "g" },
+    { label: "KiloGrams", amountType: "Kg" },
+    { label: "Milliliters", amountType: "mL" },
+    { label: "Liters", amountType: "L" },
+  ];
+
   return (
     <>
-      <Button title="Add A New Food" onPress={() => setModalVisible(!modalVisible)}></Button>
-      <Modal animated transparent visible={modalVisible} animationType="slide" onRequestClose={() => !modalVisible}>
+      <Button
+        title="Add A New Food"
+        onPress={() => setModalVisible(!modalVisible)}
+      ></Button>
+      <Modal
+        animated
+        transparent
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => !modalVisible}
+      >
         <View style={styles.container}>
           <View style={styles.pickerContainer}>
             <View style={styles.header}>
               <Text>Add A New Food</Text>
-              <Icon style={styles.text} name="close" onPress={() => setModalVisible(!modalVisible)} />
+              <Icon
+                style={styles.text}
+                name="close"
+                onPress={() => setModalVisible(!modalVisible)}
+              />
             </View>
             <View>
               <TextInput
@@ -37,6 +72,51 @@ const AddFoodModal = (props) => {
                 style={styles.foodInput}
                 onChangeText={(value) => updateFoodValues("calories", value)}
               />
+              <TextInput
+                value={foodValues}
+                placeholder="Portion Amount"
+                style={styles.foodInput}
+                onChangeText={(value) => updateFoodValues("amount", value)}
+              />
+              <Button
+                title="Portion Amount Type"
+                onPress={() => setAmountModalVisible(!amountModalVisible)}
+              ></Button>
+              <Modal
+                animated
+                transparent
+                visible={amountModalVisible}
+                animationType="slide"
+                onRequestClose={() => !amountModalVisible}
+              >
+                <View style={styles.container}>
+                  <View style={styles.pickerContainer}>
+                    <View style={styles.header}>
+                      <Text>"What Unit of measurement is this Food?"</Text>
+                      <Icon
+                        name="close"
+                        onPress={() =>
+                          setAmountModalVisible(!amountModalVisible)
+                        }
+                      />
+                    </View>
+                    <Picker
+                      selectedValue={foodValues.amountType}
+                      onValueChange={(value) =>
+                        updateFoodValues("amountType", value)
+                      }
+                    >
+                      {items.map(({ label, amountType }) => (
+                        <Picker.Item
+                          key={amountType}
+                          value={amountType}
+                          label={label}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
+                </View>
+              </Modal>
               <Button
                 title="Submit Food"
                 onPress={() => {
