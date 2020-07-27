@@ -24,7 +24,6 @@ const initialState = {
 };
 
 export const FoodsActions = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ADD_FOOD:
       const { name, calories, image } = action.payload;

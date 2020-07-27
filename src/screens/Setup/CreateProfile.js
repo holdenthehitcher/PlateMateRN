@@ -24,12 +24,26 @@ const mapDispatchToProps = (dispatch) => {
 
 const CreateProfile = (props) => {
   const [stats, setStats] = useState(props.stats);
+  const [newDailyCalories, setNewDailyCalories] = useState(
+    props.stats.dailyCalories
+  );
 
   const updateStats = (key, value) =>
     setStats({
       ...stats,
       [key]: value,
     });
+
+  const calculateDailyCalories = (stats) => {
+    const { weight, feet, inches, age, sex, stressFactor, goalWeight } = stats;
+    const weightKg = weight / 2.2;
+    const heightCm = feet * 30.48 + inches * 2.54;
+    const caloricExpend =
+      (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
+    const dailyCalories =
+      weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
+    return setNewDailyCalories(dailyCalories);
+  };
 
   return (
     <View>
@@ -67,7 +81,11 @@ const CreateProfile = (props) => {
           <Button
             title="Create Profile"
             onPress={() => {
-              props.setProfile(stats);
+              {
+                calculateDailyCalories(stats);
+                updateStats("dailyCalories", newDailyCalories);
+                props.setProfile(stats);
+              }
             }}
           />
         </TouchableOpacity>
