@@ -11,6 +11,8 @@ import GoalWeightInput from "./GoalWeightInput";
 import { setProfile } from "../../redux/ProfileStatsRedux";
 
 const CreateProfile = (props) => {
+
+  
   const [stats, setStats] = useState(props.stats);
   const [newDailyCalories, setNewDailyCalories] = useState(
     props.stats.dailyCalories
