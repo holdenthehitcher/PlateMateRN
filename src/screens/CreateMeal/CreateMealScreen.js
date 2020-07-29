@@ -10,8 +10,8 @@ import {
 import ChooseNewFood from './ChooseNewFood';
 import MealFoodsList from "./MealFoodsList";
 
-export default function PortionScreen() {
-
+export default function PortionScreen(props) {
+  const { navigation } = props;
   const [effect, setEffect] = useState(false);
 
 
@@ -26,7 +26,7 @@ export default function PortionScreen() {
         <Text>This Meal's Foods</Text>
         <MealFoodsList effect={effect}/>
         <TouchableOpacity style={styles.helpLink}>
-          <Button title="Portion Your Meal" onPress={() => {}}></Button>
+          <Button title="Portion Your Meal" onPress={() => navigation.navigate('PortionScreen')}></Button>
         </TouchableOpacity>
       </View>
     </ScrollView>

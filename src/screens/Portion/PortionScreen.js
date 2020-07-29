@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import PortionPieChart from "./PortionPieChart";
 import { connect } from "react-redux";
-import PortionList from "./PortionList";
+import PortionListItems from "./PortionListItems";
+import { ScrollView } from "react-native-gesture-handler";
+import { Item } from "react-native-android-wheel-picker";
 
 // get dailyCalories from ProfileRedux and display percentage page
 // get array of objects for all addedToList === true
@@ -11,7 +13,7 @@ import PortionList from "./PortionList";
 // allow adjustment of grams && calories for each food item that renders in 1. pie chart 2. percentage of dailyCalories left on page.
 // submit meal updates redux dailyCalories
 
-const PortionScreen = (props) => {
+function PortionScreen(props) {
   const [chosenFoods, setChosenFoods] = useState(
     props.foods.filter((food) => food.addedToList === true)
   );
@@ -20,11 +22,10 @@ const PortionScreen = (props) => {
     setChosenFoods(chosenFoods);
   }, [chosenFoods]);
 
-  const updateStats = (key, value) =>
-    setStats({
-      ...stats,
-      [key]: value,
-    });
+  const updateFoodAmount = (number, value) =>
+    setChosenFoods([
+      chosenFoods.find(({id}) => id === number).amount = value
+    ]);
 
   return (
     <View style={styles.container}>
@@ -38,9 +39,9 @@ const PortionScreen = (props) => {
           chosenFoods={chosenFoods}
           setChosenFoods={setChosenFoods}
         />
-        <PortionList
+        <PortionListItems
           chosenFoods={chosenFoods}
-          setChosenFoods={setChosenFoods}
+          updateFoodAmount={updateFoodAmount}
         />
       </View>
     </View>

@@ -1,19 +1,39 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <Image
+        source={require("../../../assets/PlateMateLogo3.png")}
+        style={{ width: 210, height: 200 }}
+      />
       <View style={styles.separator} />
       <View>
-        <Button title="Food List"></Button>
+        <Button
+          title="How to Use PlateMate"
+          onPress={() => navigation.navigate("InstructionsScreen")}
+        ></Button>
       </View>
       <View>
-        <Button title="Portion Calculator"></Button>
+        <Button
+          title="Food List"
+          onPress={() => navigation.navigate("FoodListScreen")}
+        ></Button>
       </View>
       <View>
-        <Button title="Change Your Settings"></Button>
+        <Button
+          title="Portion Calculator"
+          onPress={() => navigation.navigate("CreateMealScreen")}
+        ></Button>
+      </View>
+      <View>
+        <Button
+          title="Change Your Settings"
+          onPress={() => navigation.navigate("SetupScreen")}
+        ></Button>
       </View>
     </View>
   );
@@ -26,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     color: "black",
   },
