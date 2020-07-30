@@ -18,7 +18,7 @@ const AllFoodsList = (props) => {
           renderItem={({ item }) => (
             <ListItem
               key={item.id}
-              title={`${item.name} - ${item.calories} cal./${item.amountType}`}
+              title={`${item.name} - ${item.calories} cal. per ${item.amount} ${item.amountType}`}
               bottomDivider
               rightIcon={
                 <Icon

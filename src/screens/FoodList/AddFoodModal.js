@@ -61,19 +61,16 @@ const AddFoodModal = (props) => {
             </View>
             <View>
               <TextInput
-                value={foodValues}
                 placeholder="Food Name"
                 style={styles.foodInput}
                 onChangeText={(value) => updateFoodValues("name", value)}
               />
               <TextInput
-                value={foodValues}
                 placeholder="Calories"
                 style={styles.foodInput}
                 onChangeText={(value) => updateFoodValues("calories", value)}
               />
               <TextInput
-                value={foodValues}
                 placeholder="Portion Amount"
                 style={styles.foodInput}
                 onChangeText={(value) => updateFoodValues("amount", value)}
@@ -122,7 +119,7 @@ const AddFoodModal = (props) => {
                 onPress={() => {
                   props.add(foodValues);
                   setModalVisible(!modalVisible);
-                  console.log(props.foods);
+                  console.log(foodValues);
                 }}
               />
             </View>
