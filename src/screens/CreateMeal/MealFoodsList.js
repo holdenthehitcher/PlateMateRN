@@ -9,7 +9,7 @@ const Food = ({ item }) => {
       {item.addedToList === true && (
         <ListItem
           key={item.id}
-          title={`${item.name} - ${item.calories} Kcal/g`}
+          title={`${item.name} - ${item.calories} Kcal/${item.amountType}`}
           bottomDivider
         />
       )}

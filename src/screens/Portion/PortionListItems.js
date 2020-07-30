@@ -25,7 +25,7 @@ const AmountWheel = ({item, updateFoodAmount}) => {
   )
 }
 
-export default PortionWheelList = (props, {chosenFoods, updateFoodAmount}) => {
+export default PortionWheelList = (props, {updateFoodAmount}) => {
   return (
     <>
       <View>
@@ -35,9 +35,9 @@ export default PortionWheelList = (props, {chosenFoods, updateFoodAmount}) => {
           renderItem={({ item }) => (
             <ListItem
               key={item.id}
-              title={`${item.name} - ${item.calories} Kcal/g`}
+              title={`${item.name} - ${item.calories} cal./${item.amountType}`}
               bottomDivider
-              rightIcon={<AmountWheel item={item} updateFoodAmount={updateFoodAmount} />}
+              rightIcon={<><AmountWheel item={item} updateFoodAmount={updateFoodAmount} /><Text>{item.amountType}</Text></>}
             />
           )}
         />

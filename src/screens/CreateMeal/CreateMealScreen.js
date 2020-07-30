@@ -62,8 +62,5 @@ const styles = StyleSheet.create({
   codeHighlightText: {
     color: "rgba(96,100,109, 0.8)",
   },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
+
 });

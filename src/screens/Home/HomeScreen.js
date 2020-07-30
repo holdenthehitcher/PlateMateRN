@@ -32,7 +32,7 @@ export default function HomeScreen(props) {
       <View>
         <Button
           title="Change Your Settings"
-          onPress={() => navigation.navigate("SetupScreen")}
+          onPress={() => navigation.navigate("SetupProfileScreen")}
         ></Button>
       </View>
     </View>

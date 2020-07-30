@@ -122,6 +122,7 @@ const AddFoodModal = (props) => {
                 onPress={() => {
                   props.add(foodValues);
                   setModalVisible(!modalVisible);
+                  console.log(props.foods);
                 }}
               />
             </View>

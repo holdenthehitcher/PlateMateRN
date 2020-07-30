@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Modal, StyleSheet, Picker, Button, Slider } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  StyleSheet,
+  Picker,
+  Button,
+  Slider,
+} from "react-native";
 import { Icon } from "react-native-elements";
 
 const HeightInput = (props) => {
@@ -7,13 +15,25 @@ const HeightInput = (props) => {
 
   return (
     <>
-      <Button title="Enter Your Height" onPress={() => setModalVisible(!modalVisible)}></Button>
-      <Modal animated transparent visible={modalVisible} animationType="slide" onRequestClose={() => !modalVisible}>
+      <Button
+        title="Enter Your Height"
+        onPress={() => setModalVisible(!modalVisible)}
+      ></Button>
+      <Modal
+        animated
+        transparent
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => !modalVisible}
+      >
         <View style={styles.container}>
           <View style={styles.pickerContainer}>
             <View style={styles.header}>
               <Text>"What's Your Exercise Level?"</Text>
-              <Icon name="close" onPress={() => setModalVisible(!modalVisible)} />
+              <Icon
+                name="close"
+                onPress={() => setModalVisible(!modalVisible)}
+              />
             </View>
             <Text>{props.feet} Feet</Text>
             <Slider
@@ -31,7 +51,7 @@ const HeightInput = (props) => {
               step={1}
               style={{ width: 200, height: 40 }}
               minimumValue={0}
-              maximumValue={12}
+              maximumValue={11}
               onValueChange={(inches) => props.handleInches(inches)}
               value={props.inches}
               minimumTrackTintColor="#FFFFFF"

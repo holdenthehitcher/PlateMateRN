@@ -26,8 +26,14 @@ const initialState = {
 export const FoodsActions = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FOOD:
-      const { name, calories, image } = action.payload;
-      const newFood = { name, calories, image, id: Math.random() };
+      const { name, calories, amount, amountType } = action.payload;
+      const newFood = {
+        name,
+        calories,
+        amount,
+        amountType,
+        id: Math.random(),
+      };
       return { ...state, allFoods: [...state.allFoods, newFood] };
     case DELETE_FOOD:
       return {

@@ -7,8 +7,9 @@ import FoodListScreen from "../screens/FoodList/FoodListScreen";
 import CreateMealScreen from "../screens/CreateMeal/CreateMealScreen";
 import NotFoundScreen from "../screens/NotFound/NotFoundScreen";
 import PortionScreen from "../screens/Portion/PortionScreen";
-import SetupScreen from "../screens/Setup/SetupScreen";
+import SetupProfileScreen from "../screens/Setup/SetupProfileScreen";
 import InstructionsScreen from "../screens/Instructions/InstructionsScreen";
+import ReviewStatsScreen from "../screens/Setup/ReviewStatsScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,8 +33,8 @@ function MainStackNavigator() {
           options={{ title: "List Of Foods" }}
         />
         <Stack.Screen
-          name="SetupScreen"
-          component={SetupScreen}
+          name="SetupProfileScreen"
+          component={SetupProfileScreen}
           options={{ title: "Your Personal Profile" }}
         />
         <Stack.Screen
@@ -55,6 +56,11 @@ function MainStackNavigator() {
           name="InstructionsScreen"
           component={InstructionsScreen}
           options={{ title: "How to Use PlateMate" }}
+        />
+        <Stack.Screen
+          name="ReviewStatsScreen"
+          component={ReviewStatsScreen}
+          options={{ title: "Review Stats Screen" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

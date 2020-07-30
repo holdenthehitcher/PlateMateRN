@@ -25,7 +25,7 @@ export default function InstructionsScreen(props) {
       <View>
         <Button
           title="Get Started with PlateMate"
-          onPress={() => navigation.navigate("SetupScreen")}
+          onPress={() => navigation.navigate("SetupProfileScreen")}
         />
       </View>
     </ScrollView>
