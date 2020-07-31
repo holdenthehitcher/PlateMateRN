@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Button, View, Modal, Picker, StyleSheet, Text } from "react-native";
-import { Icon } from "react-native-elements";
+import { View, Modal, Picker, StyleSheet, Text } from "react-native";
+import { Button, Icon, Overlay } from "react-native-elements";
 
 const SexInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View>
-      <Button title="Choose Your Sex" onPress={() => setModalVisible(!modalVisible)} />
-      <Modal animated transparent visible={modalVisible} animationType="slide" onRequestClose={() => !modalVisible}>
-        <View style={styles.container}>
-          <View style={styles.pickerContainer}>
-            <View style={styles.header}>
-              <Text>"What's Your Sex"</Text>
-              <Icon name="close" onPress={() => setModalVisible(!modalVisible)} />
-            </View>
-            <Picker selectedValue={props.sex} onValueChange={(value) => props.handleSex(value)}>
-              <Picker.Item label="Male" value={5} />
-              <Picker.Item label="Female" value={-161} />
-            </Picker>
+      <Button
+        buttonStyle={styles.button}
+        raised
+        title="Choose Your Sex"
+        onPress={() => setModalVisible(!modalVisible)}
+      />
+      <Overlay
+        isVisible={modalVisible}
+        animationType="slide"
+        onBackdropPress={() => setModalVisible(!modalVisible)}
+      >
+        <View style={styles.overlayContainer}>
+          <View style={styles.headerSpacing}>
+            <Text style={styles.header}>"What's Your Biological Sex?"</Text>
           </View>
+          <Picker
+            selectedValue={props.sex}
+            onValueChange={(value) => props.handleSex(value)}
+          >
+            <Picker.Item label="Male" value={5} />
+            <Picker.Item label="Female" value={-161} />
+          </Picker>
         </View>
-      </Modal>
+      </Overlay>
     </View>
   );
 };
@@ -42,7 +51,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#eee",
+  },
+  button: {
+    backgroundColor: "#4b3619",
+    width: 220,
+    height: 50,
   },
 });
 

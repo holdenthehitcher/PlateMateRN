@@ -22,19 +22,19 @@ export default function InstructionsScreen(props) {
       name: "",
       title: "Adjust each Portion Size",
       subtitle:
-        "Everyone is different. Spin the wheel to change the amount of each ingredient on your plate",
+        "Everyone is different. Spin each ingredient's adjustment wheel to change the amount you want on your plate.",
     },
     {
       name: "",
       title: "Reset the Daily calories",
       subtitle:
-        "Once the next day begins, simply restart your calories and start portioning!",
+        "Once the next day begins, simply restart your calories and start portioning, again!",
     },
     {
       name: "",
       title: "Change Your Profile Info",
       subtitle:
-        "We all change, and PlateMate is here to help you reach your goals. When your weight or physical activity level differs, you can change your new stats.",
+        "We all change day-by-day. PlateMate is here to help you reach your goals no matter what stage of the journey you're in.",
     },
   ];
 
@@ -45,16 +45,19 @@ export default function InstructionsScreen(props) {
           Welcome To{" "}
         </Text>
         <Text h2 style={{ color: "#4cbb17" }}>
-          PlateMate!
+          PlateMate
         </Text>
       </View>
       <View style={styles.spacing}>
-        <Text style={styles.regularText}> An app to help you control your weight</Text>
+        <Text style={styles.regularText}>
+          {" "}
+          An app to help you control your weight!
+        </Text>
       </View>
       <View style={styles.separator} />
       <View style={styles.spacing}>
         <Text style={styles.secondHeader}>
-          With PlateMate, you can now easily
+          With PlateMate, you can now easily:
         </Text>
       </View>
       <View>
@@ -72,14 +75,14 @@ export default function InstructionsScreen(props) {
       </View>
       <View style={styles.separator} />
       <View style={styles.spacing}>
-        <Text style={styles.regularText}>
+        <Text style={styles.bottomText}>
           That's it! Now, let's get your profile started by clicking below.
         </Text>
       </View>
       <View style={styles.separator} />
-      <View style={styles.spacing}>
+      <View style={styles.buttonSpacing}>
         <Button
-          title="Enter Your PlateMate Info"
+          title="Start Here"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           buttonStyle={styles.button}
           raised
@@ -91,9 +94,7 @@ export default function InstructionsScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
+  container: {},
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   spacing: {
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 3
+    marginVertical: 3,
   },
   mainHeader: {
     color: "#ef820d",
@@ -117,24 +118,35 @@ const styles = StyleSheet.create({
   regularText: {
     fontSize: 16,
     color: "#34282c",
-    justifyContent:"center",
-    marginHorizontal: 50
+    justifyContent: "center",
+    marginHorizontal: 20,
+  },
+  bottomText: {
+    fontSize: 16,
+    color: "#34282c",
+    justifyContent: "center",
+    marginHorizontal: 50,
   },
   secondHeader: {
     fontSize: 30,
     color: "#34282c",
-    marginLeft: 26
+    marginLeft: 26,
   },
   title: {
     color: "#c21807",
-    fontSize: 22
+    fontSize: 22,
   },
   subtitle: {
-    color: "#613613"
+    color: "#613613",
   },
   button: {
     backgroundColor: "#4cbb17",
     width: 260,
-    height: 90
+    height: 70,
+  },
+  buttonSpacing: {
+    marginBottom: 40,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

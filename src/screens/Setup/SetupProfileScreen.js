@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
-  Button,
   Text,
   View,
   Alert,
+  ScrollView,
 } from "react-native";
+import { Button } from "react-native-elements";
 import { connect } from "react-redux";
+import { setProfile } from "../../redux/ProfileStatsRedux";
+
 
 import HeightInput from "./HeightInput";
 import AgeInput from "./AgeInput";
@@ -15,6 +18,8 @@ import SexInput from "./SexInput";
 import WeightInput from "./WeightInput";
 import PhysicalActivityInput from "./PhysicalActivityInput";
 import GoalWeightInput from "./GoalWeightInput";
+
+
 
 function SetupProfileScreen(props) {
   const [newStats, setNewStats] = useState(props.stats);
@@ -25,6 +30,8 @@ function SetupProfileScreen(props) {
       [key]: value,
     });
 
+  /* functions to be used in Portioning daily calories left  
+  
   const handleSubmit = () => {
     const newCal = calculateDailyCalories(newStats);
     updateStats("dailyCalories", newCal);
@@ -43,85 +50,117 @@ function SetupProfileScreen(props) {
     console.log(calculatedCalories);
     return calculatedCalories;
   };
+  */
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Create Your Profile</Text>
-      <View style={styles.separator} />
-
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.titleSpacing}>
+        <Text style={styles.title}>Manage Your Stats</Text>
+      </View>
       <View>
-        <View>
-          <Text>Enter Your Starting Stats:</Text>
+        <View style={styles.inputSpacing}>
           <HeightInput
             feet={newStats.feet}
             inches={newStats.inches}
             handleFeet={(value) => updateStats("feet", value)}
             handleInches={(value) => updateStats("inches", value)}
           />
+        </View>
+        <View style={styles.inputSpacing}>
           <AgeInput
             age={newStats.age}
             handleAge={(value) => updateStats("age", value)}
           />
+        </View>
+        <View style={styles.inputSpacing}>
           <SexInput
             sex={newStats.sex}
             handleSex={(value) => updateStats("sex", value)}
           />
+        </View>
+        <View style={styles.inputSpacing}>
           <WeightInput
             weight={newStats.weight}
             handleWeight={(value) => updateStats("weight", value)}
           />
+        </View>
+        <View style={styles.inputSpacing}>
           <PhysicalActivityInput
             exerciseValue={newStats.stressFactor}
             handleStressFactor={(value) => updateStats("stressFactor", value)}
           />
         </View>
-        <GoalWeightInput
-          goalWeight={newStats.goalWeight}
-          handleGoalWeight={(value) => updateStats("goalWeight", value)}
-        />
+        <View style={styles.inputSpacing}>
+          <GoalWeightInput
+            goalWeight={newStats.goalWeight}
+            handleGoalWeight={(value) => updateStats("goalWeight", value)}
+          />
+        </View>
       </View>
 
       <View style={styles.helpContainer}>
         <TouchableOpacity style={styles.helpLink}>
           <Button
+            buttonStyle={styles.button}
+            raised
             title="Review Your Stats"
+            titleStyle={styles.buttonTitle}
             onPress={() => {
               {
                 Alert.alert(
-                  "Finished?",
-                  `Double-check before you begin portioning your food with PlateMate`,
+                  "All Finished?",
+                  `You can always come back to change your stats later if needed`,
                   [
                     {
                       text: "Go Back",
                       onPress: () => console.log("Cancel Pressed"),
                       style: "cancel",
                     },
-                    { text: "Ready", onPress: () => {
-                      props.setProfile(newStats);
-                      console.log(props);
-                    }},
+                    {
+                      text: "Ready",
+                      onPress: () => {
+                       props.setProfile(newStats);
+                        console.log(props.stats);
+                      },
+                    },
                   ],
                   { onDismiss: () => {} }
                 );
               }
-              }
-            }
+            }}
           />
+          <View style={styles.separator} />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+  },
+  titleSpacing: {
+    marginVertical: 23,
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
+    color: "#5c2c06",
+  },
+  inputSpacing: {
+    marginVertical: 13,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#4b3619",
+    width: 280,
+    height: 85,
+    borderColor: "#997950",
+  },
+  buttonTitle: {
+    fontSize: 23
   },
   separator: {
     marginVertical: 30,
@@ -187,7 +226,6 @@ const mapStateToProps = (state) => {
     stats: state.profileActions.stats,
   };
 };
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
