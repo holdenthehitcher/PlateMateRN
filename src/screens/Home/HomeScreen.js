@@ -9,7 +9,7 @@ export default function HomeScreen(props) {
     <View style={styles.container}>
       <View style={styles.buttonMargin}>
         <Button
-          buttonStyle={{ backgroundColor: "#29ab87", width: 260, height: 65 }}
+          buttonStyle={{ backgroundColor: "#d21f3c", width: 260, height: 65 }}
           title="How to Use PlateMate"
           onPress={() => navigation.navigate("InstructionsScreen")}
         ></Button>
@@ -22,7 +22,7 @@ export default function HomeScreen(props) {
       </View>
       <View style={styles.buttonMargin}>
         <Button
-          buttonStyle={{ backgroundColor: "#00a86b", width: 280, height: 80 }}
+          buttonStyle={{ backgroundColor: "#008ecc", width: 280, height: 80 }}
           title="Change Your Settings"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           raised
