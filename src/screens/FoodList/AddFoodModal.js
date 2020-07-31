@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Modal,
-  StyleSheet,
-  Picker,
-  Button,
-  TextInput,
-} from "react-native";
-import { Icon } from "react-native-elements";
+import { View, Text, Modal, StyleSheet, Picker } from "react-native";
+import { Icon, Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 
@@ -42,90 +34,65 @@ const AddFoodModal = (props) => {
         title="Add A New Food"
         onPress={() => setModalVisible(!modalVisible)}
       ></Button>
-      <Modal
-        animated
-        transparent
-        visible={modalVisible}
+      <Overlay
+        isVisible={modalVisible}
         animationType="slide"
-        onRequestClose={() => !modalVisible}
+        onBackdropPress={() => setModalVisible(!modalVisible)}
       >
-        <View style={styles.container}>
-          <View style={styles.pickerContainer}>
-            <View style={styles.header}>
-              <Text>Add A New Food</Text>
-              <Icon
-                style={styles.text}
-                name="close"
-                onPress={() => setModalVisible(!modalVisible)}
-              />
-            </View>
-            <View>
-              <TextInput
-                placeholder="Food Name"
-                style={styles.foodInput}
-                onChangeText={(value) => updateFoodValues("name", value)}
-              />
-              <TextInput
-                placeholder="Calories"
-                style={styles.foodInput}
-                onChangeText={(value) => updateFoodValues("calories", value)}
-              />
-              <TextInput
-                placeholder="Portion Amount"
-                style={styles.foodInput}
-                onChangeText={(value) => updateFoodValues("amount", value)}
-              />
-              <Button
-                title="Portion Amount Type"
-                onPress={() => setAmountModalVisible(!amountModalVisible)}
-              ></Button>
-              <Modal
-                animated
-                transparent
-                visible={amountModalVisible}
-                animationType="slide"
-                onRequestClose={() => !amountModalVisible}
-              >
-                <View style={styles.container}>
-                  <View style={styles.pickerContainer}>
-                    <View style={styles.header}>
-                      <Text>"What Unit of measurement is this Food?"</Text>
-                      <Icon
-                        name="close"
-                        onPress={() =>
-                          setAmountModalVisible(!amountModalVisible)
-                        }
-                      />
-                    </View>
-                    <Picker
-                      selectedValue={foodValues.amountType}
-                      onValueChange={(value) =>
-                        updateFoodValues("amountType", value)
-                      }
-                    >
-                      {items.map(({ label, amountType }) => (
-                        <Picker.Item
-                          key={amountType}
-                          value={amountType}
-                          label={label}
-                        />
-                      ))}
-                    </Picker>
-                  </View>
-                </View>
-              </Modal>
-              <Button
-                title="Submit Food"
-                onPress={() => {
-                  props.add(foodValues);
-                  setModalVisible(!modalVisible);
-                  console.log(foodValues);
-                }}
-              />
-            </View>
+        <View style={styles.overlayContainer}>
+          <View style={styles.headerSpacing}>
+            <Text style={styles.header}>Add A New Food</Text>
+          </View>
+          <View style={styles.inputSpacing}>
+            <Input
+              placeholder="Food Name"
+              style={styles.foodInput}
+              onChangeText={(value) => updateFoodValues("name", value)}
+            />
+          </View>
+          <View style={styles.inputSpacing}>
+            <Input
+              keyboardType="decimal-pad"
+              placeholder="Calories"
+              style={styles.foodInput}
+              onChangeText={(value) => updateFoodValues("calories", value)}
+            />
+          </View>
+          <View style={styles.inputSpacing}>
+            <Input
+              keyboardType="decimal-pad"
+              placeholder="Portion Amount"
+              style={styles.foodInput}
+              onChangeText={(value) => updateFoodValues("amount", value)}
+            />
+          </View>
+          <View style={styles.inputSpacing}>
+            <Picker
+              selectedValue={foodValues.amountType}
+              onValueChange={(value) => updateFoodValues("amountType", value)}
+            >
+              {items.map(({ label, amountType }) => (
+                <Picker.Item
+                  key={amountType}
+                  value={amountType}
+                  label={label}
+                />
+              ))}
+            </Picker>
+          </View>
+          <View style={styles.buttonSpacing}>
+            <Button
+              buttonStyle={styles.button}
+              title="Submit Food"
+              onPress={() => {
+                props.add(foodValues);
+                setModalVisible(!modalVisible);
+                console.log(foodValues);
+              }}
+            />
           </View>
         </View>
-      </Modal>
+      </Overlay>
     </>
   );
 };
@@ -137,20 +104,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
   },
-  pickerContainer: {
-    height: "80%",
-    width: "100%",
-    backgroundColor: "white",
+  overlayContainer: {
+    height: 450,
+    width: 350,
+    justifyContent: "center",
+  },
+  headerSpacing: {
+    alignItems: "center",
+    marginBottom: 16,
   },
   header: {
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#eee",
+    fontSize: 22,
   },
+  inputSpacing: { marginTop: 10 },
   text: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  buttonSpacing: {
+    marginTop: 30,
+  },
+  button: {
+    backgroundColor: "#997950",
+    width: "100%",
+    height: 50,
   },
 });
 

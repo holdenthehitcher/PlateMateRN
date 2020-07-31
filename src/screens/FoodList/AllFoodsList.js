@@ -7,10 +7,6 @@ import { deleteFood } from "../../redux/FoodsListRedux";
 const AllFoodsList = (props) => {
   
   return (
-    <>
-      <View>
-        <SearchBar placeholder="Search Foods" />
-      </View>
       <View>
         <FlatList
           data={props.foods}
@@ -33,7 +29,6 @@ const AllFoodsList = (props) => {
           )}
         />
       </View>
-    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Modal, StyleSheet, Picker } from "react-native";
 import { Icon, Button, Overlay, Slider } from "react-native-elements";
-import { spring } from "react-native-reanimated";
 
 const HeightInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);

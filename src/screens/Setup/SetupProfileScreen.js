@@ -11,7 +11,6 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/ProfileStatsRedux";
 
-
 import HeightInput from "./HeightInput";
 import AgeInput from "./AgeInput";
 import SexInput from "./SexInput";
@@ -19,9 +18,8 @@ import WeightInput from "./WeightInput";
 import PhysicalActivityInput from "./PhysicalActivityInput";
 import GoalWeightInput from "./GoalWeightInput";
 
-
-
 function SetupProfileScreen(props) {
+  const { navigation } = props;
   const [newStats, setNewStats] = useState(props.stats);
 
   const updateStats = (key, value) =>
@@ -119,8 +117,9 @@ function SetupProfileScreen(props) {
                     {
                       text: "Ready",
                       onPress: () => {
-                       props.setProfile(newStats);
+                        props.setProfile(newStats);
                         console.log(props.stats);
+                        navigation.navigate("HomeScreen");
                       },
                     },
                   ],
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
     borderColor: "#997950",
   },
   buttonTitle: {
-    fontSize: 23
+    fontSize: 23,
   },
   separator: {
     marginVertical: 30,
