@@ -42,7 +42,7 @@ function ReviewStatsScreen(props) {
           {
             Alert.alert(
               "Finished?",
-              `The plan is to eat ${dailyCalories} Kcal. a day`,
+              `Double-check before you begin portioning your food with PlateMate`,
               [
                 {
                   text: "Go Back",

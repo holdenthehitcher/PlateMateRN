@@ -12,8 +12,8 @@ const chartConfig = {
   barPercentage: 0.5,
   useShadowColorFromDataset: false, // optional
 };
-
 const screenWidth = Dimensions.get("window").width;
+
 
 export default PortionPieChart = ({ chosenFoods }) => {
   const pieStyles = {
@@ -30,7 +30,7 @@ export default PortionPieChart = ({ chosenFoods }) => {
 
   return (
     <View>
-      <Text style={{ justifyContent: "center" }}>
+      <Text style={{ paddingLeft: 20 }}>
         Foods By Calorie Percentage
       </Text>
       <PieChart
@@ -40,8 +40,7 @@ export default PortionPieChart = ({ chosenFoods }) => {
         chartConfig={chartConfig}
         accessor="calories"
         backgroundColor="transparent"
-        paddingLeft="15"
-        absolute
+        paddingLeft="20"
       />
     </View>
   );

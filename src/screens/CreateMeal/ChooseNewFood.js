@@ -15,6 +15,7 @@ import { ScrollView, FlatList } from "react-native-gesture-handler";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [chosenFoods, setChosenFoods] = useState(props.food);
 
   return (
     <>
@@ -41,7 +42,7 @@ const ChooseNewFood = (props) => {
             </View>
             <ScrollView>
               <FlatList
-                data={props.foods}
+                data={chosenFoods.filter((food) => food.addedToList === true)}
                 keyExtractor={(food) => food.id.toString()}
                 renderItem={({ item }) => (
                   <ListItem
@@ -56,6 +57,7 @@ const ChooseNewFood = (props) => {
                           {
                             item.addedToList = true;
                             props.setEffect(!props.effect);
+                            console.log(props.foods);
                           }
                         }}
                       />

@@ -17,9 +17,7 @@ import PhysicalActivityInput from "./PhysicalActivityInput";
 import GoalWeightInput from "./GoalWeightInput";
 
 function SetupProfileScreen(props) {
-  const { navigation } = props;
   const [newStats, setNewStats] = useState(props.stats);
-  const [newDailyCalories, setNewDailyCalories] = useState(0);
 
   const updateStats = (key, value) =>
     setNewStats({
@@ -28,10 +26,11 @@ function SetupProfileScreen(props) {
     });
 
   const handleSubmit = () => {
-    calculateDailyCalories(newStats);
-    updateStats("dailyCalories", newDailyCalories);
-    updateStats("caloriesLeft", newDailyCalories);
-    console.log(newStats.dailyCalories);
+    const newCal = calculateDailyCalories(newStats);
+    updateStats("dailyCalories", newCal);
+    updateStats("caloriesLeft", newCal);
+    console.log(newDailyCalories);
+    console.log(newStats);
   };
 
   const calculateDailyCalories = (stats) => {
@@ -42,8 +41,8 @@ function SetupProfileScreen(props) {
       (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
     const calculatedCalories =
       weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-
-    return setNewDailyCalories(calculatedCalories);
+    console.log(calculatedCalories);
+    return calculatedCalories;
   };
 
   return (
@@ -88,11 +87,26 @@ function SetupProfileScreen(props) {
           <Button
             title="Review Your Stats"
             onPress={() => {
-              handleSubmit();
-              navigation.navigate("ReviewStatsScreen", {
-                newStats: newStats,
-              });
-            }}
+              {
+                Alert.alert(
+                  "Finished?",
+                  `Double-check before you begin portioning your food with PlateMate`,
+                  [
+                    {
+                      text: "Go Back",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel",
+                    },
+                    { text: "Ready", onPress: () => {
+                      props.setProfile(newStats);
+                      console.log(props);
+                    }},
+                  ],
+                  { onDismiss: () => {} }
+                );
+              }
+              }
+            }
           />
         </TouchableOpacity>
       </View>
@@ -175,4 +189,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SetupProfileScreen);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProfile: (stats) => dispatch(setProfile(stats)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SetupProfileScreen);
