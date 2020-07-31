@@ -29,7 +29,6 @@ function SetupProfileScreen(props) {
     const newCal = calculateDailyCalories(newStats);
     updateStats("dailyCalories", newCal);
     updateStats("caloriesLeft", newCal);
-    console.log(newDailyCalories);
     console.log(newStats);
   };
 

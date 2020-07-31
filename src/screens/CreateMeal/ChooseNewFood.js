@@ -15,7 +15,7 @@ import { ScrollView, FlatList } from "react-native-gesture-handler";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [chosenFoods, setChosenFoods] = useState(props.food);
+  const { chosenFoods, setChosenFoods } = props;
 
   return (
     <>
@@ -37,12 +37,14 @@ const ChooseNewFood = (props) => {
               <Icon
                 style={styles.text}
                 name="close"
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
               />
             </View>
             <ScrollView>
               <FlatList
-                data={chosenFoods.filter((food) => food.addedToList === true)}
+                data={chosenFoods}
                 keyExtractor={(food) => food.id.toString()}
                 renderItem={({ item }) => (
                   <ListItem
@@ -55,9 +57,26 @@ const ChooseNewFood = (props) => {
                         size={20}
                         onPress={() => {
                           {
-                            item.addedToList = true;
-                            props.setEffect(!props.effect);
-                            console.log(props.foods);
+                            Alert.alert(
+                              `Add ${item.name}`,
+                              `Would you like to include ${item.name} in this meal?`,
+                              [
+                                {
+                                  text: "Go Back",
+                                  onPress: () => console.log("Cancel Pressed"),
+                                  style: "cancel",
+                                },
+                                {
+                                  text: "Ready",
+                                  onPress: () => {
+                                    item.addedToList = true;
+                                    setChosenFoods(chosenFoods);
+                                    console.log(chosenFoods);
+                                  },
+                                },
+                              ],
+                              { onDismiss: () => {} }
+                            );
                           }
                         }}
                       />

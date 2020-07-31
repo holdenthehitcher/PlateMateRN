@@ -4,7 +4,7 @@ import { ListItem, Icon } from "react-native-elements";
 import { WheelPicker, Item } from "react-native-android-wheel-picker";
 
 
-const AmountWheel = ({item, updateFoodAmount}) => {
+const AmountWheel = ({item}) => {
   const wheelNumbers = []
   for (let i=1;i<=400;i++) {
     wheelNumbers.push(i)
@@ -15,7 +15,7 @@ const AmountWheel = ({item, updateFoodAmount}) => {
       <WheelPicker
           selectedItem={wheelNumbers[item.amount]}
           initPosition={wheelNumbers[item.amount]}
-          onItemsSelected={(value) => updateFoodAmount(item.id, value)}
+          onItemsSelected={(value) => item.amount = value}
           backgroundColor="white"
           itemStyle={{ color: "green" }}
         >
@@ -25,7 +25,7 @@ const AmountWheel = ({item, updateFoodAmount}) => {
   )
 }
 
-export default PortionWheelList = (props, {updateFoodAmount}) => {
+export default PortionWheelList = (props) => {
   return (
     <>
       <View>
@@ -37,7 +37,7 @@ export default PortionWheelList = (props, {updateFoodAmount}) => {
               key={item.id}
               title={`${item.name} - ${item.calories} cal./${item.amountType}`}
               bottomDivider
-              rightIcon={<><AmountWheel item={item} updateFoodAmount={updateFoodAmount} /><Text>{item.amountType}</Text></>}
+              rightIcon={<><AmountWheel item={item} /><Text>{item.amountType}</Text></>}
             />
           )}
         />

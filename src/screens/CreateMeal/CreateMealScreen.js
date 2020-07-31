@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,13 +7,14 @@ import {
   Text,
   View,
 } from "react-native";
-import ChooseNewFood from './ChooseNewFood';
+import { connect } from "react-redux";
+
+import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
-export default function PortionScreen(props) {
+function CreateMealScreen(props) {
   const { navigation } = props;
-  const [effect, setEffect] = useState(false);
-
+  const [chosenFoods, setChosenFoods] = useState(props.foods);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -21,12 +22,26 @@ export default function PortionScreen(props) {
       <View style={styles.separator} />
       <View>
         <TouchableOpacity style={styles.helpLink}>
-          <ChooseNewFood effect={effect} setEffect={setEffect}/>
+          <ChooseNewFood
+            chosenFoods={chosenFoods}
+            setChosenFoods={setChosenFoods}
+          />
         </TouchableOpacity>
         <Text>This Meal's Foods</Text>
-        <MealFoodsList effect={effect}/>
+        <MealFoodsList
+          chosenFoods={chosenFoods}
+          setChosenFoods={setChosenFoods}
+        />
         <TouchableOpacity style={styles.helpLink}>
-          <Button title="Portion Your Meal" onPress={() => navigation.navigate('PortionScreen')}></Button>
+          <Button
+            title="Portion Your Meal"
+            onPress={() => {
+              navigation.navigate("PortionScreen"),
+                {
+                  chosenFoods: chosenFoods,
+                };
+            }}
+          ></Button>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -62,5 +77,12 @@ const styles = StyleSheet.create({
   codeHighlightText: {
     color: "rgba(96,100,109, 0.8)",
   },
-
 });
+
+const mapStateToProps = (state) => {
+  return {
+    foods: state.foodsActions.allFoods,
+  };
+};
+
+export default connect(mapStateToProps)(CreateMealScreen);

@@ -17,13 +17,11 @@ const Food = ({ item }) => {
   );
 };
 
-
-const MealFoodsList = (props) => {
-  useEffect(() => {}, [props.effect]);
+const MealFoodsList = ({ chosenFoods, setChosenFoods }) => {
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        data={props.foods}
+        data={chosenFoods}
         keyExtractor={(food) => food.id.toString()}
         renderItem={({ item }) => <Food item={item} />}
       />
