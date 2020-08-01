@@ -7,7 +7,12 @@ import { addFood } from "../../redux/FoodsListRedux";
 const AddFoodModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [amountModalVisible, setAmountModalVisible] = useState(false);
-  const [foodValues, setFoodValues] = useState({});
+  const [foodValues, setFoodValues] = useState({
+    name: "Nothing",
+    calories: 0,
+    amount: 0,
+    amountType: "Cups",
+  });
 
   const updateFoodValues = (key, value) =>
     setFoodValues({

@@ -16,7 +16,7 @@ export default function HomeScreen(props) {
       </View>
       <View>
         <Image
-          source={require("../../../assets/PlateMateLogo3.png")}
+          source={require("../../../assets/PlateMateLogo.png")}
           style={{ width: 210, height: 200, marginVertical: 12 }}
         />
       </View>
