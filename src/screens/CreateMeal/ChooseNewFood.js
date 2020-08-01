@@ -12,7 +12,6 @@ import {
 import { Icon, ListItem } from "react-native-elements";
 import { ScrollView, FlatList } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import { toggleFood } from "../../redux/FoodsListRedux";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,7 +68,8 @@ const ChooseNewFood = (props) => {
                                 {
                                   text: "Ready",
                                   onPress: () => {
-                                    props.toggleFood(item.id);
+                                    {item.addedToList = true,
+                                      console.log(props.foods)}
                                   },
                                 },
                               ],
@@ -120,10 +120,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleFood: (id) => dispatch(toggleFood(id)),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseNewFood);
+export default connect(mapStateToProps)(ChooseNewFood);

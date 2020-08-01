@@ -14,8 +14,9 @@ import { Item } from "react-native-android-wheel-picker";
 // submit meal updates redux dailyCalories
 
 function PortionScreen(props) {
-  const { chosenFoods } = props.route.params;
- console.log( props.route.params)
+  const [chosenFoods, setChosenFoods] = useState(
+    props.foods.filter((food) => food.addedToList === true)
+  );
 
   return (
     <View style={styles.container}>
@@ -25,16 +26,12 @@ function PortionScreen(props) {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View style={{ flex: 1 }}>
-        <PortionPieChart
-         chosenFoods={chosenFoods}
-        />
-        <PortionListItems
-          chosenFoods={chosenFoods}
-        />
+        <PortionPieChart chosenFoods={chosenFoods} />
+        <PortionListItems chosenFoods={chosenFoods} />
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -54,9 +51,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     foods: state.foodsActions.allFoods,
-    stats: state.profileActions.stats,
   };
 };
-
 
 export default connect(mapStateToProps)(PortionScreen);

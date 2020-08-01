@@ -60,7 +60,7 @@ const AddFoodModal = (props) => {
               keyboardType="decimal-pad"
               placeholder="Calories"
               style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("calories", value)}
+              onChangeText={(value) => updateFoodValues("calories", +value)}
             />
           </View>
           <View style={styles.inputSpacing}>
@@ -68,7 +68,7 @@ const AddFoodModal = (props) => {
               keyboardType="decimal-pad"
               placeholder="Portion Amount"
               style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("amount", value)}
+              onChangeText={(value) => updateFoodValues("amount", +value)}
             />
           </View>
           <View style={styles.inputSpacing}>
