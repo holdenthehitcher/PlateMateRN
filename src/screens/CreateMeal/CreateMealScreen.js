@@ -7,14 +7,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { connect } from "react-redux";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
 function CreateMealScreen(props) {
   const { navigation } = props;
-  const [chosenFoods, setChosenFoods] = useState(props.foods);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -22,25 +20,14 @@ function CreateMealScreen(props) {
       <View style={styles.separator} />
       <View>
         <TouchableOpacity style={styles.helpLink}>
-          <ChooseNewFood
-            chosenFoods={chosenFoods}
-            setChosenFoods={setChosenFoods}
-          />
+          <ChooseNewFood />
         </TouchableOpacity>
         <Text>This Meal's Foods</Text>
-        <MealFoodsList
-          chosenFoods={chosenFoods}
-          setChosenFoods={setChosenFoods}
-        />
+        <MealFoodsList />
         <TouchableOpacity style={styles.helpLink}>
           <Button
             title="Portion Your Meal"
-            onPress={() => {
-              navigation.navigate("PortionScreen"),
-                {
-                  chosenFoods: chosenFoods,
-                };
-            }}
+            onPress={() => navigation.navigate("PortionScreen")}
           ></Button>
         </TouchableOpacity>
       </View>
@@ -79,10 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  return {
-    foods: state.foodsActions.allFoods,
-  };
-};
-
-export default connect(mapStateToProps)(CreateMealScreen);
+export default CreateMealScreen;

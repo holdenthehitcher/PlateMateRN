@@ -7,7 +7,7 @@ import { deleteFood } from "../../redux/FoodsListRedux";
 const AllFoodsList = (props) => {
   
   return (
-      <View>
+      <View>  
         <FlatList
           data={props.foods}
           keyExtractor={(food) => food.id.toString()}

@@ -10,12 +10,12 @@ import {
   Alert,
 } from "react-native";
 import { Icon, ListItem } from "react-native-elements";
-import { connect } from "react-redux";
 import { ScrollView, FlatList } from "react-native-gesture-handler";
+import { connect } from "react-redux";
+import { toggleFood } from "../../redux/FoodsListRedux";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { chosenFoods, setChosenFoods } = props;
 
   return (
     <>
@@ -44,7 +44,7 @@ const ChooseNewFood = (props) => {
             </View>
             <ScrollView>
               <FlatList
-                data={chosenFoods}
+                data={props.foods}
                 keyExtractor={(food) => food.id.toString()}
                 renderItem={({ item }) => (
                   <ListItem
@@ -69,9 +69,7 @@ const ChooseNewFood = (props) => {
                                 {
                                   text: "Ready",
                                   onPress: () => {
-                                    item.addedToList = true;
-                                    setChosenFoods(chosenFoods);
-                                    console.log(chosenFoods);
+                                    props.toggleFood(item.id);
                                   },
                                 },
                               ],
@@ -122,4 +120,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ChooseNewFood);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleFood: (id) => dispatch(toggleFood(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseNewFood);

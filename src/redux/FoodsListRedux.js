@@ -4,6 +4,7 @@ import DEFAULT_FOODS from "./DEFAULT_FOODS";
 
 export const ADD_FOOD = "ADD_FOOD";
 export const DELETE_FOOD = "DELETE_FOOD";
+export const TOGGLE_FOOD = "TOGGLE_FOOD";
 
 // Actions || Action Creators
 
@@ -14,6 +15,11 @@ export const addFood = (newFoodItem) => ({
 
 export const deleteFood = (id) => ({
   type: DELETE_FOOD,
+  payload: id,
+});
+
+export const toggleFood = (id) => ({
+  type: TOGGLE_FOOD,
   payload: id,
 });
 
@@ -39,6 +45,13 @@ export const FoodsActions = (state = initialState, action) => {
       return {
         ...state,
         allFoods: state.allFoods.filter((item) => item.id !== action.payload),
+      };
+    case TOGGLE_FOOD:
+      const toggledFood = state.allFoods.filter((item) => item.id === action.payload);
+      toggledFood.addedToList = !addedToList;
+      return {
+        ...state,
+        allFoods: [...state.allFoods, toggledFood]
       };
     default:
       return state;
