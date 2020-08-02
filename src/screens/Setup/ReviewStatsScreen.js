@@ -51,7 +51,6 @@ function ReviewStatsScreen(props) {
                 },
                 { text: "Ready", onPress: () => {
                   props.setProfile(newStats);
-                  console.log(newStats);
                 }},
               ],
               { onDismiss: () => {} }

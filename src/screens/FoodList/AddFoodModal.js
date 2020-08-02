@@ -6,9 +6,8 @@ import { addFood } from "../../redux/FoodsListRedux";
 
 const AddFoodModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [amountModalVisible, setAmountModalVisible] = useState(false);
   const [foodValues, setFoodValues] = useState({
-    name: "Nothing",
+    name: "****",
     calories: 0,
     amount: 0,
     amountType: "Cups",
@@ -19,6 +18,15 @@ const AddFoodModal = (props) => {
       ...foodValues,
       [key]: value,
     });
+
+  const resetFoodValues = () => {
+    setFoodValues({
+      name: "****",
+      calories: 0,
+      amount: 0,
+      amountType: "Cups",
+    });
+  };
 
   const items = [
     { label: "Cups", amountType: "Cups" },
@@ -85,14 +93,23 @@ const AddFoodModal = (props) => {
               ))}
             </Picker>
           </View>
-          <View style={styles.buttonSpacing}>
+          <View style={styles.buttonSpacingDouble}>
             <Button
               buttonStyle={styles.button}
               title="Submit Food"
               onPress={() => {
                 props.add(foodValues);
                 setModalVisible(!modalVisible);
-                console.log(foodValues);
+                resetFoodValues();
+              }}
+            />
+          </View>
+          <View style={styles.buttonSpacing}>
+            <Button
+              title="Cancel"
+              onPress={() => {
+                setModalVisible(!modalVisible);
+                resetFoodValues();
               }}
             />
           </View>
@@ -110,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   overlayContainer: {
-    height: 450,
+    height: 530,
     width: 350,
     justifyContent: "center",
   },
@@ -126,8 +143,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
+  buttonSpacingDouble: {
+    marginTop: 35,
+  },
   buttonSpacing: {
-    marginTop: 30,
+    marginTop: 15,
   },
   button: {
     backgroundColor: "#997950",

@@ -69,7 +69,7 @@ const ChooseNewFood = (props) => {
                                   text: "Ready",
                                   onPress: () => {
                                     {item.addedToList = true,
-                                      console.log(props.foods)}
+                                      {...props.foods}}
                                   },
                                 },
                               ],
@@ -82,6 +82,15 @@ const ChooseNewFood = (props) => {
                   />
                 )}
               />
+              <View style={styles.buttonSpacing}>
+            <Button
+              buttonStyle={styles.button}
+              title="Finished"
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            />
+          </View>
             </ScrollView>
           </View>
         </View>

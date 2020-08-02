@@ -28,28 +28,6 @@ function SetupProfileScreen(props) {
       [key]: value,
     });
 
-  /* functions to be used in Portioning daily calories left  
-  
-  const handleSubmit = () => {
-    const newCal = calculateDailyCalories(newStats);
-    updateStats("dailyCalories", newCal);
-    updateStats("caloriesLeft", newCal);
-    console.log(newStats);
-  };
-
-  const calculateDailyCalories = (stats) => {
-    const { weight, feet, inches, age, sex, stressFactor, goalWeight } = stats;
-    const weightKg = weight / 2.2;
-    const heightCm = feet * 30.48 + inches * 2.54;
-    const caloricExpend =
-      (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-    const calculatedCalories =
-      weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-    console.log(calculatedCalories);
-    return calculatedCalories;
-  };
-  */
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.titleSpacing}>
@@ -118,7 +96,6 @@ function SetupProfileScreen(props) {
                       text: "Ready",
                       onPress: () => {
                         props.setProfile(newStats);
-                        console.log(props.stats);
                         navigation.navigate("HomeScreen");
                       },
                     },
