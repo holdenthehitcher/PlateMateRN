@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
@@ -26,7 +27,7 @@ function CreateMealScreen(props) {
         <TouchableOpacity style={styles.helpLink}>
           <Button
             title="Portion Your Meal"
-            onPress={() => {navigation.navigate("PortionScreen")}}
+            onPress={() => navigation.navigate("PortionScreen")}
           ></Button>
         </TouchableOpacity>
       </View>

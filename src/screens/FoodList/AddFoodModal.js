@@ -11,6 +11,7 @@ const AddFoodModal = (props) => {
     calories: 0,
     amount: 0,
     amountType: "Cups",
+    addedToList: false,
   });
 
   const updateFoodValues = (key, value) =>
@@ -25,6 +26,7 @@ const AddFoodModal = (props) => {
       calories: 0,
       amount: 0,
       amountType: "Cups",
+      addedToList: false,
     });
   };
 

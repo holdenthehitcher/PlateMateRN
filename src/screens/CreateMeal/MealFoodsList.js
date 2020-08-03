@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
 import { connect } from "react-redux";
+import { toggleFood } from "../../redux/FoodsListRedux";
 import { ListItem, Icon} from "react-native-elements";
 
-
-
-const MealFoodsList = (props) => {
-  
-  return (
-    <View style={{ flex: 1 }}>
-      <FlatList
-        data={props.foods}
-        keyExtractor={(food) => food.id.toString()}
-        renderItem={({item}) => <Food item={item} />}
-      />
-    </View>
-  );
-};
-
-const Food = ({item}) => {
-
-
-
+const Food = (props) => {
+  const {item, toggleFood} = props;
   return (
     <>
       {item.addedToList === true && (
@@ -34,7 +18,7 @@ const Food = ({item}) => {
               name="remove"
               size={20}
               onPress={() => {
-                item.addedToList = false;
+                toggleFood(item.id)
               }}
             />
           }
@@ -44,10 +28,28 @@ const Food = ({item}) => {
   );
 };
 
+const MealFoodsList = (props) => {
+  return (
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={props.foods}
+        keyExtractor={(food) => food.id.toString()}
+        renderItem={({item}) => <Food item={item} />}
+      />
+    </View>
+  );
+};
+
 const mapStateToProps = (state) => {
   return {
     foods: state.foodsActions.allFoods,
   };
 };
 
-export default connect(mapStateToProps)(MealFoodsList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleFood: (id) => dispatch(toggleFood(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MealFoodsList);

@@ -47,11 +47,15 @@ export const FoodsActions = (state = initialState, action) => {
         allFoods: state.allFoods.filter((item) => item.id !== action.payload),
       };
     case TOGGLE_FOOD:
-      const toggledFood = state.allFoods.filter((item) => item.id === action.payload);
-      toggledFood.addedToList = !addedToList;
+      // const item = action.payload;
+      //item.addedToList = !addedToList;
       return {
         ...state,
-        allFoods: [...state.allFoods, toggledFood]
+        allFoods: state.allFoods.map((item) =>
+          item.id === action.payload
+            ? { ...item, addedToList: item.addedToList === true ? false : true }
+            : item
+        ),
       };
     default:
       return state;

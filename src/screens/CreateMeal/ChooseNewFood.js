@@ -12,9 +12,11 @@ import {
 import { Icon, ListItem } from "react-native-elements";
 import { ScrollView, FlatList } from "react-native-gesture-handler";
 import { connect } from "react-redux";
+import { toggleFood } from "../../redux/FoodsListRedux";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [chosenFoods, setChosenFoods] = useState(props.foods)
 
   return (
     <>
@@ -43,9 +45,9 @@ const ChooseNewFood = (props) => {
             </View>
             <ScrollView>
               <FlatList
-                data={props.foods}
+                data={chosenFoods}
                 keyExtractor={(food) => food.id.toString()}
-                renderItem={({ item }) => (
+                renderItem={({ item }, i) => (
                   <ListItem
                     key={item.id}
                     title={`${item.name} - ${item.calories} Kcal/g`}
@@ -68,8 +70,11 @@ const ChooseNewFood = (props) => {
                                 {
                                   text: "Ready",
                                   onPress: () => {
-                                    {item.addedToList = true,
-                                      {...props.foods}}
+                                    // console.log(item.addedToList)
+                                    // item.addedToList = true
+                                   console.log(props.foods)
+                                   props.toggleFood(item.id);
+                                  
                                   },
                                 },
                               ],
@@ -83,14 +88,14 @@ const ChooseNewFood = (props) => {
                 )}
               />
               <View style={styles.buttonSpacing}>
-            <Button
-              buttonStyle={styles.button}
-              title="Finished"
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            />
-          </View>
+                <Button
+                  buttonStyle={styles.button}
+                  title="Finished"
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                />
+              </View>
             </ScrollView>
           </View>
         </View>
@@ -129,5 +134,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleFood: (id) => dispatch(toggleFood(id)),
+  };
+};
 
-export default connect(mapStateToProps)(ChooseNewFood);
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseNewFood);
