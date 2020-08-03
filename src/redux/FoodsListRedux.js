@@ -5,6 +5,7 @@ import DEFAULT_FOODS from "./DEFAULT_FOODS";
 export const ADD_FOOD = "ADD_FOOD";
 export const DELETE_FOOD = "DELETE_FOOD";
 export const TOGGLE_FOOD = "TOGGLE_FOOD";
+export const REST_LIST = "RESET_LIST";
 
 // Actions || Action Creators
 
@@ -23,6 +24,9 @@ export const toggleFood = (id) => ({
   payload: id,
 });
 
+export const resetList = () => ({
+  type: REST_LIST,
+});
 // Reducers
 
 const initialState = {
@@ -38,6 +42,7 @@ export const FoodsActions = (state = initialState, action) => {
         calories,
         amount,
         amountType,
+        addedToList: false,
         id: Math.random(),
       };
       return { ...state, allFoods: [...state.allFoods, newFood] };
@@ -47,8 +52,6 @@ export const FoodsActions = (state = initialState, action) => {
         allFoods: state.allFoods.filter((item) => item.id !== action.payload),
       };
     case TOGGLE_FOOD:
-      // const item = action.payload;
-      //item.addedToList = !addedToList;
       return {
         ...state,
         allFoods: state.allFoods.map((item) =>
@@ -56,6 +59,11 @@ export const FoodsActions = (state = initialState, action) => {
             ? { ...item, addedToList: item.addedToList === true ? false : true }
             : item
         ),
+      };
+    case RESET_LIST:
+      return {
+        ...state,
+        allFoods: state.allFoods.map((item) => (item.addedToList = false)),
       };
     default:
       return state;

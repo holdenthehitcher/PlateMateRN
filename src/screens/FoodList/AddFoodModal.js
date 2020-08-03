@@ -101,6 +101,7 @@ const AddFoodModal = (props) => {
               title="Submit Food"
               onPress={() => {
                 props.add(foodValues);
+                console.log(props.foods)
                 setModalVisible(!modalVisible);
                 resetFoodValues();
               }}

@@ -16,7 +16,6 @@ import { toggleFood } from "../../redux/FoodsListRedux";
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [chosenFoods, setChosenFoods] = useState(props.foods)
 
   return (
     <>

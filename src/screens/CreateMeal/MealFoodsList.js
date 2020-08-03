@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
+import { StyleSheet, FlatList, SafeAreaView, Text, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import { toggleFood } from "../../redux/FoodsListRedux";
-import { ListItem, Icon } from "react-native-elements";
+import { ListItem, Icon} from "react-native-elements";
 
-const Food = (props) => {
-  const { item, toggleFood } = props;
+const Food = ({item, toggleFood}) => {
   return (
     <>
       {item.addedToList === true && (
@@ -18,7 +17,28 @@ const Food = (props) => {
               name="remove"
               size={20}
               onPress={() => {
-                toggleFood(item.id);
+                {
+                  Alert.alert(
+                    `Remove ${item.name}`,
+                    `Remove ${item.name} from this meal?`,
+                    [
+                      {
+                        text: "Go Back",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel",
+                      },
+                      {
+                        text: "Ready",
+                        onPress: () => {
+                          // console.log(item.addedToList)
+                          // item.addedToList = true
+                         toggleFood(item.id);
+                        
+                        },
+                      },
+                    ],
+                  );
+                }
               }}
             />
           }
@@ -34,7 +54,7 @@ const MealFoodsList = (props) => {
       <FlatList
         data={props.foods}
         keyExtractor={(food) => food.id.toString()}
-        renderItem={({ item }) => <Food item={item} />}
+        renderItem={({item}) => <Food item={item} toggleFood={props.toggleFood} />}
       />
     </View>
   );
