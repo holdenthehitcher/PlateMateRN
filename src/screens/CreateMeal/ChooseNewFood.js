@@ -45,7 +45,7 @@ const ChooseNewFood = (props) => {
             </View>
             <ScrollView>
               <FlatList
-                data={chosenFoods}
+                data={props.foods}
                 keyExtractor={(food) => food.id.toString()}
                 renderItem={({ item }, i) => (
                   <ListItem
@@ -54,13 +54,16 @@ const ChooseNewFood = (props) => {
                     bottomDivider
                     leftIcon={
                       <Icon
-                        name="add"
+                        name={item.addedToList === false ? "add" : "remove"}
                         size={20}
                         onPress={() => {
                           {
                             Alert.alert(
-                              `Add ${item.name}`,
-                              `Would you like to include ${item.name} in this meal?`,
+                              item.addedToList === false 
+                              ? `Add ${item.name}` : `Remove ${item.name}`,
+                              item.addedToList === false
+                              ? `Would you like to include ${item.name} in this meal?`
+                              : `Remove ${item.name} from this meal?`,
                               [
                                 {
                                   text: "Go Back",

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { toggleFood } from "../../redux/FoodsListRedux";
-import { ListItem, Icon} from "react-native-elements";
+import { ListItem, Icon } from "react-native-elements";
 
 const Food = (props) => {
-  const {item, toggleFood} = props;
+  const { item, toggleFood } = props;
   return (
     <>
       {item.addedToList === true && (
@@ -18,7 +18,7 @@ const Food = (props) => {
               name="remove"
               size={20}
               onPress={() => {
-                toggleFood(item.id)
+                toggleFood(item.id);
               }}
             />
           }
@@ -34,7 +34,7 @@ const MealFoodsList = (props) => {
       <FlatList
         data={props.foods}
         keyExtractor={(food) => food.id.toString()}
-        renderItem={({item}) => <Food item={item} />}
+        renderItem={({ item }) => <Food item={item} />}
       />
     </View>
   );
