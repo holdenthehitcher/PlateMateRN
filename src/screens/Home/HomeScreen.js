@@ -16,17 +16,9 @@ export default function HomeScreen(props) {
       </View>
       <View>
         <Image
-          source={require("../../../assets/PlateMateLogo.png")}
+          source={require("../../../assets/PlateMate2.png")}
           style={{ width: 210, height: 200, marginVertical: 12 }}
         />
-      </View>
-      <View style={styles.buttonMargin}>
-        <Button
-          buttonStyle={{ backgroundColor: "#008ecc", width: 280, height: 80 }}
-          title="Change Your Settings"
-          onPress={() => navigation.navigate("SetupProfileScreen")}
-          raised
-        ></Button>
       </View>
       <View style={styles.buttonMargin}>
         <Button
@@ -41,6 +33,14 @@ export default function HomeScreen(props) {
           buttonStyle={{ backgroundColor: "#4cbb17", width: 290, height: 80 }}
           title="Food List"
           onPress={() => navigation.navigate("FoodListScreen")}
+          raised
+        ></Button>
+      </View>
+      <View style={styles.buttonMargin}>
+        <Button
+          buttonStyle={{ backgroundColor: "#008ecc", width: 280, height: 80 }}
+          title="Change Your Settings"
+          onPress={() => navigation.navigate("SetupProfileScreen")}
           raised
         ></Button>
       </View>

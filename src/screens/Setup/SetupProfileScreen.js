@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -28,27 +28,32 @@ function SetupProfileScreen(props) {
       [key]: value,
     });
 
-  const calculateDailyCalories = () => {
-    const {
-      weight,
-      feet,
-      inches,
-      age,
-      sex,
-      stressFactor,
-      goalWeight,
-    } = newStats;
-    const weightKg = weight / 2.2;
-    const heightCm = feet * 30.48 + inches * 2.54;
-    const caloricExpend =
-      (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-    const calculatedCalories =
-      weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-    updateStats("dailyCalories", calculatedCalories);
-    props.setProfile(newStats);
-    console.log(newStats);
-    console.log(props.stats);
+  // useEffect(() => {
+  function updateDailyCalories(newDailyCalories) {
+    updateStats("dailyCalorie", newDailyCalories);
+      console.log(newStats);
+  }
+
+    function calculateDailyCalories() {
+      const {
+        weight,
+        feet,
+        inches,
+        age,
+        sex,
+        stressFactor,
+        goalWeight,
+      } = newStats;
+      const weightKg = weight / 2.2;
+      const heightCm = feet * 30.48 + inches * 2.54;
+      const caloricExpend =
+        (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
+     const newDailyCalories =
+        weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
+        console.log(newDailyCalories)
+      updateDailyCalories(newDailyCalories);
   };
+  // }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -104,27 +109,54 @@ function SetupProfileScreen(props) {
             title="Review Your Stats"
             titleStyle={styles.buttonTitle}
             onPress={() => {
+              calculateDailyCalories();
+              console.log(newStats);
               {
-                calculateDailyCalories(),
-                  Alert.alert(
-                    "All Finished?",
-                    `You can always come back to change your stats later if needed`,
-                    [
-                      {
-                        text: "Go Back",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel",
+                Alert.alert(
+                  "All Finished?",
+                  `You can always come back to change your stats later if needed`,
+                  [
+                    {
+                      text: "Go Back",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel",
+                    },
+                    {
+                      text: "Ready",
+                      onPress: () => {
+                        // console.log(newStats);
+                        // console.log(props.stats)
+
+                        // // navigation.navigate("HomeScreen");
+                        {
+                          Alert.alert(
+                            "",
+                            `Your stats have been updated successfully`,
+                            [
+                              {
+                                // text: "Go Back",
+                                // onPress: () => console.log("Cancel Pressed"),
+                                // style: "cancel",
+                              },
+                              {
+                                text: "Close",
+                                onPress: () => {
+                                  props.setProfile(newStats);
+                                  console.log(newStats);
+                                  console.log(props.stats);
+                                  // // props.setProfile(newStats);
+                                  navigation.navigate("HomeScreen");
+                                },
+                              },
+                            ],
+                            { onDismiss: () => {} }
+                          );
+                        }
                       },
-                      {
-                        text: "Ready",
-                        onPress: () => {
-                          props.setProfile(newStats);
-                          navigation.navigate("HomeScreen");
-                        },
-                      },
-                    ],
-                    { onDismiss: () => {} }
-                  );
+                    },
+                  ],
+                  { onDismiss: () => {} }
+                );
               }
             }}
           />
