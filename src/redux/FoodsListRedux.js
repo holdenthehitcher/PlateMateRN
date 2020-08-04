@@ -5,7 +5,7 @@ import DEFAULT_FOODS from "./DEFAULT_FOODS";
 export const ADD_FOOD = "ADD_FOOD";
 export const DELETE_FOOD = "DELETE_FOOD";
 export const TOGGLE_FOOD = "TOGGLE_FOOD";
-export const REST_LIST = "RESET_LIST";
+export const RESET_LIST = "RESET_LIST";
 
 // Actions || Action Creators
 
@@ -25,7 +25,7 @@ export const toggleFood = (id) => ({
 });
 
 export const resetList = () => ({
-  type: REST_LIST,
+  type: RESET_LIST,
 });
 // Reducers
 

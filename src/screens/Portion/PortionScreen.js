@@ -21,46 +21,49 @@ import { ScrollView } from "react-native-gesture-handler";
     console.log(newStats);
   };
 
-  const calculateDailyCalories = (stats) => {
-    const { weight, feet, inches, age, sex, stressFactor, goalWeight } = stats;
-    const weightKg = weight / 2.2;
-    const heightCm = feet * 30.48 + inches * 2.54;
-    const caloricExpend =
-      (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-    const calculatedCalories =
-      weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-    console.log(calculatedCalories);
-    return calculatedCalories;
-  };
+  
   */
 
 function PortionScreen(props) {
   const [chosenFoods, setChosenFoods] = useState(
-    props.foods.filter((food) => food.addedToList === true)
+    props.foods
+      .filter((food) => food.addedToList === true)
+      .map((item) => ({
+        ...item,
+        calorieMultiplier: item.calories / item.amount,
+      }))
+      .map((item) => ({
+        ...item,
+        totalCalories: item.amount * item.calorieMultiplier,
+      }))
   );
-  chosenFoods
-  .map((item) => (item.calorieMultiplier = item.calories / item.amount))
-  .map((newItem) => newItem.portionAmount = newItem.amount)
 
-  const handleFoodCalories = (item, value) => {
-    item.portionAmount = value;
-    (item.totalCalories = item.calorieMultiplier * value), console.log(item);
-    setChosenFoods([...chosenFoods], item);
-    console.log(chosenFoods)
-  };
+  // const adjustFoods = (() => {
+  //   setChosenFoods(
+  //     [...chosenFoods]
+
+  //
+  //
+  //
+  //   );
+  // })();
+
+  console.log(chosenFoods);
+  // const handleFoodCalories = (item, value) => {
+  //   item.portionAmount = value;
+  //   (item.totalCalories = item.calorieMultiplier * value), console.log(item);
+  //   setChosenFoods([...chosenFoods], item);
+  //   console.log(chosenFoods)
+  // };
 
   return (
     <View style={styles.container}>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <View style={{ flex: 1 }}>
         <PortionPieChart chosenFoods={chosenFoods} />
         <PortionListItems
           chosenFoods={chosenFoods}
-          handleFoodCalories={handleFoodCalories}
+          // handleFoodCalories={handleFoodCalories}
         />
       </View>
     </View>

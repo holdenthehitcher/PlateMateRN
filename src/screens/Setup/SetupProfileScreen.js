@@ -28,6 +28,28 @@ function SetupProfileScreen(props) {
       [key]: value,
     });
 
+  const calculateDailyCalories = () => {
+    const {
+      weight,
+      feet,
+      inches,
+      age,
+      sex,
+      stressFactor,
+      goalWeight,
+    } = newStats;
+    const weightKg = weight / 2.2;
+    const heightCm = feet * 30.48 + inches * 2.54;
+    const caloricExpend =
+      (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
+    const calculatedCalories =
+      weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
+    updateStats("dailyCalories", calculatedCalories);
+    props.setProfile(newStats);
+    console.log(newStats);
+    console.log(props.stats);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.titleSpacing}>
@@ -83,25 +105,26 @@ function SetupProfileScreen(props) {
             titleStyle={styles.buttonTitle}
             onPress={() => {
               {
-                Alert.alert(
-                  "All Finished?",
-                  `You can always come back to change your stats later if needed`,
-                  [
-                    {
-                      text: "Go Back",
-                      onPress: () => console.log("Cancel Pressed"),
-                      style: "cancel",
-                    },
-                    {
-                      text: "Ready",
-                      onPress: () => {
-                        props.setProfile(newStats);
-                        navigation.navigate("HomeScreen");
+                calculateDailyCalories(),
+                  Alert.alert(
+                    "All Finished?",
+                    `You can always come back to change your stats later if needed`,
+                    [
+                      {
+                        text: "Go Back",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel",
                       },
-                    },
-                  ],
-                  { onDismiss: () => {} }
-                );
+                      {
+                        text: "Ready",
+                        onPress: () => {
+                          props.setProfile(newStats);
+                          navigation.navigate("HomeScreen");
+                        },
+                      },
+                    ],
+                    { onDismiss: () => {} }
+                  );
               }
             }}
           />
