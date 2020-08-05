@@ -40,6 +40,7 @@ function CreateMealScreen(props) {
             title="Portion Your Meal"
             onPress={() => {
               navigation.navigate("PortionScreen");
+              console.log(props.stats)
             }}
           ></Button>
         </TouchableOpacity>

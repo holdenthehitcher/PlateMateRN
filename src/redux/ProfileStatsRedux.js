@@ -5,10 +5,20 @@ export const SET_PROFILE = "SET_PROFILE";
 
 /// action creator
 
-export const setProfile = (newStats) => ({
-  type: SET_PROFILE,
-  payload: newStats,
-});
+export const setProfile = (newStats) => {
+  const { weight, feet, inches, age, sex, stressFactor, goalWeight } = newStats;
+  const weightKg = weight / 2.2;
+  const heightCm = feet * 30.48 + inches * 2.54;
+  const caloricExpend =
+    (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
+  const newDailyCalories =
+    weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
+  const upDatedNewStats = { ...newStats, dailyCalories: newDailyCalories };
+  return {
+    type: SET_PROFILE,
+    payload: upDatedNewStats,
+  };
+};
 
 /// reducer
 
@@ -16,10 +26,7 @@ const initialState = {
   stats: PROFILE_STATS,
 };
 
-export const ProfileActions = (
-  state = initialState,
-  action
-) => {
+export const ProfileActions = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROFILE:
       return {

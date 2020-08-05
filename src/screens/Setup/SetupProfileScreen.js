@@ -21,6 +21,7 @@ import GoalWeightInput from "./GoalWeightInput";
 function SetupProfileScreen(props) {
   const { navigation } = props;
   const [newStats, setNewStats] = useState(props.stats);
+  // const [newDailyCalories, setNewDailyCalories] = useState(2000);
 
   const updateStats = (key, value) =>
     setNewStats({
@@ -29,31 +30,24 @@ function SetupProfileScreen(props) {
     });
 
   // useEffect(() => {
-  function updateDailyCalories(newDailyCalories) {
-    updateStats("dailyCalorie", newDailyCalories);
-      console.log(newStats);
-  }
-
-    function calculateDailyCalories() {
-      const {
-        weight,
-        feet,
-        inches,
-        age,
-        sex,
-        stressFactor,
-        goalWeight,
-      } = newStats;
-      const weightKg = weight / 2.2;
-      const heightCm = feet * 30.48 + inches * 2.54;
-      const caloricExpend =
-        (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-     const newDailyCalories =
-        weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-        console.log(newDailyCalories)
-      updateDailyCalories(newDailyCalories);
-  };
-  // }, []);
+  //   const {
+  //     weight,
+  //     feet,
+  //     inches,
+  //     age,
+  //     sex,
+  //     stressFactor,
+  //     goalWeight,
+  //   } = newStats;
+  //   const weightKg = weight / 2.2;
+  //   const heightCm = feet * 30.48 + inches * 2.54;
+  //   const caloricExpend =
+  //     (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
+  //   const newCalories =
+  //     weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
+  //   setNewDailyCalories(newCalories);
+  //   console.log(newDailyCalories);
+  // }, [newStats]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -109,8 +103,8 @@ function SetupProfileScreen(props) {
             title="Review Your Stats"
             titleStyle={styles.buttonTitle}
             onPress={() => {
-              calculateDailyCalories();
-              console.log(newStats);
+              // updateStats("dailyCalories", newDailyCalories);
+              console.log(props.stats)
               {
                 Alert.alert(
                   "All Finished?",
@@ -124,28 +118,20 @@ function SetupProfileScreen(props) {
                     {
                       text: "Ready",
                       onPress: () => {
-                        // console.log(newStats);
-                        // console.log(props.stats)
+                        props.setProfile(newStats);
+                        console.log(props.stats);
 
                         // // navigation.navigate("HomeScreen");
                         {
                           Alert.alert(
-                            "",
+                            '',
                             `Your stats have been updated successfully`,
                             [
                               {
-                                // text: "Go Back",
-                                // onPress: () => console.log("Cancel Pressed"),
-                                // style: "cancel",
-                              },
-                              {
                                 text: "Close",
                                 onPress: () => {
-                                  props.setProfile(newStats);
-                                  console.log(newStats);
-                                  console.log(props.stats);
-                                  // // props.setProfile(newStats);
                                   navigation.navigate("HomeScreen");
+                                  console.log(props.stats)
                                 },
                               },
                             ],
