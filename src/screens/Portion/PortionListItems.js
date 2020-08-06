@@ -8,8 +8,6 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [chosenFoodsList, setChosenFoodsList] = useState([...chosenFoods]);
 
- 
-
   return (
     <>
       <View>
@@ -19,14 +17,14 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
           renderItem={({ item }) => (
             <ListItem
               key={item.id}
-              title={`${item.name} - ${item.amount} ${item.amountType}`}
+              title={`${item.name}`}
               bottomDivider
               rightIcon={
                 <>
                   <Slider
                     step={1}
                     style={{ width: 200, height: 40 }}
-                    minimumValue={3}
+                    minimumValue={2}
                     maximumValue={8}
                     onValueChange={(value) => {
                       handleFoodCalories(item, value);
@@ -36,7 +34,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
                     maximumTrackTintColor="#4b3619"
                     thumbTintColor="#5c2c06"
                   />
-                  <Text>
+                  <Text style={{ marginHorizontal: 7 }}>
                     {item.amount} {item.amountType}
                   </Text>
                 </>

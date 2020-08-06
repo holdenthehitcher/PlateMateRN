@@ -38,7 +38,7 @@ export default PortionPieChart = ({ chosenFoods }) => {
         width={screenWidth}
         height={220}
         chartConfig={chartConfig}
-        accessor="calories"
+        accessor="totalCalories"
         backgroundColor="transparent"
         paddingLeft="20"
       />

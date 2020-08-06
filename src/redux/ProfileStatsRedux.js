@@ -12,11 +12,15 @@ export const setProfile = (newStats) => {
   const caloricExpend =
     (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
   const newDailyCalories =
-    weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-  const upDatedNewStats = { ...newStats, dailyCalories: newDailyCalories };
+    Math.ceil(weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500);
+  const updatedNewStats = {
+    ...newStats,
+    dailyCalories: newDailyCalories,
+    caloriesLeft: newDailyCalories,
+  };
   return {
     type: SET_PROFILE,
-    payload: upDatedNewStats,
+    payload: updatedNewStats,
   };
 };
 

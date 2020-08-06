@@ -5,23 +5,13 @@ import { connect } from "react-redux";
 import PortionListItems from "./PortionListItems";
 import { ScrollView } from "react-native-gesture-handler";
 
-// get dailyCalories from ProfileRedux and display percentage page
-// get array of objects for all addedToList === true
-// calculate 30% dailyCalories and split up among calories for each food, returning the number of grams for each
-// display grams in pie chart
-// allow adjustment of grams && calories for each food item that renders in 1. pie chart 2. percentage of dailyCalories left on page.
-// submit meal updates redux dailyCalories
-
 /* functions to be used in Portioning daily calories left  
-
   const handleSubmit = () => {
     const newCal = calculateDailyCalories(newStats);
     updateStats("dailyCalories", newCal);
     updateStats("caloriesLeft", newCal);
     console.log(newStats);
   };
-
-  
   */
 
 function PortionScreen(props) {
@@ -38,32 +28,42 @@ function PortionScreen(props) {
       }))
   );
 
-  // const adjustFoods = (() => {
-  //   setChosenFoods(
-  //     [...chosenFoods]
+  const [caloriesLeft, setCaloriesLeft] = useState(
+    props.stats.caloriesLeft -
+      chosenFoods.reduce((a, e) => a.totalCalories + e.totalCalories)
+  );
+  const [percentCaloriesLeft, setPercentCaloriesLeft] = useState(
+    Math.ceil((caloriesLeft / props.stats.dailyCalories) * 100)
+  );
 
-  //
-  //
-  //
-  //   );
-  // })();
+  console.log(caloriesLeft);
 
-  console.log(chosenFoods);
-  // const handleFoodCalories = (item, value) => {
-  //   item.portionAmount = value;
-  //   (item.totalCalories = item.calorieMultiplier * value), console.log(item);
-  //   setChosenFoods([...chosenFoods], item);
-  //   console.log(chosenFoods)
-  // };
+  const handleFoodCalories = (item, value) => {
+    item.amount = value;
+    (item.totalCalories = item.calorieMultiplier * value), console.log(item);
+    setChosenFoods([...chosenFoods], item);
+    setCaloriesLeft(
+      props.stats.caloriesLeft -
+        chosenFoods.reduce((a, e) => a.totalCalories + e.totalCalories)
+    );
+    setPercentCaloriesLeft(
+      Math.ceil((caloriesLeft / props.stats.dailyCalories) * 100)
+    );
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.separator} />
+
+      <Text>
+        {caloriesLeft} {percentCaloriesLeft}%{" "}
+      </Text>
+
       <View style={{ flex: 1 }}>
         <PortionPieChart chosenFoods={chosenFoods} />
         <PortionListItems
           chosenFoods={chosenFoods}
-          // handleFoodCalories={handleFoodCalories}
+          handleFoodCalories={handleFoodCalories}
         />
       </View>
     </View>
@@ -88,7 +88,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     foods: state.foodsActions.allFoods,
+    stats: state.profileActions.stats,
   };
 };
 
-export default connect(mapStateToProps)(PortionScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProfile: (stats) => dispatch(setProfile(stats)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PortionScreen);
