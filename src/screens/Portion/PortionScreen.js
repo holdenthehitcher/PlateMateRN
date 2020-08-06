@@ -20,7 +20,11 @@ function PortionScreen(props) {
       .filter((food) => food.addedToList === true)
       .map((item) => ({
         ...item,
-        calorieMultiplier: item.calories / item.amount,
+        defaultAmount: item.amount
+      }))
+      .map((item) => ({
+        ...item,
+        calorieMultiplier: item.calories / item.defaultAmount,
       }))
       .map((item) => ({
         ...item,
