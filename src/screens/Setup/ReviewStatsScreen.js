@@ -46,12 +46,15 @@ function ReviewStatsScreen(props) {
               [
                 {
                   text: "Go Back",
-                  onPress: () => console.log("Cancel Pressed"),
+                  onPress: () => "Cancel Pressed",
                   style: "cancel",
                 },
-                { text: "Ready", onPress: () => {
-                  props.setProfile(newStats);
-                }},
+                {
+                  text: "Ready",
+                  onPress: () => {
+                    props.setProfile(newStats);
+                  },
+                },
               ],
               { onDismiss: () => {} }
             );

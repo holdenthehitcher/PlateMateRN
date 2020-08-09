@@ -14,6 +14,7 @@ const chartConfig = {
 };
 const screenWidth = Dimensions.get("window").width;
 
+
 export default PortionPieChart = ({ chosenFoods }) => {
   const pieStyles = {
     legendFontSize: 15,
@@ -29,7 +30,9 @@ export default PortionPieChart = ({ chosenFoods }) => {
 
   return (
     <View>
-      <Text style={{ paddingLeft: 20 }}>Foods By Calorie Percentage</Text>
+      <Text style={{ paddingLeft: 20 }}>
+        Foods By Calorie Percentage
+      </Text>
       <PieChart
         data={pieSlices}
         width={screenWidth}

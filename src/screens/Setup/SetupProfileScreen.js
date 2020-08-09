@@ -46,7 +46,7 @@ function SetupProfileScreen(props) {
   //   const newCalories =
   //     weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
   //   setNewDailyCalories(newCalories);
-  //   console.log(newDailyCalories);
+  //   (newDailyCalories);
   // }, [newStats]);
 
   return (
@@ -104,7 +104,7 @@ function SetupProfileScreen(props) {
             titleStyle={styles.buttonTitle}
             onPress={() => {
               // updateStats("dailyCalories", newDailyCalories);
-              console.log(props.stats)
+              props.stats;
               {
                 Alert.alert(
                   "All Finished?",
@@ -112,26 +112,26 @@ function SetupProfileScreen(props) {
                   [
                     {
                       text: "Go Back",
-                      onPress: () => console.log("Cancel Pressed"),
+                      onPress: () => "Cancel Pressed",
                       style: "cancel",
                     },
                     {
                       text: "Ready",
                       onPress: () => {
                         props.setProfile(newStats);
-                        console.log(props.stats);
+                        props.stats;
 
                         // // navigation.navigate("HomeScreen");
                         {
                           Alert.alert(
-                            '',
+                            "",
                             `Your stats have been updated successfully`,
                             [
                               {
                                 text: "Close",
                                 onPress: () => {
                                   navigation.navigate("HomeScreen");
-                                  console.log(props.stats)
+                                  props.stats;
                                 },
                               },
                             ],

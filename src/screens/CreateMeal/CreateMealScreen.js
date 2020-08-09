@@ -7,23 +7,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { connect } from "react-redux";
-import { setProfile } from "../../redux/ProfileStatsRedux";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
 function CreateMealScreen(props) {
   const { navigation } = props;
-  const [newStats, setNewStats] = useState(props.stats);
-
-  const updateStats = (key, value) =>
-    setNewStats({
-      ...newStats,
-      [key]: value,
-    });
-
-
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -40,7 +29,6 @@ function CreateMealScreen(props) {
             title="Portion Your Meal"
             onPress={() => {
               navigation.navigate("PortionScreen");
-              console.log(props.stats)
             }}
           ></Button>
         </TouchableOpacity>
@@ -80,16 +68,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  return {
-    stats: state.profileActions.stats,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setProfile: (stats) => dispatch(setProfile(stats)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateMealScreen);
+export default CreateMealScreen

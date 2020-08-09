@@ -5,22 +5,13 @@ import { connect } from "react-redux";
 import PortionListItems from "./PortionListItems";
 import { ScrollView } from "react-native-gesture-handler";
 
-/* functions to be used in Portioning daily calories left  
-  const handleSubmit = () => {
-    const newCal = calculateDailyCalories(newStats);
-    updateStats("dailyCalories", newCal);
-    updateStats("caloriesLeft", newCal);
-    console.log(newStats);
-  };
-  */
-
 function PortionScreen(props) {
   const [chosenFoods, setChosenFoods] = useState(
     props.foods
       .filter((food) => food.addedToList === true)
       .map((item) => ({
         ...item,
-        defaultAmount: item.amount
+        defaultAmount: item.amount,
       }))
       .map((item) => ({
         ...item,
@@ -34,21 +25,19 @@ function PortionScreen(props) {
 
   const [caloriesLeft, setCaloriesLeft] = useState(
     props.stats.caloriesLeft -
-      chosenFoods.reduce((a, e) => a.totalCalories + e.totalCalories)
+      chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e)
   );
   const [percentCaloriesLeft, setPercentCaloriesLeft] = useState(
     Math.ceil((caloriesLeft / props.stats.dailyCalories) * 100)
   );
 
-  console.log(caloriesLeft);
-
   const handleFoodCalories = (item, value) => {
     item.amount = value;
-    (item.totalCalories = item.calorieMultiplier * value), console.log(item);
+    item.totalCalories = item.calorieMultiplier * value;
     setChosenFoods([...chosenFoods], item);
     setCaloriesLeft(
       props.stats.caloriesLeft -
-        chosenFoods.reduce((a, e) => a.totalCalories + e.totalCalories)
+        chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e)
     );
     setPercentCaloriesLeft(
       Math.ceil((caloriesLeft / props.stats.dailyCalories) * 100)
@@ -58,11 +47,9 @@ function PortionScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.separator} />
-
       <Text>
         {caloriesLeft} {percentCaloriesLeft}%{" "}
       </Text>
-
       <View style={{ flex: 1 }}>
         <PortionPieChart chosenFoods={chosenFoods} />
         <PortionListItems

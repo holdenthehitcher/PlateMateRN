@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import {
-  ListItem,
-  Icon,
-  Overlay,
-  Button,
-  Slider,
-  TouchableOpacity,
-} from "react-native-elements";
+import { ListItem, Slider } from "react-native-elements";
 import { WheelPicker } from "react-native-wheel-picker-android";
 
 export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
@@ -88,8 +81,6 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
                     maximumTrackTintColor="#4b3619"
                     thumbTintColor={pieColors[chosenFoodsList[i]]}
                     thumbTouchSize={{ width: 150, height: 150 }}
-                    // debugTouchArea={true}
-                    trackStyle={{ width: 50 }}
                   />
                 </>
               }
@@ -100,55 +91,3 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
     </>
   );
 };
-
-// const ValueType = ({ item, handleFoodCalories }) => {
-//   const [overlayVisible, setOverlayVisible] = useState(false);
-
-//   const value =
-//     item.defaultAmount < 10 ? (
-// <>
-//   <Button
-//     buttonStyle={styles.button}
-//     raised
-//     title={`${item.amount}`}
-//     onPress={() => setOverlayVisible(!overlayVisible)}
-//   />
-//   <Overlay
-//     isVisible={overlayVisible}
-//     animationType="slide"
-//     onBackdropPress={() => setOverlayVisible(!overlayVisible)}
-//   >
-//     <View style={styles.overlayContainer}>
-//       <View style={styles.headerSpacing}>
-//         <Text style={styles.header}>"What's Your Biological Sex?"</Text>
-//       </View>
-//       <WheelPicker
-//         selectedItem={item.amount}
-//         data={fractionValues}
-//         onItemSelected={(value) => handleFoodCalories(item, value)}
-//       />
-//     </View>
-//   </Overlay>
-// </>
-//     ) : (
-{
-  /* <>
-  <Slider
-    step={valueSteps(item)}
-    style={{ width: 200, height: 40 }}
-    minimumValue={1}
-    maximumValue={maxInputValue(item)}
-    onValueChange={(value) => {
-      handleFoodCalories(item, value);
-    }}
-    value={item.amount}
-    minimumTrackTintColor="#4b3619"
-    maximumTrackTintColor="#4b3619"
-    thumbTintColor={pieColors[chosenFoodsList[i]]}
-    thumbTouchSize={{ width: 150, height: 150 }}
-  />
-</> */
-}
-//     );
-//   return <View> {value} </View>;
-// };

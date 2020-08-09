@@ -58,25 +58,22 @@ const ChooseNewFood = (props) => {
                         onPress={() => {
                           {
                             Alert.alert(
-                              item.addedToList === false 
-                              ? `Add ${item.name}` : `Remove ${item.name}`,
                               item.addedToList === false
-                              ? `Would you like to include ${item.name} in this meal?`
-                              : `Remove ${item.name} from this meal?`,
+                                ? `Add ${item.name}`
+                                : `Remove ${item.name}`,
+                              item.addedToList === false
+                                ? `Would you like to include ${item.name} in this meal?`
+                                : `Remove ${item.name} from this meal?`,
                               [
                                 {
                                   text: "Go Back",
-                                  onPress: () => console.log("Cancel Pressed"),
+                                  onPress: () => "Cancel Pressed",
                                   style: "cancel",
                                 },
                                 {
                                   text: "Ready",
                                   onPress: () => {
-                                    // console.log(item.addedToList)
-                                    // item.addedToList = true
-                                   console.log(props.foods)
-                                   props.toggleFood(item.id);
-                                  
+                                    props.toggleFood(item.id);
                                   },
                                 },
                               ],
