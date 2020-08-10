@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -21,33 +21,12 @@ import GoalWeightInput from "./GoalWeightInput";
 function SetupProfileScreen(props) {
   const { navigation } = props;
   const [newStats, setNewStats] = useState(props.stats);
-  // const [newDailyCalories, setNewDailyCalories] = useState(2000);
 
   const updateStats = (key, value) =>
     setNewStats({
       ...newStats,
       [key]: value,
     });
-
-  // useEffect(() => {
-  //   const {
-  //     weight,
-  //     feet,
-  //     inches,
-  //     age,
-  //     sex,
-  //     stressFactor,
-  //     goalWeight,
-  //   } = newStats;
-  //   const weightKg = weight / 2.2;
-  //   const heightCm = feet * 30.48 + inches * 2.54;
-  //   const caloricExpend =
-  //     (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-  //   const newCalories =
-  //     weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500;
-  //   setNewDailyCalories(newCalories);
-  //   (newDailyCalories);
-  // }, [newStats]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -103,8 +82,6 @@ function SetupProfileScreen(props) {
             title="Review Your Stats"
             titleStyle={styles.buttonTitle}
             onPress={() => {
-              // updateStats("dailyCalories", newDailyCalories);
-              props.stats;
               {
                 Alert.alert(
                   "All Finished?",
@@ -119,9 +96,6 @@ function SetupProfileScreen(props) {
                       text: "Ready",
                       onPress: () => {
                         props.setProfile(newStats);
-                        props.stats;
-
-                        // // navigation.navigate("HomeScreen");
                         {
                           Alert.alert(
                             "",
@@ -131,7 +105,6 @@ function SetupProfileScreen(props) {
                                 text: "Close",
                                 onPress: () => {
                                   navigation.navigate("HomeScreen");
-                                  props.stats;
                                 },
                               },
                             ],

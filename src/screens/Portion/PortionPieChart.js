@@ -31,7 +31,7 @@ export default PortionPieChart = ({ chosenFoods }) => {
   return (
     <View>
       <Text style={{ paddingLeft: 20 }}>
-        Foods By Calorie Percentage
+        Calories for each food
       </Text>
       <PieChart
         data={pieSlices}

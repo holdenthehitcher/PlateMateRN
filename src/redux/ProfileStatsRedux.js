@@ -2,6 +2,7 @@ import PROFILE_STATS from "./PROFILE_STATS";
 
 /// action types
 export const SET_PROFILE = "SET_PROFILE";
+export const SET_PROFILE_CALORIES_LEFT = "SET_PROFILE_CALORIES_LEFT";
 
 /// action creator
 
@@ -11,8 +12,9 @@ export const setProfile = (newStats) => {
   const heightCm = feet * 30.48 + inches * 2.54;
   const caloricExpend =
     (10 * weightKg + 6.25 * heightCm - 5 * age + sex) * stressFactor;
-  const newDailyCalories =
-    Math.ceil(weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500);
+  const newDailyCalories = Math.ceil(
+    weight > goalWeight ? caloricExpend - 500 : caloricExpend + 500
+  );
   const updatedNewStats = {
     ...newStats,
     dailyCalories: newDailyCalories,
@@ -21,6 +23,13 @@ export const setProfile = (newStats) => {
   return {
     type: SET_PROFILE,
     payload: updatedNewStats,
+  };
+};
+
+export const setProfileCaloriesLeft = (caloriesLeft) => {
+  return {
+    type: SET_PROFILE_CALORIES_LEFT,
+    payload: caloriesLeft,
   };
 };
 
@@ -38,6 +47,14 @@ export const ProfileActions = (state = initialState, action) => {
         stats: {
           ...state.stats,
           ...action.payload,
+        },
+      };
+    case SET_PROFILE_CALORIES_LEFT:
+      return {
+        ...state,
+        stats: {
+          ...state.stats,
+          caloriesLeft: action.payload,
         },
       };
     default:
