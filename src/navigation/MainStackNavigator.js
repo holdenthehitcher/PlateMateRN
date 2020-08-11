@@ -25,37 +25,37 @@ function MainStackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: "Home Screen" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="FoodListScreen"
           component={FoodListScreen}
-          options={{ title: "List Of Foods" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="SetupProfileScreen"
           component={SetupProfileScreen}
-          options={{ title: "Your Personal Profile" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="CreateMealScreen"
           component={CreateMealScreen}
-          options={{ title: "Create a Meal" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="PortionScreen"
           component={PortionScreen}
-          options={{ title: "Portion Your Foods" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="NotFoundScreen"
           component={NotFoundScreen}
-          options={{ title: "NotFound Screen" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="InstructionsScreen"
           component={InstructionsScreen}
-          options={{ title: "How to Use PlateMate" }}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="ReviewStatsScreen"

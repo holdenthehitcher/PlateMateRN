@@ -17,7 +17,9 @@ const PhysicalActivityInput = (props) => {
       <Button
         buttonStyle={styles.button}
         raised
-        title="Physical Activity Level"
+        title={
+          items.find((item) => item.stressFactor === props.exerciseValue).label
+        }
         onPress={() => setModalVisible(!modalVisible)}
       ></Button>
       <Overlay
@@ -27,38 +29,36 @@ const PhysicalActivityInput = (props) => {
       >
         <View style={styles.overlayContainer}>
           <View style={styles.headerSpacing}>
-            <Text style={styles.header}>"What's Your Exercise Level?"</Text>
+            <Text style={styles.header}>What's Your Exercise Level?</Text>
           </View>
-          <Picker
-            selectedValue={props.exerciseValue}
-            onValueChange={(value) => props.handleStressFactor(value)}
-          >
-            {items.map(({ label, stressFactor }) => (
-              <Picker.Item
-                key={stressFactor}
-                value={stressFactor}
-                label={label}
-              />
-            ))}
-          </Picker>
+          <View style={styles.buttonSpacing}>
+            <Picker
+              selectedValue={props.exerciseValue}
+              onValueChange={(value) => props.handleStressFactor(value)}
+            >
+              {items.map(({ label, stressFactor }) => (
+                <Picker.Item
+                  key={stressFactor}
+                  value={stressFactor}
+                  label={label}
+                />
+              ))}
+            </Picker>
+          </View>
+          <View style={styles.buttonSpacing}>
+            <Button
+              buttonStyle={styles.okButton}
+              raised
+              title="Ok"
+              onPress={() => setModalVisible(!modalVisible)}
+            />
+          </View>
         </View>
       </Overlay>
     </>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-
-  pickerContainer: {
-    height: 200,
-    width: "100%",
-    backgroundColor: "white",
-  },
   header: {
     justifyContent: "space-between",
     flexDirection: "row",
@@ -69,6 +69,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#997950",
     width: 240,
     height: 60,
+  },
+  okButton: {
+    backgroundColor: "#4b3619",
+    height: 70,
+  },
+  buttonSpacing: {
+    marginTop: 55,
   },
 });
 

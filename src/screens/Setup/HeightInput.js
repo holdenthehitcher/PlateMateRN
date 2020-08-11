@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Modal, StyleSheet, Picker } from "react-native";
-import { Icon, Button, Overlay, Slider } from "react-native-elements";
+import { Button, Overlay, Slider } from "react-native-elements";
 
 const HeightInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -10,7 +10,7 @@ const HeightInput = (props) => {
       <Button
         buttonStyle={styles.button}
         raised
-        title="Enter Your Height"
+        title={`I am ${props.feet}' ${props.inches}" tall`}
         onPress={() => setModalVisible(!modalVisible)}
       ></Button>
       <Overlay
@@ -20,7 +20,7 @@ const HeightInput = (props) => {
       >
         <View style={styles.overlayContainer}>
           <View style={styles.headerSpacing}>
-            <Text style={styles.header}>"What's Your Height?"</Text>
+            <Text style={styles.header}>What's Your Height?</Text>
           </View>
           <View style={styles.labelSpacing}>
             <Text style={styles.label}>{props.feet} Feet</Text>
@@ -35,7 +35,6 @@ const HeightInput = (props) => {
             minimumTrackTintColor="#4b3619"
             maximumTrackTintColor="#4b3619"
             thumbTintColor="#5c2c06"
-            
           />
           <View style={styles.labelSpacing}>
             <Text style={styles.label}>{props.inches} Inches</Text>
@@ -66,12 +65,6 @@ const HeightInput = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
   overlayContainer: {
     height: 300,
     width: "100%",
@@ -96,11 +89,12 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#997950",
-    width: 220,
-    height: 50,
+    width: 200,
+    height: 52,
   },
   okButton: {
     backgroundColor: "#4b3619",
+    height: 70,
   },
   buttonSpacing: {
     marginTop: 60,

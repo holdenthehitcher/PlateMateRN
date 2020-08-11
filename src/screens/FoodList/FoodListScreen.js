@@ -4,16 +4,19 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import AddFoodModal from "./AddFoodModal";
 import AllFoodsList from "./AllFoodsList";
 
-export default function AddFoodScreen() {
+export default function AddFoodScreen(props) {
+  const { navigation } = props;
   return (
     <ScrollView>
       <View style={styles.headerContainer}>
-        <Text style={styles.title}>Foods List</Text>
+        <Text h2 style={styles.title}>
+          Foods List
+        </Text>
       </View>
       <View>
         <View style={styles.separator} />
         <View style={{ flex: 1 }}>
-          <AddFoodModal />
+          <AddFoodModal navigation={navigation} />
           <AllFoodsList />
         </View>
       </View>
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
     alignItems: "center",
-    marginTop: 20
+    marginTop: 20,
   },
   title: {
     fontSize: 20,

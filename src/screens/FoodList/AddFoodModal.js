@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 
 const AddFoodModal = (props) => {
+  const { navigation } = props;
   const [modalVisible, setModalVisible] = useState(false);
   const [foodValues, setFoodValues] = useState({
     name: "****",
@@ -45,10 +46,22 @@ const AddFoodModal = (props) => {
 
   return (
     <>
-      <Button
-        title="Add A New Food"
-        onPress={() => setModalVisible(!modalVisible)}
-      ></Button>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ margin: 15 }}>
+          <Button
+            title="Add A New Food"
+            onPress={() => setModalVisible(!modalVisible)}
+            buttonStyle={styles.modalButton}
+          ></Button>
+        </View>
+        <View style={{ margin: 15 }}>
+          <Button
+            title="Portion Food List"
+            onPress={() => navigation.navigate("CreateMealScreen")}
+            buttonStyle={styles.modalButton}
+          ></Button>
+        </View>
+      </View>
       <Overlay
         isVisible={modalVisible}
         animationType="slide"
@@ -156,6 +169,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#997950",
     width: "100%",
     height: 50,
+  },
+  modalButton: {
+    height: 80,
   },
 });
 

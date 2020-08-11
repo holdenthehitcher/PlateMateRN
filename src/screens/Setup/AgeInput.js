@@ -4,20 +4,23 @@ import { Slider } from "react-native-elements";
 
 export default function AgeInput(props) {
   return (
-    <View style={styles.labelSpacing}>
-      <Text style={styles.label}>What's your age?</Text>
-      <Slider
-        step={1}
-        style={{ width: 200, height: 40 }}
-        minimumValue={16}
-        maximumValue={90}
-        onValueChange={(years) => props.handleAge(years)}
-        value={props.age}
-        minimumTrackTintColor="#622a0f"
-        maximumTrackTintColor="#622a0f"
-        thumbTintColor="#997950"
-      />
-      <Text style={styles.amountLabel}>{props.age} years young</Text>
+    <View>
+      <View style={styles.labelSpacing}>
+        <Text style={styles.label}>My Age is {props.age} years</Text>
+      </View>
+      <View style={styles.sliderSpacing}>
+        <Slider
+          step={1}
+          style={{ width: 200, height: 40 }}
+          minimumValue={16}
+          maximumValue={90}
+          onValueChange={(years) => props.handleAge(years)}
+          value={props.age}
+          minimumTrackTintColor="#997950"
+          maximumTrackTintColor="#997950"
+          thumbTintColor="#622a0f"
+        />
+      </View>
     </View>
   );
 }
@@ -28,6 +31,9 @@ const styles = StyleSheet.create({
   },
   labelSpacing: {
     marginVertical: 10,
+    alignItems: "center",
+  },
+  sliderSpacing: {
     alignItems: "center",
   },
   amountLabel: {

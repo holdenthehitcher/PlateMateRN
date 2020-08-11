@@ -20,12 +20,13 @@ export default function HomeScreen(props) {
               color={"white"}
               size={35}
               style={{ marginLeft: 12 }}
-            />}
+            />
+          }
         ></Button>
       </View>
       <View style={styles.buttonMargin}>
         <Button
-          buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72,}}
+          buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
           title="Update Profile"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           raised
@@ -61,7 +62,8 @@ export default function HomeScreen(props) {
               color={"white"}
               size={35}
               style={{ marginLeft: 17 }}
-            />}
+            />
+          }
         ></Button>
       </View>
       <View style={styles.buttonMargin}>
@@ -78,7 +80,8 @@ export default function HomeScreen(props) {
               color={"white"}
               size={39}
               style={{ marginLeft: 17 }}
-            />}
+            />
+          }
         ></Button>
       </View>
     </View>

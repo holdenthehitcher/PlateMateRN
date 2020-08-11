@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Modal, Picker, StyleSheet, Text } from "react-native";
-import { Button, Icon, Overlay } from "react-native-elements";
+import { View, Picker, StyleSheet, Text } from "react-native";
+import { Button, Overlay } from "react-native-elements";
 
 const SexInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -10,7 +10,7 @@ const SexInput = (props) => {
       <Button
         buttonStyle={styles.button}
         raised
-        title="Choose Your Sex"
+        title={`I'm a ${props.sex > 0 ? "male" : "female"}`}
         onPress={() => setModalVisible(!modalVisible)}
       />
       <Overlay
@@ -20,15 +20,28 @@ const SexInput = (props) => {
       >
         <View style={styles.overlayContainer}>
           <View style={styles.headerSpacing}>
-            <Text style={styles.header}>"What's Your Biological Sex?"</Text>
+            <Text style={styles.header}>What's Your Biological Sex?</Text>
           </View>
           <Picker
             selectedValue={props.sex}
             onValueChange={(value) => props.handleSex(value)}
+            style={styles.pickerText}
           >
-            <Picker.Item label="Male" value={5} />
-            <Picker.Item label="Female" value={-161} />
+            <Picker.Item label="Male" value={5} style={styles.pickerText} />
+            <Picker.Item
+              label="Female"
+              value={-161}
+              style={styles.pickerText}
+            />
           </Picker>
+          <View style={styles.buttonSpacing}>
+            <Button
+              buttonStyle={styles.okButton}
+              raised
+              title="Ok"
+              onPress={() => setModalVisible(!modalVisible)}
+            />
+          </View>
         </View>
       </Overlay>
     </View>
@@ -36,26 +49,37 @@ const SexInput = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  pickerContainer: {
-    height: 200,
-    width: "100%",
+  overlayContainer: {
+    height: 300,
+    width: "80%",
     backgroundColor: "white",
   },
   header: {
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
+    fontSize: 25,
+  },
+  headerSpacing: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 25,
   },
   button: {
     backgroundColor: "#4b3619",
-    width: 220,
+    width: 200,
     height: 50,
+  },
+  okButton: {
+    backgroundColor: "#4b3619",
+    height: 70,
+  },
+  buttonSpacing: {
+    marginTop: 60,
+  },
+  pickerText: {
+    fontSize: 100,
   },
 });
 

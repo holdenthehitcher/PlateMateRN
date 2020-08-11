@@ -29,9 +29,11 @@ function SetupProfileScreen(props) {
     });
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <View style={styles.titleSpacing}>
-        <Text style={styles.title}>Manage Your Stats</Text>
+        <Text h2 style={styles.title}>
+          My Body Stats
+        </Text>
       </View>
       <View>
         <View style={styles.inputSpacing}>
@@ -43,21 +45,9 @@ function SetupProfileScreen(props) {
           />
         </View>
         <View style={styles.inputSpacing}>
-          <AgeInput
-            age={newStats.age}
-            handleAge={(value) => updateStats("age", value)}
-          />
-        </View>
-        <View style={styles.inputSpacing}>
           <SexInput
             sex={newStats.sex}
             handleSex={(value) => updateStats("sex", value)}
-          />
-        </View>
-        <View style={styles.inputSpacing}>
-          <WeightInput
-            weight={newStats.weight}
-            handleWeight={(value) => updateStats("weight", value)}
           />
         </View>
         <View style={styles.inputSpacing}>
@@ -67,19 +57,30 @@ function SetupProfileScreen(props) {
           />
         </View>
         <View style={styles.inputSpacing}>
+          <AgeInput
+            age={newStats.age}
+            handleAge={(value) => updateStats("age", value)}
+          />
+        </View>
+        <View style={styles.inputSpacing}>
+          <WeightInput
+            weight={newStats.weight}
+            handleWeight={(value) => updateStats("weight", value)}
+          />
+        </View>
+        <View style={styles.inputSpacing}>
           <GoalWeightInput
             goalWeight={newStats.goalWeight}
             handleGoalWeight={(value) => updateStats("goalWeight", value)}
           />
         </View>
       </View>
-
       <View style={styles.helpContainer}>
         <TouchableOpacity style={styles.helpLink}>
           <Button
             buttonStyle={styles.button}
             raised
-            title="Review Your Stats"
+            title="Update All Stats"
             titleStyle={styles.buttonTitle}
             onPress={() => {
               {
@@ -122,7 +123,7 @@ function SetupProfileScreen(props) {
           <View style={styles.separator} />
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -131,15 +132,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleSpacing: {
-    marginVertical: 23,
+    marginVertical: 20,
   },
   title: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#5c2c06",
   },
   inputSpacing: {
-    marginVertical: 13,
+    marginTop: 12,
     justifyContent: "center",
     alignItems: "center",
   },
