@@ -80,7 +80,7 @@ function SetupProfileScreen(props) {
           <Button
             buttonStyle={styles.button}
             raised
-            title="Update All Stats"
+            title="Update All"
             titleStyle={styles.buttonTitle}
             onPress={() => {
               {

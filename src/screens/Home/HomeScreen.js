@@ -4,6 +4,7 @@ import { Button, Icon } from "react-native-elements";
 
 export default function HomeScreen(props) {
   const { navigation } = props;
+  
 
   return (
     <View style={styles.container}>
@@ -44,14 +45,14 @@ export default function HomeScreen(props) {
       </View>
       <View>
         <Image
-          source={require("../../../assets/PlateMate2.png")}
+          source={require("../../../assets/images/PlateMate2.png")}
           style={{ width: 210, height: 200, marginVertical: 12 }}
         />
       </View>
       <View style={styles.buttonMargin}>
         <Button
           buttonStyle={{ backgroundColor: "#3bb143", width: 250, height: 75 }}
-          title="Food List"
+          title="All Foods"
           onPress={() => navigation.navigate("FoodListScreen")}
           raised
           iconRight={true}
@@ -69,17 +70,16 @@ export default function HomeScreen(props) {
       <View style={styles.buttonMargin}>
         <Button
           buttonStyle={{ backgroundColor: "#4cbb17", width: 300, height: 90 }}
-          title="Portion Calculator"
+          title="Portion My Meal"
           onPress={() => navigation.navigate("CreateMealScreen")}
           raised
-          iconRight={true}
           icon={
             <Icon
               name="calculator"
               type="font-awesome"
               color={"white"}
               size={39}
-              style={{ marginLeft: 17 }}
+              style={{ marginRight: 17 }}
             />
           }
         ></Button>

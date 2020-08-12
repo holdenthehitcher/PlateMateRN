@@ -25,7 +25,10 @@ function MainStackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: "" }}
+          options={{ title: "",
+        headerStyle: {
+          
+        } }}
         />
         <Stack.Screen
           name="FoodListScreen"

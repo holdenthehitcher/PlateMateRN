@@ -948,6 +948,31 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/capriola@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/capriola/-/capriola-0.1.0.tgz#63f1dc876b576345abd7bdda6e46c69ad1474439"
+  integrity sha512-3QR3f+LVBeQ/JY8fFEj/8xmK7sGMukRThDedL3AWhXCmD8OQrVmqeDTYI7RoTdXE6hOvvYFnrtXzLeaCiZ43ng==
+
+"@expo-google-fonts/coustard@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/coustard/-/coustard-0.1.0.tgz#ab6bc12880491d08023207ea52793023742b27c7"
+  integrity sha512-WLA99ozj5nDkz9EYtxCJqIAyaGhSFPQcIfn9D2qQawo6Eblb7sjvE8byePaJYW1hXjF5FUnMBQZZIPl+jaBo+g==
+
+"@expo-google-fonts/inter@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
+  integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
+
+"@expo-google-fonts/oregano@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/oregano/-/oregano-0.1.0.tgz#b37bc1eac5a873f159341a3a62f8b559e7eb6230"
+  integrity sha512-7RutwBveoFq1etYi7S0oN4rCH0iWQHxydwN03CJPupI5kmvRXTiujIfKQ87endKVrNd3zCR9QcHLE1cIH2A/sw==
+
+"@expo-google-fonts/sunflower@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/sunflower/-/sunflower-0.1.0.tgz#c557a4c8693d59c4247b266eddb93ddab6f61e01"
+  integrity sha512-czpGq+MWTs0S4064AWUhm8e6tWoYT50xIk3iZjqmy8yaPjShzW4d16mrcGEmyufQTXCwpmv0JK0GLqrf2BIk5g==
+
 "@expo/configure-splash-screen@~0.1.0":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.1.12.tgz#8d8889fc98e87cececdb48af45bc8d6447ce699d"
@@ -4792,6 +4817,11 @@ react-native-screens@~2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.9.0.tgz#ead2843107ba00fee259aa377582e457c74f1f3b"
   integrity sha512-5MaiUD6HA3nzY3JbVI8l3V7pKedtxQF3d8qktTVI0WmWXTI4QzqOU8r8fPVvfKo3MhOXwhWBjr+kQ7DZaIQQeg==
+
+react-native-simple-toast@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-simple-toast/-/react-native-simple-toast-1.1.2.tgz#007de57e21986e811b4bbc2d3a6de949c0221df9"
+  integrity sha512-p13p6Db9viLBxbAlicVLD6CcrbkmqQoEjP20vY+SxbO3y5cdmY0AOn/FiMC+iuC4eQxk0SFeJm4PFRWby/ntyg==
 
 react-native-status-bar-height@^2.5.0:
   version "2.5.0"

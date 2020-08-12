@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Modal, StyleSheet, Picker } from "react-native";
-import { Icon, Overlay, Input, Button } from "react-native-elements";
+import React, { useState } from "react";
+import Toast from "react-native-simple-toast";
+import { View, Text, StyleSheet, Picker, Alert } from "react-native";
+import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 
@@ -46,17 +47,23 @@ const AddFoodModal = (props) => {
 
   return (
     <>
-      <View style={{ flexDirection: "row" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <View style={{ margin: 15 }}>
           <Button
-            title="Add A New Food"
+            title="Add New Food"
             onPress={() => setModalVisible(!modalVisible)}
             buttonStyle={styles.modalButton}
           ></Button>
         </View>
         <View style={{ margin: 15 }}>
           <Button
-            title="Portion Food List"
+            title="Portion Meal"
             onPress={() => navigation.navigate("CreateMealScreen")}
             buttonStyle={styles.modalButton}
           ></Button>
@@ -113,10 +120,28 @@ const AddFoodModal = (props) => {
               buttonStyle={styles.button}
               title="Submit Food"
               onPress={() => {
-                props.add(foodValues);
-                props.foods;
-                setModalVisible(!modalVisible);
-                resetFoodValues();
+                {
+                  Alert.alert(
+                    `Create ${foodValues.name}?`,
+                    `Add this food at ${foodValues.calories} calories for every ${foodValues.amount} ${foodValues.amountType}?`,
+                    [
+                      {
+                        text: "No Thanks",
+                        onPress: () => "Cancel Pressed",
+                        style: "cancel",
+                      },
+                      {
+                        text: "Add Food",
+                        onPress: () => {
+                          props.add(foodValues);
+                          setModalVisible(!modalVisible);
+                          resetFoodValues();
+                          Toast.show("Your Food has been added");
+                        },
+                      },
+                    ]
+                  );
+                }
               }}
             />
           </View>
@@ -172,6 +197,8 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     height: 80,
+    width: 170,
+    backgroundColor: "#3bb143",
   },
 });
 

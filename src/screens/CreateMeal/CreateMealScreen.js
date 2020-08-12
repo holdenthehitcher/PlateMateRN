@@ -16,22 +16,25 @@ function CreateMealScreen(props) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Menu Portion Calculator</Text>
+      <Text h2 style={styles.title}>
+        Menu Portion Calculator
+      </Text>
       <View style={styles.separator} />
       <View>
-        <TouchableOpacity style={styles.helpLink}>
+        <View style={styles.helpLink}>
           <ChooseNewFood />
-        </TouchableOpacity>
+        </View>
         <Text>This Meal's Foods</Text>
         <MealFoodsList />
-        <TouchableOpacity style={styles.helpLink}>
+        <View style={styles.helpLink}>
           <Button
             title="Portion Your Meal"
+            buttonStyle={styles.button}
             onPress={() => {
               navigation.navigate("PortionScreen");
             }}
           ></Button>
-        </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -39,18 +42,20 @@ function CreateMealScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    marginTop: 15,
+  },
+  title: {
+    fontSize: 33,
+    fontWeight: "bold",
+    color: "black",
   },
   regularText: {
     color: "black",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "black",
-  },
   separator: {
-    marginVertical: 30,
+    marginVertical: 9,
     height: 1,
     width: "80%",
   },
@@ -66,7 +71,10 @@ const styles = StyleSheet.create({
   codeHighlightText: {
     color: "rgba(96,100,109, 0.8)",
   },
+  button: {
+    width: 300,
+    height: 100,
+  },
 });
 
-
-export default CreateMealScreen
+export default CreateMealScreen;

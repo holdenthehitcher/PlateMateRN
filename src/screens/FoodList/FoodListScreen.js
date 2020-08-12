@@ -6,9 +6,10 @@ import AllFoodsList from "./AllFoodsList";
 
 export default function AddFoodScreen(props) {
   const { navigation } = props;
+
   return (
     <ScrollView>
-      <View style={styles.headerContainer}>
+      <View style={styles.container}>
         <Text h2 style={styles.title}>
           Foods List
         </Text>
@@ -25,18 +26,18 @@ export default function AddFoodScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 15,
   },
   title: {
-    fontSize: 20,
+    fontSize: 33,
     fontWeight: "bold",
     color: "black",
   },
   separator: {
-    marginVertical: 20,
+    marginVertical: 9,
     height: 1,
     width: "80%",
   },

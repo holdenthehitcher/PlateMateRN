@@ -1,11 +1,11 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, View, Alert } from "react-native";
 import { ListItem, SearchBar, Icon } from "react-native-elements";
+import Toast from "react-native-simple-toast";
 import { connect } from "react-redux";
 import { deleteFood } from "../../redux/FoodsListRedux";
 
 const AllFoodsList = (props) => {
-  
   return (
     <View>
       <FlatList
@@ -22,7 +22,26 @@ const AllFoodsList = (props) => {
                 name="trash"
                 size={20}
                 onPress={() => {
-                  props.delete(item.id);
+                  {
+                    Alert.alert(
+                      `Delete ${item.name}?`,
+                      `Remove ${item.name} from your Food List? You will not be able to portion this food again.`,
+                      [
+                        {
+                          text: "Not Now",
+                          onPress: () => "Cancel Pressed",
+                          style: "cancel",
+                        },
+                        {
+                          text: "Delete Food",
+                          onPress: () => {
+                            props.delete(item.id);
+                            Toast.show("Your Food has been Deleted");
+                          },
+                        },
+                      ]
+                    );
+                  }
                 }}
               />
             }

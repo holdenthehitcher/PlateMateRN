@@ -4,11 +4,10 @@
     "slug": "PlateMateRN",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/PlateMate2.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#7bc138"
+      "image": "./assets/images/PlateMate.png",
+      "backgroundColor": "#71c800"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,7 +17,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/PlateMate.png"
     }
   }
 }

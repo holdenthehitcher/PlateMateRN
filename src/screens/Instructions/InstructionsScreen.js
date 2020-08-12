@@ -1,64 +1,56 @@
 import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { Text, ListItem, Button } from "react-native-elements";
+import { useFonts, Capriola_400Regular } from "@expo-google-fonts/capriola";
 
 export default function InstructionsScreen(props) {
   const { navigation } = props;
+  let [fontsLoaded] = useFonts({
+    Capriola_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const instructionsList = [
     {
       name: "",
-      title: "Make a Food List.",
-      subtitle:
-        "Whether it's a cup of rice or 100 grams of pasta, PlateMate allows you to customize the foods you eat the most to be added to the portion calculator.",
-      // avatar: "1",
+      title: "1. Add Foods",
+      subtitle: "Make your own Food List",
     },
     {
       name: "",
-      title: "Customize each Meal",
-      subtitle:
-        "Simply add the foods from your Food List to each meal to calculate your Portion!",
+      title: "2. Customize Meals",
+      subtitle: "Using any food from your Food List",
     },
     {
       name: "",
-      title: "Adjust each Portion Size",
-      subtitle:
-        "Everyone is different. Spin each ingredient's adjustment wheel to change the amount you want on your plate.",
+      title: "3. Adjust Portions",
+      subtitle: "Change amounts of each food",
     },
     {
       name: "",
-      title: "Reset the Daily calories",
-      subtitle:
-        "Once the next day begins, simply restart your calories and start portioning, again!",
+      title: "4. Reset Calories",
+      subtitle: "Start your calories over from scratch",
     },
     {
       name: "",
-      title: "Change Your Profile Info",
-      subtitle:
-        "We all change day-by-day. PlateMate is here to help you reach your goals no matter what stage of the journey you're in.",
+      title: "5. Update Your Profile",
+      subtitle: "When your body transforms",
     },
   ];
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.spacing}>
-        <Text h2 style={styles.mainHeader}>
-          Welcome To{" "}
-        </Text>
-        <Text h2 style={{ color: "#4cbb17" }}>
-          PlateMate
-        </Text>
-      </View>
-      <View style={styles.spacing}>
-        <Text style={styles.regularText}>
-          {" "}
-          An app to help you control your weight!
-        </Text>
-      </View>
       <View style={styles.separator} />
       <View style={styles.spacing}>
-        <Text style={styles.secondHeader}>
-          With PlateMate, you can now easily:
-        </Text>
+        <Text style={styles.mainHeader}>Welcome to </Text>
+        <Text style={styles.secondHeader}>PlateMate</Text>
+      </View>
+      <View style={styles.largeSeparator} />
+      <View style={styles.spacing}>
+        <Text style={styles.thirdHeader}>With PlateMate you can</Text>
       </View>
       <View>
         {instructionsList.map((section, i) => (
@@ -66,23 +58,21 @@ export default function InstructionsScreen(props) {
             key={i}
             title={section.title}
             subtitle={section.subtitle}
-            // leftAvatar={section.avatar}
             bottomDivider
             titleStyle={styles.title}
             subtitleStyle={styles.subtitle}
           />
         ))}
       </View>
-      <View style={styles.separator} />
+      <View style={styles.largeSeparator} />
       <View style={styles.spacing}>
         <Text style={styles.bottomText}>
-          That's it! Now, let's get your profile started by clicking below.
+          That's it! Setup Your Profile Here.
         </Text>
       </View>
-      <View style={styles.separator} />
       <View style={styles.buttonSpacing}>
         <Button
-          title="Start Here"
+          title="Get Started with PlateMate"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           buttonStyle={styles.button}
           raised
@@ -95,56 +85,70 @@ export default function InstructionsScreen(props) {
 
 const styles = StyleSheet.create({
   container: {},
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "black",
-  },
   separator: {
-    marginVertical: 18,
+    marginVertical: 20,
+    height: 1,
+    width: "80%",
+  },
+  largeSeparator: {
+    marginVertical: 37,
     height: 1,
     width: "80%",
   },
   spacing: {
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 3,
+    marginVertical: 15,
   },
   mainHeader: {
-    color: "#ef820d",
-    justifyContent: "center",
-    alignItems: "center",
+    color: "#db2600",
+    fontSize: 42,
+    fontFamily: "Capriola_400Regular",
+  },
+  secondHeader: {
+    fontSize: 44,
+    color: "#71c800",
+    fontFamily: "Capriola_400Regular",
+  },
+  thirdHeader: {
+    fontSize: 19,
+    color: "#066589",
+    fontFamily: "Capriola_400Regular",
+    marginBottom: 6,
+    marginRight: 5,
   },
   regularText: {
     fontSize: 16,
-    color: "#34282c",
+    color: "#066589",
     justifyContent: "center",
     marginHorizontal: 20,
+    fontFamily: "Capriola_400Regular",
   },
   bottomText: {
-    fontSize: 16,
-    color: "#34282c",
+    fontSize: 17,
+    color: "#066589",
+    fontWeight: "bold",
     justifyContent: "center",
-    marginHorizontal: 50,
-  },
-  secondHeader: {
-    fontSize: 30,
-    color: "#34282c",
-    marginLeft: 26,
+    marginHorizontal: 30,
+    marginTop: 40,
+    fontFamily: "Capriola_400Regular",
   },
   title: {
-    color: "#c21807",
-    fontSize: 22,
+    color: "#db2600",
+    fontSize: 21,
+    fontWeight: "bold",
   },
   subtitle: {
-    color: "#613613",
+    fontSize: 16,
+    color: "#066589",
   },
   button: {
-    backgroundColor: "#4cbb17",
-    width: 260,
-    height: 70,
+    backgroundColor: "#71c800",
+    width: 270,
+    height: 80,
   },
   buttonSpacing: {
+    marginTop: 5,
     marginBottom: 40,
     alignItems: "center",
     justifyContent: "center",
