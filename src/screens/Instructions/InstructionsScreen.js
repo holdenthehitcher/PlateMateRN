@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { Text, ListItem, Button } from "react-native-elements";
 import { useFonts, Capriola_400Regular } from "@expo-google-fonts/capriola";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function InstructionsScreen(props) {
   const { navigation } = props;
@@ -16,41 +17,45 @@ export default function InstructionsScreen(props) {
   const instructionsList = [
     {
       name: "",
-      title: "1. Add Foods",
-      subtitle: "Make your own Food List",
+      title: "Add Foods",
+      subtitle: `Create your own Food List`,
+      icon: "playlist-plus"
     },
     {
       name: "",
-      title: "2. Customize Meals",
-      subtitle: "Using any food from your Food List",
+      title: "Customize Meals",
+      subtitle: "With any Food from the list",
+      icon: "food-fork-drink"
     },
     {
       name: "",
-      title: "3. Adjust Portions",
-      subtitle: "Change amounts of each food",
+      title: "Adjust Portions",
+      subtitle: "Change the Amount of Food",
+      icon: "creation"
     },
     {
       name: "",
-      title: "4. Reset Calories",
-      subtitle: "Start your calories over from scratch",
+      title: "Reset Calories",
+      subtitle: "Start each day from scratch",
+      icon: "calendar-clock"
     },
     {
       name: "",
-      title: "5. Update Your Profile",
-      subtitle: "When your body transforms",
+      title: "Update Your Profile",
+      subtitle: "When your body changes",
+      icon: "account-arrow-right"
     },
   ];
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.separator} />
-      <View style={styles.spacing}>
+      <View style={styles.spacingHeader}>
         <Text style={styles.mainHeader}>Welcome to </Text>
         <Text style={styles.secondHeader}>PlateMate</Text>
       </View>
-      <View style={styles.largeSeparator} />
+      <View style={styles.separator} />
       <View style={styles.spacing}>
-        <Text style={styles.thirdHeader}>With PlateMate you can</Text>
+        <Text style={styles.thirdHeader}>With PlateMate You Can</Text>
       </View>
       <View>
         {instructionsList.map((section, i) => (
@@ -61,18 +66,19 @@ export default function InstructionsScreen(props) {
             bottomDivider
             titleStyle={styles.title}
             subtitleStyle={styles.subtitle}
+            rightIcon={<MaterialCommunityIcons name={section.icon} size={58} color="#71c800" style={{marginRight: 9, marginTop: 6}}/>}
           />
         ))}
       </View>
       <View style={styles.largeSeparator} />
       <View style={styles.spacing}>
         <Text style={styles.bottomText}>
-          That's it! Setup Your Profile Here.
+          That's it! Get started with PlateMate Here.
         </Text>
       </View>
       <View style={styles.buttonSpacing}>
         <Button
-          title="Get Started with PlateMate"
+          title="Setup Profile"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           buttonStyle={styles.button}
           raised
@@ -95,60 +101,67 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
+  spacingHeader: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 250,
+    backgroundColor: "#ff4440",
+  },
   spacing: {
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 15,
+    marginVertical: 5,
   },
   mainHeader: {
-    color: "#db2600",
+    color: "white",
     fontSize: 42,
     fontFamily: "Capriola_400Regular",
   },
   secondHeader: {
     fontSize: 44,
-    color: "#71c800",
+    color: "#b6f03c",
     fontFamily: "Capriola_400Regular",
   },
   thirdHeader: {
-    fontSize: 19,
-    color: "#066589",
+    fontSize: 22,
+    color: "#0c97aa",
     fontFamily: "Capriola_400Regular",
-    marginBottom: 6,
+    marginBottom: 10,
     marginRight: 5,
+    textAlign: "center",
   },
   regularText: {
     fontSize: 16,
-    color: "#066589",
+    color: "#0c97aa",
     justifyContent: "center",
     marginHorizontal: 20,
     fontFamily: "Capriola_400Regular",
   },
   bottomText: {
-    fontSize: 17,
+    fontSize: 26,
     color: "#066589",
     fontWeight: "bold",
-    justifyContent: "center",
-    marginHorizontal: 30,
-    marginTop: 40,
+    textAlign: "center",
+    marginHorizontal: 33,
     fontFamily: "Capriola_400Regular",
   },
   title: {
-    color: "#db2600",
-    fontSize: 21,
+    color: "#ff4440",
+    fontSize: 24,
     fontWeight: "bold",
   },
   subtitle: {
     fontSize: 16,
-    color: "#066589",
+    color: "#008ecc",
+    fontWeight: "bold",
   },
   button: {
     backgroundColor: "#71c800",
-    width: 270,
+    width: 250,
     height: 80,
   },
   buttonSpacing: {
-    marginTop: 5,
+    marginTop: 12,
     marginBottom: 40,
     alignItems: "center",
     justifyContent: "center",
