@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   button: {
-    backgroundColor: "#4b3619",
+    backgroundColor: "#008ecc",
     width: 200,
-    height: 50,
+    height: 57,
   },
   okButton: {
-    backgroundColor: "#4b3619",
+    backgroundColor: "#008ecc",
     height: 70,
   },
   buttonSpacing: {

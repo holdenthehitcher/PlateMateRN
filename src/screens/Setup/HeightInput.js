@@ -32,9 +32,9 @@ const HeightInput = (props) => {
             maximumValue={8}
             onValueChange={(feet) => props.handleFeet(feet)}
             value={props.feet}
-            minimumTrackTintColor="#4b3619"
-            maximumTrackTintColor="#4b3619"
-            thumbTintColor="#5c2c06"
+            minimumTrackTintColor="#1c2951"
+            maximumTrackTintColor="#1c2951"
+            thumbTintColor="#0080fe"
           />
           <View style={styles.labelSpacing}>
             <Text style={styles.label}>{props.inches} Inches</Text>
@@ -46,9 +46,9 @@ const HeightInput = (props) => {
             maximumValue={11}
             onValueChange={(inches) => props.handleInches(inches)}
             value={props.inches}
-            minimumTrackTintColor="#4b3619"
-            maximumTrackTintColor="#4b3619"
-            thumbTintColor="#5c2c06"
+            minimumTrackTintColor="#1c2951"
+            maximumTrackTintColor="#1c2951"
+            thumbTintColor="#0080fe"
           />
         </View>
         <View style={styles.buttonSpacing}>
@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   button: {
-    backgroundColor: "#997950",
+    backgroundColor: "#008ecc",
     width: 200,
-    height: 52,
+    height: 58,
   },
   okButton: {
-    backgroundColor: "#4b3619",
+    backgroundColor: "#008ecc",
     height: 70,
   },
   buttonSpacing: {

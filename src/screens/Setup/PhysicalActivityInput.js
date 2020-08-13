@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
-    backgroundColor: "#997950",
+    backgroundColor: "#008ecc",
     width: 240,
-    height: 60,
+    height: 63,
   },
   okButton: {
-    backgroundColor: "#4b3619",
+    backgroundColor: "#008ecc",
     height: 70,
   },
   buttonSpacing: {

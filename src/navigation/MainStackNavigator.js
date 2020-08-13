@@ -25,40 +25,46 @@ function MainStackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: "",
-        headerStyle: {
-          
-        } }}
+          options={{ title: "", headerStyle: {} }}
         />
         <Stack.Screen
           name="FoodListScreen"
           component={FoodListScreen}
-          options={{ title: "" }}
+          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
         />
         <Stack.Screen
           name="SetupProfileScreen"
           component={SetupProfileScreen}
-          options={{ title: "" }}
+          options={{
+            title: "My Body Stats",
+            headerStyle: { backgroundColor: "#0080fe" },
+            headerTitleStyle: { color: "white", fontSize: 24, fontWeight: "bold", alignSelf: "center", marginRight: 50},
+            headerTintColor: "white",
+          }}
         />
         <Stack.Screen
           name="CreateMealScreen"
           component={CreateMealScreen}
-          options={{ title: "" }}
+          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
         />
         <Stack.Screen
           name="PortionScreen"
           component={PortionScreen}
-          options={{ title: "" }}
+          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
         />
         <Stack.Screen
           name="NotFoundScreen"
           component={NotFoundScreen}
-          options={{ title: "" }}
+          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
         />
         <Stack.Screen
           name="InstructionsScreen"
           component={InstructionsScreen}
-          options={{ title: "" }}
+          options={{
+            title: "",
+            headerStyle: { backgroundColor: "#ff4440" },
+            headerTintColor: "#fff",
+          }}
         />
         <Stack.Screen
           name="ReviewStatsScreen"

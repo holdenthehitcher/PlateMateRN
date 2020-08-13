@@ -6,19 +6,20 @@ export default function AgeInput(props) {
   return (
     <View>
       <View style={styles.labelSpacing}>
-        <Text style={styles.label}>My Age is {props.age} years</Text>
+        <Text style={styles.label}>Age: {props.age} years</Text>
       </View>
       <View style={styles.sliderSpacing}>
         <Slider
           step={1}
-          style={{ width: 200, height: 40 }}
+          style={{ width: 299, height: 40 }}
           minimumValue={16}
-          maximumValue={90}
+          maximumValue={80}
           onValueChange={(years) => props.handleAge(years)}
           value={props.age}
-          minimumTrackTintColor="#997950"
-          maximumTrackTintColor="#997950"
-          thumbTintColor="#622a0f"
+          minimumTrackTintColor="#1c2951"
+          maximumTrackTintColor="#1c2951"
+          thumbTintColor="#0080fe"
+          trackStyle={styles.sliderTrack}
         />
       </View>
     </View>
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "#4d516d",
   },
   labelSpacing: {
     marginVertical: 10,
@@ -35,9 +37,13 @@ const styles = StyleSheet.create({
   },
   sliderSpacing: {
     alignItems: "center",
+    width: 400,
   },
   amountLabel: {
     fontSize: 15,
     fontWeight: "bold",
   },
+  // sliderTrack: {
+  //   width: 200
+  // }
 });

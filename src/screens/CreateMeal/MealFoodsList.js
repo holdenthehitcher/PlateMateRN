@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-  Text,
-  View,
-  Alert,
-} from "react-native";
+import React from "react";
+import { FlatList, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import { toggleFood } from "../../redux/FoodsListRedux";
 import { ListItem, Icon } from "react-native-elements";

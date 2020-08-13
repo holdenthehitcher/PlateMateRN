@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { Text, ListItem, Button } from "react-native-elements";
 import { useFonts, Capriola_400Regular } from "@expo-google-fonts/capriola";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function InstructionsScreen(props) {
   const { navigation } = props;
@@ -19,31 +19,31 @@ export default function InstructionsScreen(props) {
       name: "",
       title: "Add Foods",
       subtitle: `Create your own Food List`,
-      icon: "playlist-plus"
+      icon: "playlist-plus",
     },
     {
       name: "",
       title: "Customize Meals",
       subtitle: "With any Food from the list",
-      icon: "food-fork-drink"
+      icon: "food-fork-drink",
     },
     {
       name: "",
       title: "Adjust Portions",
       subtitle: "Change the Amount of Food",
-      icon: "creation"
+      icon: "creation",
     },
     {
       name: "",
       title: "Reset Calories",
       subtitle: "Start each day from scratch",
-      icon: "calendar-clock"
+      icon: "calendar-clock",
     },
     {
       name: "",
       title: "Update Your Profile",
       subtitle: "When your body changes",
-      icon: "account-arrow-right"
+      icon: "account-arrow-right",
     },
   ];
 
@@ -55,7 +55,7 @@ export default function InstructionsScreen(props) {
       </View>
       <View style={styles.separator} />
       <View style={styles.spacing}>
-        <Text style={styles.thirdHeader}>With PlateMate You Can</Text>
+        <Text style={styles.thirdHeader}>How to use PlateMate</Text>
       </View>
       <View>
         {instructionsList.map((section, i) => (
@@ -66,15 +66,20 @@ export default function InstructionsScreen(props) {
             bottomDivider
             titleStyle={styles.title}
             subtitleStyle={styles.subtitle}
-            rightIcon={<MaterialCommunityIcons name={section.icon} size={58} color="#71c800" style={{marginRight: 9, marginTop: 6}}/>}
+            rightIcon={
+              <MaterialCommunityIcons
+                name={section.icon}
+                size={58}
+                color="#ff4440"
+                style={{ marginRight: 9, marginTop: 6 }}
+              />
+            }
           />
         ))}
       </View>
       <View style={styles.largeSeparator} />
       <View style={styles.spacing}>
-        <Text style={styles.bottomText}>
-          That's it! Get started with PlateMate Here.
-        </Text>
+        <Text style={styles.bottomText}>Get started with PlateMate Here.</Text>
       </View>
       <View style={styles.buttonSpacing}>
         <Button
@@ -92,7 +97,7 @@ export default function InstructionsScreen(props) {
 const styles = StyleSheet.create({
   container: {},
   separator: {
-    marginVertical: 20,
+    marginVertical: 35,
     height: 1,
     width: "80%",
   },
@@ -104,8 +109,8 @@ const styles = StyleSheet.create({
   spacingHeader: {
     alignItems: "center",
     justifyContent: "center",
-    height: 250,
-    backgroundColor: "#ff4440",
+    height: 270,
+    backgroundColor: "#008ecc",
   },
   spacing: {
     alignItems: "center",
@@ -114,11 +119,11 @@ const styles = StyleSheet.create({
   },
   mainHeader: {
     color: "white",
-    fontSize: 42,
+    fontSize: 34,
     fontFamily: "Capriola_400Regular",
   },
   secondHeader: {
-    fontSize: 44,
+    fontSize: 53,
     color: "#b6f03c",
     fontFamily: "Capriola_400Regular",
   },

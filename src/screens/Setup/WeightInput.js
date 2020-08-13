@@ -6,21 +6,19 @@ export default function WeightInput(props) {
   return (
     <View>
       <View style={styles.labelSpacing}>
-        <Text style={styles.label}>
-          My current weight is {props.weight} pounds
-        </Text>
+        <Text style={styles.label}>Weight: {props.weight} pounds</Text>
       </View>
       <View style={styles.sliderSpacing}>
         <Slider
-          step={2}
-          style={{ width: 200, height: 40 }}
+          step={5}
+          style={{ width: 290, height: 40 }}
           minimumValue={80}
           maximumValue={350}
           onValueChange={(pounds) => props.handleWeight(pounds)}
           value={props.weight}
-          minimumTrackTintColor="#622a0f"
-          maximumTrackTintColor="#622a0f"
-          thumbTintColor="#997950"
+          minimumTrackTintColor="#1c2951"
+          maximumTrackTintColor="#1c2951"
+          thumbTintColor="#0080fe"
         />
       </View>
     </View>
@@ -30,6 +28,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 17,
     fontWeight: "bold",
+    color: "#4d516d",
   },
   labelSpacing: {
     marginVertical: 10,

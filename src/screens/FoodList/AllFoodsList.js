@@ -17,15 +17,17 @@ const AllFoodsList = (props) => {
             title={`${item.name} - ${item.calories} cal. per ${item.amount} ${item.amountType}`}
             bottomDivider
             rightIcon={
+              <View style={{marginRight: 15}}>
               <Icon
                 type="font-awesome"
                 name="trash"
-                size={20}
+                size={40}
+                color="gray"
                 onPress={() => {
                   {
                     Alert.alert(
-                      `Delete ${item.name}?`,
-                      `Remove ${item.name} from your Food List? You will not be able to portion this food again.`,
+                      `Do You Want to Delete ${item.name}?`,
+                      `Removing ${item.name} from your Food List means you cannot use this food again.`,
                       [
                         {
                           text: "Not Now",
@@ -36,7 +38,7 @@ const AllFoodsList = (props) => {
                           text: "Delete Food",
                           onPress: () => {
                             props.delete(item.id);
-                            Toast.show("Your Food has been Deleted");
+                            Toast.show(`${item.name} has been deleted`);
                           },
                         },
                       ]
@@ -44,6 +46,7 @@ const AllFoodsList = (props) => {
                   }
                 }}
               />
+              </View>
             }
           />
         )}

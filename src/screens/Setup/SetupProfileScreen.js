@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Alert,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View, Alert } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/ProfileStatsRedux";
+import Toast from "react-native-simple-toast";
+import {
+  useFonts,
+  OpenSans_300Light,
+  OpenSans_300Light_Italic,
+  OpenSans_400Regular,
+  OpenSans_400Regular_Italic,
+  OpenSans_600SemiBold,
+  OpenSans_600SemiBold_Italic,
+  OpenSans_700Bold,
+  OpenSans_700Bold_Italic,
+  OpenSans_800ExtraBold,
+  OpenSans_800ExtraBold_Italic,
+} from "@expo-google-fonts/open-sans";
 
 import HeightInput from "./HeightInput";
 import AgeInput from "./AgeInput";
@@ -20,6 +27,19 @@ import GoalWeightInput from "./GoalWeightInput";
 
 function SetupProfileScreen(props) {
   const { navigation } = props;
+  let [fontsLoaded] = useFonts({
+    OpenSans_300Light,
+    OpenSans_300Light_Italic,
+    OpenSans_400Regular,
+    OpenSans_400Regular_Italic,
+    OpenSans_600SemiBold,
+    OpenSans_600SemiBold_Italic,
+    OpenSans_700Bold,
+    OpenSans_700Bold_Italic,
+    OpenSans_800ExtraBold,
+    OpenSans_800ExtraBold_Italic,
+  });
+
   const [newStats, setNewStats] = useState(props.stats);
 
   const updateStats = (key, value) =>
@@ -30,11 +50,6 @@ function SetupProfileScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleSpacing}>
-        <Text h2 style={styles.title}>
-          My Body Stats
-        </Text>
-      </View>
       <View>
         <View style={styles.inputSpacing}>
           <HeightInput
@@ -85,33 +100,22 @@ function SetupProfileScreen(props) {
             onPress={() => {
               {
                 Alert.alert(
-                  "All Finished?",
-                  `You can always come back to change your stats later if needed`,
+                  "Update Your Stats?",
+                  `You can change them later if needed`,
                   [
                     {
                       text: "Go Back",
-                      onPress: () => "Cancel Pressed",
+                      onPress: () => {
+                        "Cancel Pressed", Toast.show("Profile not updated");
+                      },
                       style: "cancel",
                     },
                     {
-                      text: "Ready",
+                      text: "Finished",
                       onPress: () => {
                         props.setProfile(newStats);
-                        {
-                          Alert.alert(
-                            "",
-                            `Your stats have been updated successfully`,
-                            [
-                              {
-                                text: "Close",
-                                onPress: () => {
-                                  navigation.navigate("HomeScreen");
-                                },
-                              },
-                            ],
-                            { onDismiss: () => {} }
-                          );
-                        }
+                        Toast.show("Your Profile has been sucessfully Updated");
+                        navigation.navigate("HomeScreen");
                       },
                     },
                   ],
@@ -132,26 +136,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleSpacing: {
-    marginVertical: 20,
+    marginVertical: 21,
   },
   title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "#5c2c06",
+    fontSize: 37,
+    color: "#0f52ba",
+    fontFamily: "OpenSans_800ExtraBold",
   },
   inputSpacing: {
-    marginTop: 12,
+    marginTop: 21,
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
-    backgroundColor: "#4b3619",
+    backgroundColor: "#008ecc",
     width: 280,
     height: 85,
-    borderColor: "#997950",
   },
   buttonTitle: {
-    fontSize: 23,
+    fontSize: 26,
+    fontFamily: "OpenSans_800ExtraBold",
   },
   separator: {
     marginVertical: 30,
@@ -188,7 +192,7 @@ const styles = StyleSheet.create({
     marginVertical: 7,
   },
   codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)",
+    color: "#008ecc",
   },
   codeHighlightContainer: {
     borderRadius: 3,

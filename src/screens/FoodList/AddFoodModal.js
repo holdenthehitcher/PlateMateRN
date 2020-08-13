@@ -122,8 +122,8 @@ const AddFoodModal = (props) => {
               onPress={() => {
                 {
                   Alert.alert(
-                    `Create ${foodValues.name}?`,
-                    `Add this food at ${foodValues.calories} calories for every ${foodValues.amount} ${foodValues.amountType}?`,
+                    `Create Food?`,
+                    `Add ${foodValues.name} at ${foodValues.calories} calories for every ${foodValues.amount} ${foodValues.amountType}?`,
                     [
                       {
                         text: "No Thanks",
@@ -136,7 +136,7 @@ const AddFoodModal = (props) => {
                           props.add(foodValues);
                           setModalVisible(!modalVisible);
                           resetFoodValues();
-                          Toast.show("Your Food has been added");
+                          Toast.show(`${foodValues.name} has been added`);
                         },
                       },
                     ]
