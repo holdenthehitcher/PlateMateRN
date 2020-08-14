@@ -30,7 +30,18 @@ function MainStackNavigator() {
         <Stack.Screen
           name="FoodListScreen"
           component={FoodListScreen}
-          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
+          options={{
+            title: "All Foods List",
+            headerStyle: { backgroundColor: "#ef820d" },
+            headerTitleStyle: {
+              color: "white",
+              fontSize: 24,
+              fontWeight: "bold",
+              alignSelf: "center",
+              marginRight: 50,
+            },
+            headerTintColor: "white",
+          }}
         />
         <Stack.Screen
           name="SetupProfileScreen"
@@ -38,7 +49,13 @@ function MainStackNavigator() {
           options={{
             title: "My Body Stats",
             headerStyle: { backgroundColor: "#0080fe" },
-            headerTitleStyle: { color: "white", fontSize: 24, fontWeight: "bold", alignSelf: "center", marginRight: 50},
+            headerTitleStyle: {
+              color: "white",
+              fontSize: 24,
+              fontWeight: "bold",
+              alignSelf: "center",
+              marginRight: 50,
+            },
             headerTintColor: "white",
           }}
         />

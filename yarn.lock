@@ -963,6 +963,21 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
   integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
 
+"@expo-google-fonts/lexend-deca@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/lexend-deca/-/lexend-deca-0.1.0.tgz#8a2b8a9d96bca5e87d338ac40e4c0385dbcf1d9b"
+  integrity sha512-BnSTYfcqG/xMmhFYgqv5VqZrtznF7uph3gWT919rsDe3sz/sdPiXCmz+zrcxYGo6mwD3HVGGv7RjDoiAH9K1ww==
+
+"@expo-google-fonts/livvic@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/livvic/-/livvic-0.1.0.tgz#c85ba02b3b98235e80cde18d6ec2a9f4f5692310"
+  integrity sha512-pOSOjpQeX3XBwkvH0IS32CFIFKUqm8dHoQuHzEnURrrS5ypNYOB6+TJ5rMkYTm/RcMveAo2oY2SvK6E1ar4W4Q==
+
+"@expo-google-fonts/mada@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/mada/-/mada-0.1.0.tgz#a7f95aa88e153896e2e0bc5d0be2b98b511ff13d"
+  integrity sha512-d8YfppnlYj3P09GWux+VsiG770lfhuMXCbyH5MONcz5olO6BbNgfqpcoeGQrGOL24+6TkbpkfCiOQXzu/7P5Eg==
+
 "@expo-google-fonts/open-sans@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/open-sans/-/open-sans-0.1.0.tgz#3825d48afa7b9176af7202be28067ad774536819"

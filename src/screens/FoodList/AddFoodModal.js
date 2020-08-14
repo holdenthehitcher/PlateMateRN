@@ -4,9 +4,28 @@ import { View, Text, StyleSheet, Picker, Alert } from "react-native";
 import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
+import {
+  useFonts,
+  Mada_200ExtraLight,
+  Mada_300Light,
+  Mada_400Regular,
+  Mada_500Medium,
+  Mada_600SemiBold,
+  Mada_700Bold,
+  Mada_900Black,
+} from "@expo-google-fonts/mada";
 
 const AddFoodModal = (props) => {
-  const { navigation } = props;
+  let [fontsLoaded] = useFonts({
+    Mada_200ExtraLight,
+    Mada_300Light,
+    Mada_400Regular,
+    Mada_500Medium,
+    Mada_600SemiBold,
+    Mada_700Bold,
+    Mada_900Black,
+  });
+
   const [modalVisible, setModalVisible] = useState(false);
   const [foodValues, setFoodValues] = useState({
     name: "****",
@@ -52,20 +71,25 @@ const AddFoodModal = (props) => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          marginVertical: 18,
         }}
       >
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: 13 }}>
           <Button
             title="Add New Food"
             onPress={() => setModalVisible(!modalVisible)}
-            buttonStyle={styles.modalButton}
+            buttonStyle={styles.addButton}
+            titleStyle={styles.addButtonTitle}
+            raised
           ></Button>
         </View>
-        <View style={{ margin: 15 }}>
+        <View>
           <Button
             title="Portion Meal"
-            onPress={() => navigation.navigate("CreateMealScreen")}
-            buttonStyle={styles.modalButton}
+            onPress={() => props.navigation.navigate("CreateMealScreen")}
+            buttonStyle={styles.portionButton}
+            titleStyle={styles.portionButtonTitle}
+            raised
           ></Button>
         </View>
       </View>
@@ -117,7 +141,8 @@ const AddFoodModal = (props) => {
           </View>
           <View style={styles.buttonSpacingDouble}>
             <Button
-              buttonStyle={styles.button}
+              buttonStyle={styles.submitButton}
+              titleStyle={styles.submitButtonTitle}
               title="Submit Food"
               onPress={() => {
                 {
@@ -127,7 +152,9 @@ const AddFoodModal = (props) => {
                     [
                       {
                         text: "No Thanks",
-                        onPress: () => "Cancel Pressed",
+                        onPress: () => {
+                          Toast.show(`Cancelled Adding a Food`);
+                        },
                         style: "cancel",
                       },
                       {
@@ -147,10 +174,13 @@ const AddFoodModal = (props) => {
           </View>
           <View style={styles.buttonSpacing}>
             <Button
+              buttonStyle={styles.cancelButton}
+              titleStyle={styles.cancelButtonTitle}
               title="Cancel"
               onPress={() => {
                 setModalVisible(!modalVisible);
                 resetFoodValues();
+                Toast.show(`Cancelled Adding a Food`);
               }}
             />
           </View>
@@ -168,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   overlayContainer: {
-    height: 530,
+    height: 580,
     width: 350,
     justifyContent: "center",
   },
@@ -177,7 +207,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   header: {
-    fontSize: 22,
+    fontFamily: "Mada_700Bold",
+    fontSize: 34,
+    color: "#7bc20a",
   },
   inputSpacing: { marginTop: 10 },
   text: {
@@ -188,17 +220,45 @@ const styles = StyleSheet.create({
     marginTop: 35,
   },
   buttonSpacing: {
-    marginTop: 15,
+    marginTop: 20,
   },
-  button: {
-    backgroundColor: "#997950",
+  addButton: {
+    backgroundColor: "#ef820d",
     width: "100%",
-    height: 50,
-  },
-  modalButton: {
     height: 80,
-    width: 170,
-    backgroundColor: "#3bb143",
+    width: 210,
+  },
+  addButtonTitle: {
+    fontFamily: "Mada_700Bold",
+    fontSize: 22,
+  },
+  portionButton: {
+    height: 74,
+    width: 150,
+    backgroundColor: "#7bc20a",
+  },
+  portionButtonTitle: {
+    fontFamily: "Mada_600SemiBold",
+    fontSize: 17,
+  },
+  submitButton: {
+    backgroundColor: "#7bc20a",
+    height: 65,
+    width: 320,
+    alignSelf: "center",
+  },
+  submitButtonTitle: {
+    fontSize: 22,
+  },
+  cancelButton: {
+    backgroundColor: "#d21f3c",
+    height: 60,
+    width: 310,
+    alignSelf: "center",
+    marginBottom: 15,
+  },
+  cancelButtonTitle: {
+    fontSize: 21,
   },
 });
 
