@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Alert } from "react-native";
 import PortionPieChart from "./PortionPieChart";
-import { connect } from "react-redux";
 import PortionListItems from "./PortionListItems";
 import { Button } from "react-native-elements";
+import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
 
 function PortionScreen(props) {
@@ -73,105 +73,64 @@ function PortionScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.separator} />
-      <Text>
-        This meal is {mealCalories} calories, or {mealCaloriePercent}% of your
-        calories for today. You have {caloriesLeft} calories or{" "}
-        {percentCaloriesLeft}% left.
-      </Text>
-      <Button
-        buttonStyle={styles.button}
-        raised
-        title="Submit Your Meal"
-        titleStyle={styles.buttonTitle}
-        onPress={() => {
-          {
-            Alert.alert(
-              "All Finished?",
-              `You will have ${percentCaloriesLeft}% of your calories left for today`,
-              [
-                {
-                  text: "Not Yet",
-                  onPress: () => "Cancel Pressed",
-                  style: "cancel",
-                },
-                {
-                  text: "Submit Meal",
-                  onPress: () => {
-                    props.setProfileCaloriesLeft(caloriesLeft);
-                    console.log(props.stats);
-                    {
-                      Alert.alert(
-                        "Nice",
-                        `Your meal has been successfully added`,
-                        [
-                          {
-                            text: "Go Home",
-                            onPress: () => {
-                              navigation.navigate("HomeScreen");
-                            },
-                          },
-                        ],
-                        { onDismiss: () => {} }
-                      );
-                    }
-                  },
-                },
-              ],
-              { onDismiss: () => {} }
-            );
-          }
-        }}
-      />
-      <Button
-        buttonStyle={styles.button}
-        raised
-        title="Reset Your Daily Calories"
-        titleStyle={styles.buttonTitle}
-        onPress={() => {
-          {
-            Alert.alert(
-              "Starting a new Day?",
-              `You will begin with ${props.stats.dailyCalories} calories for today`,
-              [
-                {
-                  text: "Not Yet",
-                  onPress: () => "Cancel Pressed",
-                  style: "cancel",
-                },
-                {
-                  text: "Reset Calories",
-                  onPress: () => {
-                    props.setProfileCaloriesLeft(props.stats.dailyCalories);
-                    console.log(props.stats);
-                    {
-                      Alert.alert(
-                        "Nice",
-                        `Your daily calories have been reset successfully`,
-                        [
-                          {
-                            text: "Go Home",
-                            onPress: () => {
-                              navigation.navigate("HomeScreen");
-                            },
-                          },
-                        ],
-                        { onDismiss: () => {} }
-                      );
-                    }
-                  },
-                },
-              ],
-              { onDismiss: () => {} }
-            );
-          }
-        }}
-      />
       <View style={{ flex: 1 }}>
         <PortionPieChart chosenFoods={chosenFoods} />
+        <View>
+          <Text>
+            This meal is {mealCalories} calories, or {mealCaloriePercent}% of
+            your calories for today. You have {caloriesLeft} calories or{" "}
+            {percentCaloriesLeft}% left.
+          </Text>
+        </View>
         <PortionListItems
           chosenFoods={chosenFoods}
           handleFoodCalories={handleFoodCalories}
+        />
+      </View>
+      <View>
+        <Button
+          buttonStyle={styles.button}
+          raised
+          title="Submit Your Meal"
+          titleStyle={styles.buttonTitle}
+          onPress={() => {
+            {
+              Alert.alert(
+                "All Finished?",
+                `You will have ${percentCaloriesLeft}% of your calories left for today`,
+                [
+                  {
+                    text: "Not Yet",
+                    onPress: () => "Cancel Pressed",
+                    style: "cancel",
+                  },
+                  {
+                    text: "Submit Meal",
+                    onPress: () => {
+                      props.setProfileCaloriesLeft(caloriesLeft);
+                      console.log(props.stats);
+                      {
+                        Alert.alert(
+                          "Nice",
+                          `Your meal has been successfully added`,
+                          [
+                            {
+                              text: "Go Home",
+                              onPress: () => {
+                                navigation.navigate("HomeScreen");
+                              },
+                            },
+                          ],
+                          { onDismiss: () => {} }
+                        );
+                      }
+                    },
+                  },
+                ],
+                { onDismiss: () => {} }
+              );
+            }
+          }}
         />
       </View>
     </View>

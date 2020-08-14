@@ -1,8 +1,11 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View, Image, Alert } from "react-native";
 import { Button, Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
+import Toast from "react-native-simple-toast";
 
-export default function HomeScreen(props) {
+function HomeScreen(props) {
   const { navigation } = props;
 
   return (
@@ -50,7 +53,7 @@ export default function HomeScreen(props) {
       </View>
       <View style={styles.buttonMargin}>
         <Button
-          buttonStyle={{ backgroundColor: "#3bb143", width: 250, height: 75 }}
+          buttonStyle={{ backgroundColor: "#eb9605", width: 250, height: 75 }}
           title="All Foods"
           onPress={() => navigation.navigate("FoodListScreen")}
           raised
@@ -83,6 +86,56 @@ export default function HomeScreen(props) {
           }
         ></Button>
       </View>
+      <View style={styles.buttonMargin}>
+        <Button
+          buttonStyle={styles.resetButton}
+          raised
+          title="Reset Your Daily Calories"
+          titleStyle={styles.resetButtonTitle}
+          onPress={() => {
+            {
+              Alert.alert(
+                "Starting a new Day?",
+                `You will start off with ${props.stats.dailyCalories} calories today`,
+                [
+                  {
+                    text: "Not Yet",
+                    onPress: () => "Cancel Pressed",
+                    style: "cancel",
+                  },
+                  {
+                    text: "Reset Calories",
+                    onPress: () => {
+                      props.setProfileCaloriesLeft(props.stats.dailyCalories);
+                      {
+                        Alert.alert(
+                          "Done!",
+                          `Your daily calories have been reset successfully`,
+                          [
+                            {
+                              text: "Go Home",
+                              onPress: () => {
+                                {
+                                  navigation.navigate("HomeScreen");
+                                  Toast.show(
+                                    `Your New Daily Calories have been set`
+                                  );
+                                }
+                              },
+                            },
+                          ],
+                          { onDismiss: () => {} }
+                        );
+                      }
+                    },
+                  },
+                ],
+                { onDismiss: () => {} }
+              );
+            }
+          }}
+        />
+      </View>
     </View>
   );
 }
@@ -112,4 +165,24 @@ const styles = StyleSheet.create({
   iconContainerStyle: {
     margin: 5,
   },
+  resetButton: {
+    height: 70,
+    backgroundColor: "#fcd12a",
+  },
+  resetButtonTitle: {},
 });
+
+const mapStateToProps = (state) => {
+  return {
+    stats: state.profileActions.stats,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProfileCaloriesLeft: (caloriesLeft) =>
+      dispatch(setProfileCaloriesLeft(caloriesLeft)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

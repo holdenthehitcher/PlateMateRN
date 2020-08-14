@@ -20,7 +20,7 @@ export default function GoalWeightInput(props) {
           value={props.goalWeight}
           minimumTrackTintColor="#1c2951"
           maximumTrackTintColor="#1c2951"
-          thumbTintColor="#0080fe"
+          thumbTintColor="#ef820d"
         />
       </View>
     </View>

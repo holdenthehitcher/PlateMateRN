@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { Button } from "react-native-elements";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
@@ -16,20 +10,16 @@ function CreateMealScreen(props) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text h2 style={styles.title}>
-        Menu Portion Calculator
-      </Text>
-      <View style={styles.separator} />
       <View>
-        <View style={styles.helpLink}>
-          <ChooseNewFood />
-        </View>
-        <Text>This Meal's Foods</Text>
+        <View style={styles.helpLink}></View>
+        <Text style={styles.title}>Chosen Foods</Text>
         <MealFoodsList />
+        <ChooseNewFood />
         <View style={styles.helpLink}>
           <Button
-            title="Portion Your Meal"
+            title="Portion Meal"
             buttonStyle={styles.button}
+            titleStyle={styles.buttonTitle}
             onPress={() => {
               navigation.navigate("PortionScreen");
             }}
@@ -42,23 +32,19 @@ function CreateMealScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 15,
+    backgroundColor: "#3eb100",
   },
   title: {
-    fontSize: 33,
-    fontWeight: "bold",
-    color: "black",
+    fontSize: 35,
+    fontWeight: "700",
+    color: "#ffffff",
+    alignSelf: "center",
+    marginBottom: 18,
   },
   regularText: {
     color: "black",
   },
-  separator: {
-    marginVertical: 9,
-    height: 1,
-    width: "80%",
-  },
+
   helpLink: {
     paddingVertical: 15,
   },
@@ -72,8 +58,14 @@ const styles = StyleSheet.create({
     color: "rgba(96,100,109, 0.8)",
   },
   button: {
-    width: 300,
-    height: 100,
+    alignSelf: "center",
+    width: 270,
+    height: 110,
+    backgroundColor: "#b80c00",
+    marginVertical: 25,
+  },
+  buttonTitle: {
+    fontSize: 22,
   },
 });
 

@@ -138,11 +138,6 @@ const styles = StyleSheet.create({
   titleSpacing: {
     marginVertical: 21,
   },
-  title: {
-    fontSize: 37,
-    color: "#0f52ba",
-    fontFamily: "OpenSans_800ExtraBold",
-  },
   inputSpacing: {
     marginTop: 21,
     justifyContent: "center",

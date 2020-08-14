@@ -74,21 +74,21 @@ const AddFoodModal = (props) => {
           marginVertical: 18,
         }}
       >
-        <View style={{ margin: 13 }}>
-          <Button
-            title="Add New Food"
-            onPress={() => setModalVisible(!modalVisible)}
-            buttonStyle={styles.addButton}
-            titleStyle={styles.addButtonTitle}
-            raised
-          ></Button>
-        </View>
         <View>
           <Button
             title="Portion Meal"
             onPress={() => props.navigation.navigate("CreateMealScreen")}
             buttonStyle={styles.portionButton}
             titleStyle={styles.portionButtonTitle}
+            raised
+          ></Button>
+        </View>
+        <View style={{ margin: 13 }}>
+          <Button
+            title="Add A New Food"
+            onPress={() => setModalVisible(!modalVisible)}
+            buttonStyle={styles.addButton}
+            titleStyle={styles.addButtonTitle}
             raised
           ></Button>
         </View>
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   overlayContainer: {
-    height: 580,
+    height: 590,
     width: 350,
     justifyContent: "center",
   },
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: "Mada_700Bold",
     fontSize: 34,
-    color: "#7bc20a",
+    color: "#3bb143",
   },
   inputSpacing: { marginTop: 10 },
   text: {
@@ -226,24 +226,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#ef820d",
     width: "100%",
     height: 80,
-    width: 210,
+    width: 170,
   },
   addButtonTitle: {
-    fontFamily: "Mada_700Bold",
-    fontSize: 22,
+    fontFamily: "",
+    fontSize: 24,
   },
   portionButton: {
-    height: 74,
+    height: 80,
     width: 150,
-    backgroundColor: "#7bc20a",
+    backgroundColor: "#ef490d",
   },
   portionButtonTitle: {
     fontFamily: "Mada_600SemiBold",
-    fontSize: 17,
+    fontSize: 23,
   },
   submitButton: {
-    backgroundColor: "#7bc20a",
-    height: 65,
+    backgroundColor: "#3bb143",
+    height: 68,
     width: 320,
     alignSelf: "center",
   },
@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   cancelButton: {
-    backgroundColor: "#d21f3c",
-    height: 60,
+    backgroundColor: "#b13d3b",
+    height: 65,
     width: 310,
     alignSelf: "center",
     marginBottom: 15,

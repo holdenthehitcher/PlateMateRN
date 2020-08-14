@@ -18,7 +18,7 @@ export default function AgeInput(props) {
           value={props.age}
           minimumTrackTintColor="#1c2951"
           maximumTrackTintColor="#1c2951"
-          thumbTintColor="#0080fe"
+          thumbTintColor="#ef820d"
           trackStyle={styles.sliderTrack}
         />
       </View>

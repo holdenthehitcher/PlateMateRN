@@ -79,13 +79,14 @@ export default function InstructionsScreen(props) {
       </View>
       <View style={styles.largeSeparator} />
       <View style={styles.spacing}>
-        <Text style={styles.bottomText}>Get started with PlateMate Here.</Text>
+        <Text style={styles.bottomText}>Get started with PlateMate</Text>
       </View>
       <View style={styles.buttonSpacing}>
         <Button
           title="Setup Profile"
           onPress={() => navigation.navigate("SetupProfileScreen")}
           buttonStyle={styles.button}
+          titleStyle={{ fontSize: 28 }}
           raised
         />
       </View>
@@ -97,12 +98,12 @@ export default function InstructionsScreen(props) {
 const styles = StyleSheet.create({
   container: {},
   separator: {
-    marginVertical: 35,
+    marginVertical: 25,
     height: 1,
     width: "80%",
   },
   largeSeparator: {
-    marginVertical: 37,
+    marginVertical: 60,
     height: 1,
     width: "80%",
   },
@@ -162,11 +163,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#71c800",
-    width: 250,
-    height: 80,
+    width: 290,
+    height: 85,
   },
   buttonSpacing: {
-    marginTop: 12,
+    marginTop: 14,
     marginBottom: 40,
     alignItems: "center",
     justifyContent: "center",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, ScrollView } from "react-native";
 import { ListItem, Slider } from "react-native-elements";
 import { WheelPicker } from "react-native-wheel-picker-android";
 
@@ -56,7 +56,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
 
   return (
     <>
-      <View>
+      <ScrollView>
         <FlatList
           data={chosenFoodsList}
           keyExtractor={(food) => food.id.toString()}
@@ -87,7 +87,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
             />
           )}
         />
-      </View>
+      </ScrollView>
     </>
   );
 };

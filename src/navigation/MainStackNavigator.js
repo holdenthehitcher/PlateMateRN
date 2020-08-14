@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -31,14 +32,14 @@ function MainStackNavigator() {
           name="FoodListScreen"
           component={FoodListScreen}
           options={{
-            title: "All Foods List",
+            title: "All Foods",
             headerStyle: { backgroundColor: "#ef820d" },
             headerTitleStyle: {
               color: "white",
               fontSize: 24,
               fontWeight: "bold",
               alignSelf: "center",
-              marginRight: 50,
+              marginRight: 70,
             },
             headerTintColor: "white",
           }}
@@ -48,7 +49,7 @@ function MainStackNavigator() {
           component={SetupProfileScreen}
           options={{
             title: "My Body Stats",
-            headerStyle: { backgroundColor: "#0080fe" },
+            headerStyle: { backgroundColor: "#008ecc" },
             headerTitleStyle: {
               color: "white",
               fontSize: 24,
@@ -62,12 +63,22 @@ function MainStackNavigator() {
         <Stack.Screen
           name="CreateMealScreen"
           component={CreateMealScreen}
-          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
+          options={{
+            title: "Create A Meal",
+            headerStyle: { backgroundColor: "white" },
+            headerTitleStyle: {
+              color: "#3eb100",
+              fontSize: 22,
+              alignSelf: "center",
+              marginRight: 60,
+            },
+            headerTintColor: "#3eb100"
+          }}
         />
         <Stack.Screen
           name="PortionScreen"
           component={PortionScreen}
-          options={{ title: "", headerStyle: { backgroundColor: "#ffe12b" } }}
+          options={{ title: "", headerStyle: { backgroundColor: "white" } }}
         />
         <Stack.Screen
           name="NotFoundScreen"
@@ -78,8 +89,13 @@ function MainStackNavigator() {
           name="InstructionsScreen"
           component={InstructionsScreen}
           options={{
-            title: "",
+            title: "Instructions",
             headerStyle: { backgroundColor: "#ff4440" },
+            headerTitleStyle: {
+              alignSelf: "center",
+              marginRight: 57,
+              fontSize: 24,
+            },
             headerTintColor: "#fff",
           }}
         />
@@ -92,5 +108,10 @@ function MainStackNavigator() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+
+});
+
 
 export default MainStackNavigator;

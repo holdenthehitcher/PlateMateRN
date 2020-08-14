@@ -18,7 +18,7 @@ export default function WeightInput(props) {
           value={props.weight}
           minimumTrackTintColor="#1c2951"
           maximumTrackTintColor="#1c2951"
-          thumbTintColor="#0080fe"
+          thumbTintColor="#ef820d"
         />
       </View>
     </View>
