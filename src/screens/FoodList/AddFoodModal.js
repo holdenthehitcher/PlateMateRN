@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Picker, Alert } from "react-native";
 import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
+import { AppLoading } from "expo";
 import {
   useFonts,
   Mada_200ExtraLight,
@@ -64,6 +65,10 @@ const AddFoodModal = (props) => {
     { label: "Liters", amountType: "L" },
   ];
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <>
       <View
@@ -74,18 +79,9 @@ const AddFoodModal = (props) => {
           marginVertical: 18,
         }}
       >
-        <View>
+        <View style={{ margin: 10 }}>
           <Button
-            title="Portion Meal"
-            onPress={() => props.navigation.navigate("CreateMealScreen")}
-            buttonStyle={styles.portionButton}
-            titleStyle={styles.portionButtonTitle}
-            raised
-          ></Button>
-        </View>
-        <View style={{ margin: 13 }}>
-          <Button
-            title="Add A New Food"
+            title="Create New Food"
             onPress={() => setModalVisible(!modalVisible)}
             buttonStyle={styles.addButton}
             titleStyle={styles.addButtonTitle}
@@ -100,7 +96,7 @@ const AddFoodModal = (props) => {
       >
         <View style={styles.overlayContainer}>
           <View style={styles.headerSpacing}>
-            <Text style={styles.header}>Add A New Food</Text>
+            <Text style={styles.header}>Create A New Food</Text>
           </View>
           <View style={styles.inputSpacing}>
             <Input
@@ -223,10 +219,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   addButton: {
-    backgroundColor: "#ef820d",
+    backgroundColor: "#ef490d",
     width: "100%",
-    height: 80,
-    width: 170,
+    height: 85,
+    width: 220,
   },
   addButtonTitle: {
     fontFamily: "",

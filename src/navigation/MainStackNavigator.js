@@ -1,7 +1,11 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionSpecs,
+  HeaderStyleInterpolators,
+} from "@react-navigation/stack";
 
 import HomeScreen from "../screens/Home/HomeScreen";
 import FoodListScreen from "../screens/FoodList/FoodListScreen";
@@ -13,6 +17,18 @@ import InstructionsScreen from "../screens/Instructions/InstructionsScreen";
 import ReviewStatsScreen from "../screens/Setup/ReviewStatsScreen";
 
 const Stack = createStackNavigator();
+
+const config = {
+  animation: "spring",
+  config: {
+    stiffness: 1000,
+    damping: 800,
+    mass: 10,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 
 function MainStackNavigator() {
   return (
@@ -26,22 +42,61 @@ function MainStackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: "", headerStyle: {} }}
+          options={{ title: "", headerStyle: { height: 60 } }}
         />
         <Stack.Screen
           name="FoodListScreen"
           component={FoodListScreen}
           options={{
-            title: "All Foods",
-            headerStyle: { backgroundColor: "#ef820d" },
+            title: "Foods List",
+            headerStyle: { backgroundColor: "#ef820d", height: 60 },
             headerTitleStyle: {
               color: "white",
-              fontSize: 24,
-              fontWeight: "bold",
+              fontSize: 22,
               alignSelf: "center",
               marginRight: 70,
             },
             headerTintColor: "white",
+            gestureDirection: "horizontal",
+            transitionSpec: {
+              open: TransitionSpecs.TransitionIOSSpec,
+              close: TransitionSpecs.TransitionIOSSpec,
+            },
+            headerStyleInterpolator: HeaderStyleInterpolators.forFade,
+            cardStyleInterpolator: ({ current, next, layouts }) => {
+              return {
+                cardStyle: {
+                  transform: [
+                    {
+                      translateX: current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [layouts.screen.width, 0],
+                      }),
+                    },
+                    {
+                      rotate: current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 0],
+                      }),
+                    },
+                    {
+                      scale: next
+                        ? next.progress.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [1, 0.9],
+                          })
+                        : 1,
+                    },
+                  ],
+                },
+                overlayStyle: {
+                  opacity: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 0.5],
+                  }),
+                },
+              };
+            },
           }}
         />
         <Stack.Screen
@@ -49,15 +104,20 @@ function MainStackNavigator() {
           component={SetupProfileScreen}
           options={{
             title: "My Body Stats",
-            headerStyle: { backgroundColor: "#008ecc" },
+            headerStyle: { backgroundColor: "#008ecc", height: 74 },
             headerTitleStyle: {
               color: "white",
-              fontSize: 24,
+              fontSize: 23,
               fontWeight: "bold",
               alignSelf: "center",
               marginRight: 50,
             },
             headerTintColor: "white",
+            gestureDirection: "horizontal-inverted",
+            transitionSpec: {
+              open: config,
+              close: config,
+            },
           }}
         />
         <Stack.Screen
@@ -73,6 +133,7 @@ function MainStackNavigator() {
               marginRight: 90,
             },
             headerTintColor: "white",
+            gestureDirection: "horizontal-inverted",
           }}
         />
         <Stack.Screen
@@ -81,6 +142,7 @@ function MainStackNavigator() {
           options={{
             title: "Portion Your Meal",
             headerStyle: { backgroundColor: "white" },
+            gestureDirection: "horizontal-inverted",
           }}
         />
         <Stack.Screen
@@ -93,13 +155,18 @@ function MainStackNavigator() {
           component={InstructionsScreen}
           options={{
             title: "Instructions",
-            headerStyle: { backgroundColor: "#ff4440" },
+            headerStyle: { backgroundColor: "#ff4440", height: 75 },
             headerTitleStyle: {
               alignSelf: "center",
               marginRight: 57,
               fontSize: 24,
             },
             headerTintColor: "#fff",
+            gestureDirection: "horizontal-inverted",
+            transitionSpec: {
+              open: config,
+              close: config,
+            },
           }}
         />
         <Stack.Screen

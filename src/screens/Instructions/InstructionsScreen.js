@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import { Text, ListItem, Button } from "react-native-elements";
 import { useFonts, Capriola_400Regular } from "@expo-google-fonts/capriola";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AppLoading } from "expo";
 
 export default function InstructionsScreen(props) {
   const { navigation } = props;
@@ -11,7 +12,7 @@ export default function InstructionsScreen(props) {
   });
 
   if (!fontsLoaded) {
-    return null;
+    return <AppLoading />;
   }
 
   const instructionsList = [

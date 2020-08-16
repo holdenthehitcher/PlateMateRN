@@ -4,6 +4,7 @@ import { ListItem, SearchBar, Icon } from "react-native-elements";
 import Toast from "react-native-simple-toast";
 import { connect } from "react-redux";
 import { deleteFood } from "../../redux/FoodsListRedux";
+import { AppLoading } from "expo";
 import { useFonts, Livvic_600SemiBold } from "@expo-google-fonts/livvic";
 
 const AllFoodsList = (props) => {
@@ -11,7 +12,7 @@ const AllFoodsList = (props) => {
     Livvic_600SemiBold,
   });
   if (!fontsLoaded) {
-    return null;
+    return <AppLoading />;
   }
 
   return (

@@ -4,6 +4,7 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/ProfileStatsRedux";
 import Toast from "react-native-simple-toast";
+import { AppLoading } from 'expo';
 import {
   useFonts,
   OpenSans_300Light,
@@ -47,6 +48,10 @@ function SetupProfileScreen(props) {
       ...newStats,
       [key]: value,
     });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View style={styles.container}>
