@@ -112,9 +112,9 @@ const ChooseNewFood = (props) => {
 const styles = StyleSheet.create({
   addButton: {
     width: 220,
-    height: 80,
+    height: 85,
     alignSelf: "center",
-    marginTop: 30,
+    marginTop: 40,
     backgroundColor: "#0082b1",
   },
   addButtonTitle: {
@@ -146,6 +146,9 @@ const styles = StyleSheet.create({
   text: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  buttonSpacing: {
+    marginBottom: 10
   },
   finishedButton: {
     width: 250,

@@ -65,20 +65,23 @@ function MainStackNavigator() {
           component={CreateMealScreen}
           options={{
             title: "Create A Meal",
-            headerStyle: { backgroundColor: "white" },
+            headerStyle: { backgroundColor: "#4cbb17" },
             headerTitleStyle: {
-              color: "#3eb100",
+              color: "white",
               fontSize: 22,
               alignSelf: "center",
-              marginRight: 60,
+              marginRight: 90,
             },
-            headerTintColor: "#3eb100"
+            headerTintColor: "white",
           }}
         />
         <Stack.Screen
           name="PortionScreen"
           component={PortionScreen}
-          options={{ title: "", headerStyle: { backgroundColor: "white" } }}
+          options={{
+            title: "Portion Your Meal",
+            headerStyle: { backgroundColor: "white" },
+          }}
         />
         <Stack.Screen
           name="NotFoundScreen"
@@ -109,9 +112,6 @@ function MainStackNavigator() {
   );
 }
 
-const styles = StyleSheet.create({
-
-});
-
+const styles = StyleSheet.create({});
 
 export default MainStackNavigator;

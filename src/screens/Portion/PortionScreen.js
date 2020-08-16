@@ -5,6 +5,7 @@ import PortionListItems from "./PortionListItems";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
+import Toast from "react-native-simple-toast";
 
 function PortionScreen(props) {
   const { navigation } = props;
@@ -75,12 +76,42 @@ function PortionScreen(props) {
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
         <PortionPieChart chosenFoods={chosenFoods} />
-        <View>
-          <Text>
-            This meal is {mealCalories} calories, or {mealCaloriePercent}% of
-            your calories for today. You have {caloriesLeft} calories or{" "}
-            {percentCaloriesLeft}% left.
-          </Text>
+        <View style={styles.caloriesFlex}>
+          <View
+            flexDirection="row"
+            style={{ alignItems: "center", justifyContent: "center" }}
+          >
+            <View>
+              <Text style={{ fontSize: 16 }}>This Meal:</Text>
+            </View>
+            <View>
+              <Text style={{ fontSize: 26 }}> {mealCalories} cal. </Text>
+            </View>
+            <View>
+              <Text style={{ fontSize: 17 }}>Total:</Text>
+            </View>
+            <View>
+              <Text style={{ fontSize: 26 }}> {mealCaloriePercent}% </Text>
+            </View>
+          </View>
+          <View
+            flexDirection="row"
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              marginVertical: 7,
+            }}
+          >
+            <View>
+              <Text style={{ fontSize: 16 }}>Calories Left:</Text>
+            </View>
+            <View>
+              <Text style={{ fontSize: 19 }}> {caloriesLeft} cal. /</Text>
+            </View>
+            <View>
+              <Text style={{ fontSize: 19 }}> {percentCaloriesLeft} %</Text>
+            </View>
+          </View>
         </View>
         <PortionListItems
           chosenFoods={chosenFoods}
@@ -111,13 +142,16 @@ function PortionScreen(props) {
                       console.log(props.stats);
                       {
                         Alert.alert(
-                          "Nice",
-                          `Your meal has been successfully added`,
+                          "Success!",
+                          `Your meal has been successfully added. You have ${caloriesLeft} calories left for today`,
                           [
                             {
-                              text: "Go Home",
+                              text: "Home",
                               onPress: () => {
                                 navigation.navigate("HomeScreen");
+                                Toast.show(
+                                  `You have ${caloriesLeft} calories left today`
+                                );
                               },
                             },
                           ],
@@ -149,6 +183,10 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: "80%",
+  },
+  caloriesFlex: {
+    marginLeft: 10,
+    marginBottom: 5,
   },
 });
 

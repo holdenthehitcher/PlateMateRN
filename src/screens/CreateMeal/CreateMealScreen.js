@@ -12,7 +12,7 @@ function CreateMealScreen(props) {
     <ScrollView contentContainerStyle={styles.container}>
       <View>
         <View style={styles.helpLink}></View>
-        <Text style={styles.title}>Chosen Foods</Text>
+        <Text style={styles.title}>This Meal's Foods</Text>
         <MealFoodsList />
         <ChooseNewFood />
         <View style={styles.helpLink}>
@@ -32,14 +32,14 @@ function CreateMealScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#3eb100",
+    backgroundColor: "white",
   },
   title: {
-    fontSize: 35,
+    fontSize: 37,
     fontWeight: "700",
-    color: "#ffffff",
+    color: "#3bb143",
     alignSelf: "center",
-    marginBottom: 18,
+    marginBottom: 20,
   },
   regularText: {
     color: "black",
@@ -54,14 +54,11 @@ const styles = StyleSheet.create({
   homeScreenFilename: {
     marginVertical: 7,
   },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)",
-  },
   button: {
     alignSelf: "center",
     width: 270,
     height: 110,
-    backgroundColor: "#b80c00",
+    backgroundColor: "#3bb143",
     marginVertical: 25,
   },
   buttonTitle: {

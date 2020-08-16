@@ -19,7 +19,20 @@ export default PortionPieChart = ({ chosenFoods }) => {
     legendFontSize: 15,
     legendFontColor: "#7F7F7F",
   };
-  const pieColors = ["red", "green", "blue", "yellow", "magenta", "cyan"];
+  const pieColors = [
+    "#3bb143",
+    "#008ecc",
+    "#ff4440",
+    "#ffa32f",
+    "#ffe12b",
+    "#63ba93",
+    "#8481ae",
+    "#a9d171",
+    "#ff681f",
+    "#e4a8e8",
+    "#ffae42",
+    "#7c36",
+  ];
 
   const pieSlices = chosenFoods.map((food, i) => ({
     ...food,
@@ -29,11 +42,6 @@ export default PortionPieChart = ({ chosenFoods }) => {
 
   return (
     <View>
-      <View>
-        <Text style={{ alignSelf: "center", marginTop: 15, fontSize: 20 }}>
-          This Meal's Calorie Percentage
-        </Text>
-      </View>
       <PieChart
         data={pieSlices}
         width={screenWidth}

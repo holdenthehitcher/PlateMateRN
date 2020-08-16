@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   FlatList,
-  SafeAreaView,
   Text,
   View,
   Alert,
@@ -26,8 +25,8 @@ const Food = ({ item, toggleFood }) => {
           rightIcon={
             <MaterialCommunityIcons
               name="playlist-remove"
-              size={39}
-              style={{ marginRight: 10, color: "#b80c00" }}
+              size={38}
+              style={{ marginRight: 7, color: "#b80c00" }}
               onPress={() => {
                 {
                   Alert.alert(
@@ -86,14 +85,16 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
   listItemTitle: {
-    fontSize: 20,
-    // marginVertical: 4,
+    fontSize: 18,
     color: "#0c090a",
-    marginLeft: 120,
+    // marginRight: 60,
+    alignSelf: "center"
   },
   listItem: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#c0c0c0",
+    alignSelf: "center",
+    width: 330
   },
 });
 

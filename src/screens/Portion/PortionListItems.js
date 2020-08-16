@@ -10,11 +10,11 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
     const { defaultAmount } = item;
     switch (true) {
       case defaultAmount < 5:
-        return 15;
+        return 10;
       case defaultAmount < 10:
-        return 25;
+        return 20;
       case defaultAmount < 20:
-        return 40;
+        return 30;
       case defaultAmount < 40:
         return 100;
       case defaultAmount < 60:
@@ -47,7 +47,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
         return 20;
     }
   };
-  const pieColors = ["red", "green", "blue", "yellow", "magenta", "cyan"];
+  const pieColors = ["#b80c00", "#3bb143", "#0082b1", "#c0c0c0", "#ef820d", "#efba0d",];
 
   const fractionValues = [];
   for (let i = 0; i < 16; i += 0.25) {
@@ -70,7 +70,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
                 <>
                   <Slider
                     step={valueSteps(item)}
-                    style={{ width: 200, height: 40 }}
+                    style={{ width: 240, height: 40 }}
                     minimumValue={1}
                     maximumValue={maxInputValue(item)}
                     onValueChange={(value) => {
