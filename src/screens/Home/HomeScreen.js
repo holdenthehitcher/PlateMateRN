@@ -1,50 +1,61 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Image, Alert } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
+import * as Animatable from "react-native-animatable";
 import Toast from "react-native-simple-toast";
+import withPressAnimated from "../../animations/withPressAnimated";
+const AnimatedPressButton = withPressAnimated(Button);
 
 function HomeScreen(props) {
   const { navigation } = props;
+  const [buttonAnimate, setButtonAnimate] = useState(false);
+
+  useEffect(() => {
+    navigation.navigate("InstructionsScreen");
+  }, [buttonAnimate]);
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonMargin}>
-        <Button
-          buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
-          title="How to Use PlateMate"
-          onPress={() => navigation.navigate("InstructionsScreen")}
-          iconRight={true}
-          icon={
-            <Icon
-              name="arrow-circle-right"
-              type="font-awesome"
-              color={"white"}
-              size={35}
-              style={{ marginLeft: 12 }}
-            />
-          }
-        ></Button>
-      </View>
-      <View style={styles.buttonMargin}>
-        <Button
-          buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
-          title="Update Profile"
-          onPress={() => navigation.navigate("SetupProfileScreen")}
-          raised
-          icon={
-            <Icon
-              name="odnoklassniki"
-              type="font-awesome"
-              color={"white"}
-              size={39}
-              style={{ marginRight: 15 }}
-            />
-          }
-          iconContainerStyle={styles.iconContainerStyle}
-        ></Button>
-      </View>
+      <AnimatedPressButton
+        buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
+        title="How to Use PlateMate"
+        animation="tada"
+        mode="contained"
+        timeout={2000}
+        duration={1200}
+        onPress={() => {
+          setTimeout(() => setButtonAnimate(!buttonAnimate), 1100);
+        }}
+        iconRight={true}
+        icon={
+          <Icon
+            name="arrow-circle-right"
+            type="font-awesome"
+            color={"white"}
+            size={35}
+            style={{ marginLeft: 12 }}
+          />
+        }
+      ></AnimatedPressButton>
+      <Button
+        buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
+        title="Update Profile"
+        onPress={() => navigation.navigate("SetupProfileScreen")}
+        raised
+        icon={
+          <Icon
+            name="odnoklassniki"
+            type="font-awesome"
+            color={"white"}
+            size={39}
+            style={{ marginRight: 15 }}
+          />
+        }
+        iconContainerStyle={styles.iconContainerStyle}
+      ></Button>
+      {/* </Animatable.View> */}
       <View>
         <Image
           source={require("../../../assets/images/PlateMate2.png")}

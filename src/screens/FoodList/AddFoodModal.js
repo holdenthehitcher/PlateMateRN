@@ -176,7 +176,7 @@ const AddFoodModal = (props) => {
               onPress={() => {
                 setModalVisible(!modalVisible);
                 resetFoodValues();
-                Toast.show(`Cancelled Adding a Food`);
+                Toast.show(`No Food Added`);
               }}
             />
           </View>
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   overlayContainer: {
-    height: 590,
+    height: 620,
     width: 350,
     justifyContent: "center",
   },
@@ -204,8 +204,9 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: "Mada_700Bold",
-    fontSize: 34,
+    fontSize: 32,
     color: "#3bb143",
+    textAlign: "center",
   },
   inputSpacing: { marginTop: 10 },
   text: {

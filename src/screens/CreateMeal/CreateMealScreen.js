@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Platform, Animated } from "react-native";
 import { Button } from "react-native-elements";
+// import { HEADER_MAX_HEIGHT } from "../../settings/layouts";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
 function CreateMealScreen(props) {
   const { navigation } = props;
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
