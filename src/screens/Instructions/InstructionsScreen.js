@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, Alert } from "react-native";
 import { Text, ListItem, Button } from "react-native-elements";
 import { useFonts, Capriola_400Regular } from "@expo-google-fonts/capriola";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -17,46 +17,73 @@ export default function InstructionsScreen(props) {
 
   const instructionsList = [
     {
-      name: "",
-      title: "Add Foods",
-      subtitle: `Create your own Food List`,
+      name: "see your Foods List",
+      title: "Edit Your Food List",
+      subtitle: `Include the foods you like and remove ones you don't want`,
       icon: "playlist-plus",
+      navigation: "FoodListScreen"
     },
     {
-      name: "",
-      title: "Customize Meals",
-      subtitle: "With any Food from the list",
+      name: "make a Meal",
+      title: "Create-a-Meal",
+      subtitle: "Choose Foods from your List to make your own unique meals",
       icon: "food-fork-drink",
+      navigation: "CreateMealScreen"
     },
     {
-      name: "",
+      name: "make a Meal",
       title: "Adjust Portions",
-      subtitle: "Change the Amount of Food",
+      subtitle: "Portion each food to meet your daily calorie limit",
       icon: "creation",
+      navigation: "CreateMealScreen"
     },
     {
-      name: "",
+      name: "go Home",
       title: "Reset Calories",
-      subtitle: "Start each day from scratch",
+      subtitle: "Start your daily calories from scratch each day",
       icon: "calendar-clock",
+      navigation: "HomeScreen"
     },
     {
-      name: "",
+      name: "edit your Profile",
       title: "Update Your Profile",
-      subtitle: "When your body changes",
+      subtitle: "Change your stats when your body does, too",
       icon: "account-arrow-right",
+      navigation: "SetupProfileScreen"
     },
   ];
+
+  const onItemPress = (section) => {
+      {
+        Alert.alert(
+          `Ready to ${section.name}?`,
+          `You can always come back later`,
+          [
+            {
+              text: "Yes",
+              onPress: () => {
+                navigation.navigate(section.navigation)
+              },
+            },
+            {
+              text: "Not Yet",
+              onPress: () => "Cancel Pressed",
+              style: "cancel",
+            },
+          ]
+        )
+      }
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.spacingHeader}>
         <Text style={styles.mainHeader}>Welcome to </Text>
         <Text style={styles.secondHeader}>PlateMate</Text>
+        <Text style={styles.thirdHeader}>"Your Daily Calorie Counter"</Text>
       </View>
-      <View style={styles.separator} />
       <View style={styles.spacing}>
-        <Text style={styles.thirdHeader}>How to use PlateMate</Text>
+        <Text style={styles.fourthHeader}>How to use PlateMate</Text>
       </View>
       <View>
         {instructionsList.map((section, i) => (
@@ -67,6 +94,7 @@ export default function InstructionsScreen(props) {
             bottomDivider
             titleStyle={styles.title}
             subtitleStyle={styles.subtitle}
+            onPress={()=>onItemPress(section)}
             rightIcon={
               <MaterialCommunityIcons
                 name={section.icon}
@@ -78,14 +106,14 @@ export default function InstructionsScreen(props) {
           />
         ))}
       </View>
-      <View style={styles.largeSeparator} />
+      <View style={styles.separator} />
       <View style={styles.spacing}>
         <Text style={styles.bottomText}>Get started with PlateMate</Text>
       </View>
       <View style={styles.buttonSpacing}>
         <Button
           title="Setup Profile"
-          onPress={() => setTimeout(() => navigation.navigate("SetupProfileScreen"), 550)}
+          onPress={() => setTimeout(() => navigation.navigate("SetupProfileScreen"), 350)}
           buttonStyle={styles.button}
           titleStyle={{ fontSize: 28 }}
           raised
@@ -99,7 +127,7 @@ export default function InstructionsScreen(props) {
 const styles = StyleSheet.create({
   container: {},
   separator: {
-    marginVertical: 25,
+    marginVertical: 15,
     height: 1,
     width: "80%",
   },
@@ -111,7 +139,7 @@ const styles = StyleSheet.create({
   spacingHeader: {
     alignItems: "center",
     justifyContent: "center",
-    height: 270,
+    height: 255,
     backgroundColor: "#008ecc",
   },
   spacing: {
@@ -130,6 +158,13 @@ const styles = StyleSheet.create({
     fontFamily: "Capriola_400Regular",
   },
   thirdHeader: {
+    marginTop: 28,
+    color: "#ff4440",
+    fontSize: 17,
+    fontFamily: "Capriola_400Regular",
+  },
+  fourthHeader: {
+    marginTop: 10,
     fontSize: 22,
     color: "#0c97aa",
     fontFamily: "Capriola_400Regular",

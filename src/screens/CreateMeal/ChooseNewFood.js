@@ -41,17 +41,9 @@ const ChooseNewFood = (props) => {
   const rotateIcon = (item) => {
     props.toggleFood(item.id);
     item.addedToList === false
-      ? Toast.show(`${item.name} has been added to this meal`)
-      : Toast.show(`${item.name} has been removed from this meal`);
+      ? Toast.showWithGravity(`${item.name} has been added to this meal`, Toast.SHORT, Toast.TOP)
+      : Toast.show(`${item.name} has been removed from this meal`, Toast.SHORT);
   };
-
-  // const rotateInterPolate = rotation.interpolate({
-  //   inputRange: [0, 360],
-  //   outputRange: ["0deg", "360deg"],
-  // });
-  // const animatedStyles = {
-  //   transform: [{ rotate: rotateInterPolate }],
-  // };
 
   return (
     <View>
@@ -96,6 +88,9 @@ const ChooseNewFood = (props) => {
                   titleStyle={styles.listItemTitle}
                   subtitleStyle={styles.listItemSubtitle}
                   bottomDivider
+                  onPress={() => {
+                    rotateIcon(item);
+                  }}
                   rightIcon={
                     <Animated.View
                       style={[styles.icon,
@@ -112,56 +107,19 @@ const ChooseNewFood = (props) => {
                       ]}
                     >
                       <TouchableOpacity
-                        onPress={() => {
-                          rotateIcon(item);
-                        }}
+                        
                       >
                         <Entypo
+                           onPress={() => {
+                            rotateIcon(item);
+                          }}
                           name={
                             item.addedToList === false
                               ? "circle-with-plus"
-                              : "circle-with-minus"
+                              : "check"
                           }
-                          size={27}
+                          size={30}
                           color={item.addedToList === false ? "green" : "red"}
-
-                          // setRotated(!rotated);
-                          // iconRef.current.animatable.transitionTo({
-                          //   transform: rotated
-                          //     ? [{ rotate: "0deg" }]
-                          //     : [{ rotate: "90deg" }],
-                          // });
-                          // {
-                          //   Alert.alert(
-                          //     item.addedToList === false
-                          //       ? `Add ${item.name}?`
-                          //       : `Remove ${item.name}?`,
-                          //     item.addedToList === false
-                          //       ? `Do you want to include ${item.name} in this meal?`
-                          //       : `Take out ${item.name} from this meal?`,
-                          //     [
-                          //       {
-                          //         text: "Not Yet",
-                          //         onPress: () => "Cancel Pressed",
-                          //         style: "cancel",
-                          //       },
-                          //       {
-                          //         text: "Yes",
-                          //         onPress: () => {
-                          // props.toggleFood(item.id);
-                          // item.addedToList === false
-                          //   ? Toast.show(
-                          //       `${item.name} has been added to this meal`
-                          //     )
-                          //   : Toast.show(
-                          //       `${item.name} has been removed from this meal`
-                          //     );
-                          //         },
-                          //       },
-                          //     ],
-                          //     { onDismiss: () => {} }
-                          //   );
-                          // }
                         />
                       </TouchableOpacity>
                     </Animated.View>
@@ -178,12 +136,12 @@ const ChooseNewFood = (props) => {
 
 const styles = StyleSheet.create({
   addButton: {
-    width: 250,
+    width: 200,
     height: 70,
     alignSelf: "center",
     marginBottom: 15,
     marginRight: 20,
-    backgroundColor: "#0082b1",
+    backgroundColor: "#3bb143",
   },
   addButtonTitle: {
     fontSize: 20,
@@ -207,9 +165,9 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   headerText: {
-    fontSize: 25,
+    fontSize: 28,
     fontWeight: "bold",
-    color: "green",
+    color: "black",
   },
   text: {
     justifyContent: "flex-end",
@@ -219,26 +177,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   finishedButton: {
-    width: 250,
-    height: 70,
+    width: 210,
+    height: 60,
     alignSelf: "center",
     marginBottom: 8,
-    backgroundColor: "#3bb143",
+    backgroundColor: "#b80c00",
   },
   finishedButtonTitle: {
     fontSize: 20,
   },
   listItem: {},
   listItemTitle: {
-    fontSize: 18,
-    marginLeft: 50,
+    fontSize: 19,
+    marginLeft: 90,
   },
   listItemSubtitle: {
     fontSize: 10,
-    marginLeft: 45,
+    marginLeft: 90,
   },
   icon: {
-    marginRight: 30,
+    marginRight: 95,
   }
 });
 

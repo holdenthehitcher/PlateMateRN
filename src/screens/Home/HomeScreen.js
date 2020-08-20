@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Image, Alert, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Alert,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
@@ -7,6 +14,7 @@ import * as Animatable from "react-native-animatable";
 import Toast from "react-native-simple-toast";
 import withPressAnimated from "../../animations/withPressAnimated";
 const AnimatedPressButton = withPressAnimated(Button);
+const AnimatedView = withPressAnimated(TouchableOpacity);
 
 function HomeScreen(props) {
   const { navigation } = props;
@@ -17,7 +25,7 @@ function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonMargin}>
+      {/* <View style={styles.buttonMargin}>
         <AnimatedPressButton
           buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
           title="How to Use PlateMate"
@@ -56,22 +64,29 @@ function HomeScreen(props) {
           }
           iconContainerStyle={styles.iconContainerStyle}
         ></AnimatedPressButton>
+      </View> */}
+      <View>
+        <AnimatedView
+          onPress={() => {
+            animateNavigate("InstructionsScreen");
+          }}
+          animation="wobble"
+        >
+          <Image
+            source={require("../../../assets/images/PlateMate2.png")}
+            style={{ width: 210, height: 200, marginBottom: 12 }}
+          />
+        </AnimatedView>
       </View>
       <View>
-        <Image
-          source={require("../../../assets/images/PlateMate2.png")}
-          style={{ width: 210, height: 200, marginVertical: 12 }}
-        />
-      </View>
-      <View>
-        <Text>
-          You have {props.stats.caloriesLeft} calories left
-        </Text>
+        <Text style={styles.text}>You have</Text>
+        <Text style={styles.caloriesText}>{props.stats.caloriesLeft} calories ({props.stats.caloriesLeft/props.stats.dailyCalories * 100}%)</Text>
+        <Text style={styles.text}>left for today</Text>
       </View>
       <View style={styles.buttonMargin}>
         <AnimatedPressButton
           buttonStyle={{ backgroundColor: "#eb9605", width: 250, height: 75 }}
-          title="All Foods"
+          title="List of Foods"
           onPress={() => animateNavigate("FoodListScreen")}
           animation="fadeInRight"
           raised
@@ -90,7 +105,7 @@ function HomeScreen(props) {
       <View style={styles.buttonMargin}>
         <AnimatedPressButton
           buttonStyle={{ backgroundColor: "#4cbb17", width: 300, height: 90 }}
-          title="Portion Meal"
+          title="Portion Your Meal"
           animation="bounceInDown"
           onPress={() => animateNavigate("CreateMealScreen")}
           raised
@@ -176,6 +191,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
+  text: {
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 8,
+  },
+  caloriesText: {
+    fontSize: 23,
+    textAlign: "center",
+  },
   buttonMargin: {
     marginVertical: 10,
   },
@@ -187,7 +211,7 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     height: 70,
-    backgroundColor: "#fcd12a",
+    backgroundColor: "#008ecc",
   },
   resetButtonTitle: {},
 });

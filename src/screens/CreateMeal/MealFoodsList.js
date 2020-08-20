@@ -16,16 +16,38 @@ const Food = ({ item, toggleFood }) => {
           titleStyle={styles.listItemTitle}
           title={`${item.name}`}
           bottomDivider
+          onPress={() => {
+            {
+              Alert.alert(
+                `Delete ${item.name}?`,
+                `Do you want to remove ${item.name} from this meal?`,
+                [
+                  {
+                    text: "Wait",
+                    onPress: () => "Cancel Pressed",
+                    style: "cancel",
+                  },
+                  {
+                    text: "Remove",
+                    onPress: () => {
+                      toggleFood(item.id);
+                      Toast.show(`${item.name} has been removed`);
+                    },
+                  },
+                ]
+              );
+            }
+          }}
           rightIcon={
             <MaterialCommunityIcons
-              name="playlist-remove"
-              size={38}
-              style={{ marginRight: 7, color: "#b80c00" }}
+              name="close-circle-outline"
+              size={31}
+              style={{ marginRight: 40, color: "#b80c00" }}
               onPress={() => {
                 {
                   Alert.alert(
-                    `Remove ${item.name}?`,
-                    `Are you not having ${item.name} in this meal?`,
+                    `Delete ${item.name}?`,
+                    `Do you want to remove ${item.name} from this meal?`,
                     [
                       {
                         text: "Wait",
@@ -79,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
   listItemTitle: {
-    fontSize: 15,
+    fontSize: 20,
     color: "#0c090a",
     alignSelf: "center",
   },
@@ -90,8 +112,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
     alignSelf: "center",
     width: 330,
-    height: 50,
+    height: 55,
     alignItems: "center",
+    marginLeft: 20
   },
 });
 

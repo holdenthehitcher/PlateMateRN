@@ -90,7 +90,7 @@ const AddFoodModal = (props) => {
         <View style={{ margin: 10 }}>
           <AnimatedPressButton
           animation="bounce"
-            title="Create A Food"
+            title="Create A New Food"
             onPress={() => animateButton(setModalVisible, !modalVisible)}
             buttonStyle={styles.addButton}
             titleStyle={styles.addButtonTitle}
@@ -229,14 +229,14 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   addButton: {
-    backgroundColor: "#ea3c53",
+    backgroundColor: "#008ecc",
     width: "100%",
     height: 60,
-    width: 220,
+    width: 180,
   },
   addButtonTitle: {
     fontFamily: "",
-    fontSize: 20,
+    fontSize: 17,
   },
   portionButton: {
     height: 80,

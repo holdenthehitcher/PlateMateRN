@@ -74,98 +74,98 @@ function PortionScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <PortionPieChart chosenFoods={chosenFoods} />
-        <View style={styles.caloriesFlex}>
-          <View
-            flexDirection="row"
-            style={{ alignItems: "center", justifyContent: "center" }}
-          >
-            <View>
-              <Text style={{ fontSize: 16 }}>This Meal:</Text>
-            </View>
-            <View>
-              <Text style={{ fontSize: 26 }}> {mealCalories} cal. </Text>
-            </View>
-            <View>
-              <Text style={{ fontSize: 17 }}>Total:</Text>
-            </View>
-            <View>
-              <Text style={{ fontSize: 26 }}> {mealCaloriePercent}% </Text>
-            </View>
+      <View style={styles.caloriesFlex}>
+        <View
+          flexDirection="row"
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <View>
+            <Text style={{ fontSize: 16 }}>Calories Left:</Text>
           </View>
+          <View>
+            <Text style={{ fontSize: 18 }}> {caloriesLeft} cal. /</Text>
+          </View>
+          <View>
+            <Text style={{ fontSize: 18 }}> {percentCaloriesLeft} %</Text>
+          </View>
+        </View>
+      </View>
+      <PortionPieChart chosenFoods={chosenFoods} />
+      <PortionListItems
+        chosenFoods={chosenFoods}
+        handleFoodCalories={handleFoodCalories}
+      />
+
+      <View
+        flexDirection="row"
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          marginVertical: 7,
+        }}
+      >
+        <View style={{ marginLeft: 10 }}>
+          <Text style={{ fontSize: 13 }}>Meal Calories</Text>
           <View
             flexDirection="row"
             style={{
               alignItems: "center",
               justifyContent: "center",
-              marginVertical: 7,
             }}
           >
-            <View>
-              <Text style={{ fontSize: 16 }}>Calories Left:</Text>
-            </View>
-            <View>
-              <Text style={{ fontSize: 19 }}> {caloriesLeft} cal. /</Text>
-            </View>
-            <View>
-              <Text style={{ fontSize: 19 }}> {percentCaloriesLeft} %</Text>
-            </View>
+            <Text style={{ fontSize: 21 }}>
+              {mealCalories} / {mealCaloriePercent}%{" "}
+            </Text>
           </View>
         </View>
-        <PortionListItems
-          chosenFoods={chosenFoods}
-          handleFoodCalories={handleFoodCalories}
-        />
-      </View>
-      <View>
-        <Button
-          buttonStyle={styles.button}
-          raised
-          title="Submit Your Meal"
-          titleStyle={styles.buttonTitle}
-          onPress={() => {
-            {
-              Alert.alert(
-                "All Finished?",
-                `You will have ${percentCaloriesLeft}% of your calories left for today`,
-                [
-                  {
-                    text: "Not Yet",
-                    onPress: () => "Cancel Pressed",
-                    style: "cancel",
-                  },
-                  {
-                    text: "Submit Meal",
-                    onPress: () => {
-                      props.setProfileCaloriesLeft(caloriesLeft);
-                      console.log(props.stats);
-                      {
-                        Alert.alert(
-                          "Success!",
-                          `Your meal has been successfully added. You have ${caloriesLeft} calories left for today`,
-                          [
-                            {
-                              text: "Home",
-                              onPress: () => {
-                                navigation.navigate("HomeScreen");
-                                Toast.show(
-                                  `You have ${caloriesLeft} calories left today`
-                                );
-                              },
-                            },
-                          ],
-                          { onDismiss: () => {} }
-                        );
-                      }
+        <View>
+          <Button
+            buttonStyle={styles.button}
+            title="Finished"
+            titleStyle={styles.buttonTitle}
+            onPress={() => {
+              {
+                Alert.alert(
+                  "All Finished?",
+                  `You will have ${percentCaloriesLeft}% of your calories left for today`,
+                  [
+                    {
+                      text: "Not Yet",
+                      onPress: () => "Cancel Pressed",
+                      style: "cancel",
                     },
-                  },
-                ],
-                { onDismiss: () => {} }
-              );
-            }
-          }}
-        />
+                    {
+                      text: "Submit Meal",
+                      onPress: () => {
+                        props.setProfileCaloriesLeft(caloriesLeft);
+                        console.log(props.stats);
+                        {
+                          Alert.alert(
+                            "Success!",
+                            `Your meal has been successfully added. You have ${caloriesLeft} calories left for today`,
+                            [
+                              {
+                                text: "Home",
+                                onPress: () => {
+                                  navigation.navigate("HomeScreen");
+                                  Toast.show(
+                                    `You have ${caloriesLeft} calories left today`
+                                  );
+                                },
+                              },
+                            ],
+                            { onDismiss: () => {} }
+                          );
+                        }
+                      },
+                    },
+                  ],
+                  { onDismiss: () => {} }
+                );
+              }
+            }}
+          />
+        </View>
       </View>
     </View>
   );
@@ -175,18 +175,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
   caloriesFlex: {
     marginLeft: 10,
-    marginBottom: 5,
+    marginTop: 5,
+  },
+  button: {
+    backgroundColor: "#3bb143",
+    marginLeft: 50,
+    width: 170,
+  },
+  buttonTitle: {
+    fontSize: 20,
   },
 });
 

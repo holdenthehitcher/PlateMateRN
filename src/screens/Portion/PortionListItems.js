@@ -47,7 +47,14 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
         return 20;
     }
   };
-  const pieColors = ["#b80c00", "#3bb143", "#0082b1", "#c0c0c0", "#ef820d", "#efba0d",];
+  const pieColors = [
+    "#b80c00",
+    "#3bb143",
+    "#0082b1",
+    "#c0c0c0",
+    "#ef820d",
+    "#efba0d",
+  ];
 
   const fractionValues = [];
   for (let i = 0; i < 16; i += 0.25) {
@@ -56,36 +63,36 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
 
   return (
     <>
-        <FlatList
-          data={chosenFoodsList}
-          keyExtractor={(food) => food.id.toString()}
-          renderItem={({ item }, i) => (
-            <ListItem
-              key={item.id}
-              title={`${item.name}`}
-              subtitle={`${item.amount} ${item.amountType}`}
-              bottomDivider
-              rightIcon={
-                <>
-                  <Slider
-                    step={valueSteps(item)}
-                    style={{ width: 240, height: 40 }}
-                    minimumValue={1}
-                    maximumValue={maxInputValue(item)}
-                    onValueChange={(value) => {
-                      handleFoodCalories(item, value);
-                    }}
-                    value={item.amount}
-                    minimumTrackTintColor="#4b3619"
-                    maximumTrackTintColor="#4b3619"
-                    thumbTintColor={pieColors[chosenFoodsList[i]]}
-                    thumbTouchSize={{ width: 150, height: 150 }}
-                  />
-                </>
-              }
-            />
-          )}
-        />
+      <FlatList
+        data={chosenFoodsList}
+        keyExtractor={(food) => food.id.toString()}
+        renderItem={({ item }, i) => (
+          <ListItem
+            key={item.id}
+            title={`${item.name}`}
+            subtitle={`${item.amount} ${item.amountType}`}
+            bottomDivider
+            rightIcon={
+              <>
+                <Slider
+                  step={valueSteps(item)}
+                  style={{ width: 240, height: 40 }}
+                  minimumValue={1}
+                  maximumValue={maxInputValue(item)}
+                  onValueChange={(value) => {
+                    handleFoodCalories(item, value);
+                  }}
+                  value={item.amount}
+                  minimumTrackTintColor="#3bb143"
+                  maximumTrackTintColor="#c0c0c0"
+                  thumbTintColor="#0082b1"
+                  thumbTouchSize={{ width: 150, height: 150 }}
+                />
+              </>
+            }
+          />
+        )}
+      />
     </>
   );
 };

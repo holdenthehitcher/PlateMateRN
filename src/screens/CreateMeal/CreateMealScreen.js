@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, Text, View, Platform, Animated } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  Platform,
+  Animated,
+} from "react-native";
 import { Button } from "react-native-elements";
+import { connect } from "react-redux";
+import Toast from "react-native-simple-toast";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
@@ -16,30 +25,31 @@ function CreateMealScreen(props) {
   };
 
   return (
-      <View style={{flex: 1, backgroundColor: "white"}}>
-        <View style={styles.helpLink}></View>
-        {/* <Text style={styles.title}>This Meal's Foods</Text> */}
-        <ChooseNewFood />
-        <MealFoodsList />
-        <View style={styles.helpLink}>
-          <AnimatedPressButton
-            animation="swing"
-            title="Portion Meal"
-            buttonStyle={styles.button}
-            titleStyle={styles.buttonTitle}
-            onPress={() => {
-              animateNavigate("PortionScreen");
-            }}
-          ></AnimatedPressButton>
-        </View>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={styles.helpLink}></View>
+      <ChooseNewFood />
+      <MealFoodsList />
+      <View style={styles.helpLink}>
+        <AnimatedPressButton
+          animation="swing"
+          title="Portion Your Meal"
+          buttonStyle={styles.button}
+          titleStyle={styles.buttonTitle}
+          onPress={() => {
+            props.foods.some((food) => food.addedToList === true)
+              ? animateNavigate("PortionScreen")
+              : Toast.show(`Please select at least one Food`);
+          }}
+        ></AnimatedPressButton>
       </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    flex: 1
+    flex: 1,
   },
   title: {
     fontSize: 37,
@@ -63,9 +73,9 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    width: 250,
-    height: 90,
-    backgroundColor: "#3bb143",
+    width: 220,
+    height: 80,
+    backgroundColor: "#b80c00",
     marginVertical: 25,
   },
   buttonTitle: {
@@ -73,4 +83,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateMealScreen;
+const mapStateToProps = (state) => {
+  return {
+    foods: state.foodsActions.allFoods,
+  };
+};
+
+export default connect(mapStateToProps)(CreateMealScreen);

@@ -41,15 +41,15 @@ export default PortionPieChart = ({ chosenFoods }) => {
   }));
 
   return (
-    <View>
+    <View style={{ alignSelf:"center"}}>
       <PieChart
         data={pieSlices}
         width={screenWidth}
-        height={220}
+        height={200}
         chartConfig={chartConfig}
         accessor="totalCalories"
-        backgroundColor="transparent"
-        paddingLeft="20"
+        backgroundColor="white"
+        marginHorizontal="20"
       />
     </View>
   );

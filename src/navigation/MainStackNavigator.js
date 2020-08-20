@@ -48,11 +48,11 @@ function MainStackNavigator() {
           name="FoodListScreen"
           component={FoodListScreen}
           options={{
-            title: "Foods List",
-            headerStyle: { backgroundColor: "#ef820d", height: 60 },
+            title: "Complete List of Foods",
+            headerStyle: { backgroundColor: "#ef820d", height: 70 },
             headerTitleStyle: {
               color: "white",
-              fontSize: 22,
+              fontSize: 18,
               alignSelf: "center",
               marginRight: 70,
             },
@@ -75,11 +75,8 @@ function MainStackNavigator() {
               marginRight: 50,
             },
             headerTintColor: "white",
-            gestureDirection: "horizontal-inverted",
-            transitionSpec: {
-              open: config,
-              close: config,
-            },
+            gestureDirection: "horizontal",
+            ...TransitionPresets.SlideFromRightIOS,
           }}
         />
         <Stack.Screen
@@ -102,8 +99,13 @@ function MainStackNavigator() {
           name="PortionScreen"
           component={PortionScreen}
           options={{
-            title: "Portion Your Meal",
+            title: "Portion Meal",
             headerStyle: { backgroundColor: "white" },
+            headerTitleStyle: {
+              alignSelf: "center",
+              marginRight: 57,
+              fontSize: 20,
+            },
             gestureDirection: "horizontal",
             ...TransitionPresets.SlideFromRightIOS,
           }}
@@ -125,7 +127,7 @@ function MainStackNavigator() {
               fontSize: 24,
             },
             headerTintColor: "#fff",
-            gestureDirection: "horizontal-inverted",
+            gestureDirection: "horizontal",
             transitionSpec: {
               open: config,
               close: config,

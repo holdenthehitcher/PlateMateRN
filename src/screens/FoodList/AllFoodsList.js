@@ -1,6 +1,6 @@
 import React from "react";
-import { FlatList, View, Alert } from "react-native";
-import { ListItem, SearchBar, Icon } from "react-native-elements";
+import { FlatList, View, Alert, Text } from "react-native";
+import { ListItem, SearchBar, Icon, Tooltip } from "react-native-elements";
 import Toast from "react-native-simple-toast";
 import { connect } from "react-redux";
 import { deleteFood } from "../../redux/FoodsListRedux";
@@ -21,6 +21,7 @@ const AllFoodsList = (props) => {
         data={props.foods}
         keyExtractor={(food) => food.id.toString()}
         renderItem={({ item }) => (
+          // <Tooltip popover={<Text>Info here</Text>} toggleAction="onLongPress">
           <ListItem
             containerStyle={{
               height: 71,
@@ -32,13 +33,14 @@ const AllFoodsList = (props) => {
               fontFamily: "Livvic_600SemiBold",
               fontSize: 20,
               color: "#34282c",
-              marginLeft: 45
+              marginLeft: 45,
             }}
-            subtitleStyle={{marginLeft: 45, fontSize: 11}}
+            subtitleStyle={{ marginLeft: 45, fontSize: 11 }}
             key={item.id}
             title={`${item.name}`}
             subtitle={`${item.calories} cals./ ${item.amount} ${item.amountType}`}
             bottomDivider
+            onPress={() => console.log(item)}
             rightIcon={
               <View style={{ marginRight: 18 }}>
                 <Icon
@@ -72,6 +74,7 @@ const AllFoodsList = (props) => {
               </View>
             }
           />
+          // </Tooltip>
         )}
       />
     </View>

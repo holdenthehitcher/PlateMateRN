@@ -4,7 +4,7 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/ProfileStatsRedux";
 import Toast from "react-native-simple-toast";
-import { AppLoading } from 'expo';
+import { AppLoading } from "expo";
 import {
   useFonts,
   OpenSans_300Light,
@@ -119,7 +119,11 @@ function SetupProfileScreen(props) {
                       text: "Finished",
                       onPress: () => {
                         props.setProfile(newStats);
-                        Toast.show("Your Profile has been sucessfully Updated");
+                        Toast.showWithGravity(
+                          "Your Profile has been sucessfully Updated",
+                          Toast.LONG,
+                          Toast.TOP
+                        );
                         navigation.navigate("HomeScreen");
                       },
                     },
