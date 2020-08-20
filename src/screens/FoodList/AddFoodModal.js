@@ -5,6 +5,9 @@ import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 import { AppLoading } from "expo";
+import withPressAnimated from "../../animations/withPressAnimated";
+const AnimatedPressButton = withPressAnimated(Button);
+
 import {
   useFonts,
   Mada_200ExtraLight,
@@ -69,6 +72,11 @@ const AddFoodModal = (props) => {
     return <AppLoading />;
   }
 
+  const animateButton = (fun, param) => {
+    setTimeout(() => fun(param), 1100);
+  };
+
+
   return (
     <>
       <View
@@ -80,13 +88,14 @@ const AddFoodModal = (props) => {
         }}
       >
         <View style={{ margin: 10 }}>
-          <Button
-            title="Create New Food"
-            onPress={() => setModalVisible(!modalVisible)}
+          <AnimatedPressButton
+          animation="bounce"
+            title="Create A Food"
+            onPress={() => animateButton(setModalVisible, !modalVisible)}
             buttonStyle={styles.addButton}
             titleStyle={styles.addButtonTitle}
             raised
-          ></Button>
+          />
         </View>
       </View>
       <Overlay
@@ -108,20 +117,12 @@ const AddFoodModal = (props) => {
           <View style={styles.inputSpacing}>
             <Input
               keyboardType="decimal-pad"
-              placeholder="Calories"
-              style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("calories", +value)}
-            />
-          </View>
-          <View style={styles.inputSpacing}>
-            <Input
-              keyboardType="decimal-pad"
               placeholder="Portion Amount"
               style={styles.foodInput}
               onChangeText={(value) => updateFoodValues("amount", +value)}
             />
           </View>
-          <View style={styles.inputSpacing}>
+          <View style={{marginBottom: 20, marginTop: 10}}>
             <Picker
               selectedValue={foodValues.amountType}
               onValueChange={(value) => updateFoodValues("amountType", value)}
@@ -134,6 +135,14 @@ const AddFoodModal = (props) => {
                 />
               ))}
             </Picker>
+          </View>
+          <View style={styles.inputSpacing}>
+            <Input
+              keyboardType="decimal-pad"
+              placeholder="Calories"
+              style={styles.foodInput}
+              onChangeText={(value) => updateFoodValues("calories", +value)}
+            />
           </View>
           <View style={styles.buttonSpacingDouble}>
             <Button
@@ -176,7 +185,7 @@ const AddFoodModal = (props) => {
               onPress={() => {
                 setModalVisible(!modalVisible);
                 resetFoodValues();
-                Toast.show(`No Food Added`);
+                Toast.show(`No food added`);
               }}
             />
           </View>
@@ -200,7 +209,7 @@ const styles = StyleSheet.create({
   },
   headerSpacing: {
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 40,
   },
   header: {
     fontFamily: "Mada_700Bold",
@@ -208,26 +217,26 @@ const styles = StyleSheet.create({
     color: "#3bb143",
     textAlign: "center",
   },
-  inputSpacing: { marginTop: 10 },
+  inputSpacing: { marginVertical: 5 },
   text: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   buttonSpacingDouble: {
-    marginTop: 35,
+    marginTop: 10,
   },
   buttonSpacing: {
-    marginTop: 20,
+    marginTop: 15,
   },
   addButton: {
-    backgroundColor: "#ef490d",
+    backgroundColor: "#ea3c53",
     width: "100%",
-    height: 85,
+    height: 60,
     width: 220,
   },
   addButtonTitle: {
     fontFamily: "",
-    fontSize: 24,
+    fontSize: 20,
   },
   portionButton: {
     height: 80,

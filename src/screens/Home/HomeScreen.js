@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Image, Alert } from "react-native";
+import { StyleSheet, View, Image, Alert, Text } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
@@ -10,63 +10,70 @@ const AnimatedPressButton = withPressAnimated(Button);
 
 function HomeScreen(props) {
   const { navigation } = props;
-  const [buttonAnimate, setButtonAnimate] = useState(false);
 
-  useEffect(() => {
-    navigation.navigate("InstructionsScreen");
-  }, [buttonAnimate]);
+  const animateNavigate = (screen) => {
+    setTimeout(() => navigation.navigate(screen), 1100);
+  };
 
   return (
     <View style={styles.container}>
-      <AnimatedPressButton
-        buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
-        title="How to Use PlateMate"
-        animation="tada"
-        mode="contained"
-        timeout={2000}
-        duration={1200}
-        onPress={() => {
-          setTimeout(() => setButtonAnimate(!buttonAnimate), 1100);
-        }}
-        iconRight={true}
-        icon={
-          <Icon
-            name="arrow-circle-right"
-            type="font-awesome"
-            color={"white"}
-            size={35}
-            style={{ marginLeft: 12 }}
-          />
-        }
-      ></AnimatedPressButton>
-      <Button
-        buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
-        title="Update Profile"
-        onPress={() => navigation.navigate("SetupProfileScreen")}
-        raised
-        icon={
-          <Icon
-            name="odnoklassniki"
-            type="font-awesome"
-            color={"white"}
-            size={39}
-            style={{ marginRight: 15 }}
-          />
-        }
-        iconContainerStyle={styles.iconContainerStyle}
-      ></Button>
-      {/* </Animatable.View> */}
+      <View style={styles.buttonMargin}>
+        <AnimatedPressButton
+          buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
+          title="How to Use PlateMate"
+          animation="wobble"
+          mode="contained"
+          onPress={() => {
+            animateNavigate("InstructionsScreen");
+          }}
+          iconRight={true}
+          icon={
+            <Icon
+              name="arrow-circle-right"
+              type="font-awesome"
+              color={"white"}
+              size={35}
+              style={{ marginLeft: 12 }}
+            />
+          }
+        ></AnimatedPressButton>
+      </View>
+      <View>
+        <AnimatedPressButton
+          buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
+          title="Update Profile"
+          onPress={() => animateNavigate("SetupProfileScreen")}
+          raised
+          animation="rubberBand"
+          icon={
+            <Icon
+              name="odnoklassniki"
+              type="font-awesome"
+              color={"white"}
+              size={39}
+              style={{ marginRight: 15 }}
+            />
+          }
+          iconContainerStyle={styles.iconContainerStyle}
+        ></AnimatedPressButton>
+      </View>
       <View>
         <Image
           source={require("../../../assets/images/PlateMate2.png")}
           style={{ width: 210, height: 200, marginVertical: 12 }}
         />
       </View>
+      <View>
+        <Text>
+          You have {props.stats.caloriesLeft} calories left
+        </Text>
+      </View>
       <View style={styles.buttonMargin}>
-        <Button
+        <AnimatedPressButton
           buttonStyle={{ backgroundColor: "#eb9605", width: 250, height: 75 }}
           title="All Foods"
-          onPress={() => navigation.navigate("FoodListScreen")}
+          onPress={() => animateNavigate("FoodListScreen")}
+          animation="fadeInRight"
           raised
           iconRight={true}
           icon={
@@ -78,13 +85,14 @@ function HomeScreen(props) {
               style={{ marginLeft: 17 }}
             />
           }
-        ></Button>
+        ></AnimatedPressButton>
       </View>
       <View style={styles.buttonMargin}>
-        <Button
+        <AnimatedPressButton
           buttonStyle={{ backgroundColor: "#4cbb17", width: 300, height: 90 }}
           title="Portion Meal"
-          onPress={() => navigation.navigate("CreateMealScreen")}
+          animation="bounceInDown"
+          onPress={() => animateNavigate("CreateMealScreen")}
           raised
           icon={
             <Icon
@@ -95,12 +103,13 @@ function HomeScreen(props) {
               style={{ marginRight: 17 }}
             />
           }
-        ></Button>
+        ></AnimatedPressButton>
       </View>
       <View style={styles.buttonMargin}>
-        <Button
+        <AnimatedPressButton
           buttonStyle={styles.resetButton}
           raised
+          animation="pulse"
           title="Reset Your Daily Calories"
           titleStyle={styles.resetButtonTitle}
           onPress={() => {

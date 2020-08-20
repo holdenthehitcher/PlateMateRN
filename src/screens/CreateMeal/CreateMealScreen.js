@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView, Text, View, Platform, Animated } from "react-native";
 import { Button } from "react-native-elements";
-// import { HEADER_MAX_HEIGHT } from "../../settings/layouts";
 
 import ChooseNewFood from "./ChooseNewFood";
 import MealFoodsList from "./MealFoodsList";
 
+import withPressAnimated from "../../animations/withPressAnimated";
+const AnimatedPressButton = withPressAnimated(Button);
+
 function CreateMealScreen(props) {
   const { navigation } = props;
 
+  const animateNavigate = (screen) => {
+    setTimeout(() => navigation.navigate(screen), 1100);
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View>
+      <View style={{flex: 1, backgroundColor: "white"}}>
         <View style={styles.helpLink}></View>
-        <Text style={styles.title}>This Meal's Foods</Text>
-        <MealFoodsList />
+        {/* <Text style={styles.title}>This Meal's Foods</Text> */}
         <ChooseNewFood />
+        <MealFoodsList />
         <View style={styles.helpLink}>
-          <Button
+          <AnimatedPressButton
+            animation="swing"
             title="Portion Meal"
             buttonStyle={styles.button}
             titleStyle={styles.buttonTitle}
             onPress={() => {
-              navigation.navigate("PortionScreen");
+              animateNavigate("PortionScreen");
             }}
-          ></Button>
+          ></AnimatedPressButton>
         </View>
       </View>
-    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
+    flex: 1
   },
   title: {
     fontSize: 37,
@@ -58,8 +63,8 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    width: 270,
-    height: 110,
+    width: 250,
+    height: 90,
     backgroundColor: "#3bb143",
     marginVertical: 25,
   },

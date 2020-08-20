@@ -8,22 +8,21 @@ export default function AddFoodScreen(props) {
   const { navigation } = props;
 
   return (
-    <ScrollView>
-      <View>
+
+      <View style={styles.container}>
         <View style={{ flex: 1 }}>
           <AddFoodModal navigation={navigation} />
           <AllFoodsList />
         </View>
       </View>
-    </ScrollView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    marginVertical: 15,
+    marginBottom: 116
   },
   title: {
     fontSize: 33,

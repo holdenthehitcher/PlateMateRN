@@ -10,7 +10,7 @@ const SexInput = (props) => {
       <Button
         buttonStyle={styles.button}
         raised
-        title={`I'm a ${props.sex > 0 ? "male" : "female"}`}
+        title={`I am a ${props.sex > 0 ? "male" : "female"}`}
         onPress={() => setModalVisible(!modalVisible)}
       />
       <Overlay
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   button: {
-    backgroundColor: "#cc7700",
+    backgroundColor: "#008ecc",
     width: 200,
     height: 57,
   },

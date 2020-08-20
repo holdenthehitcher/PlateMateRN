@@ -85,7 +85,7 @@ export default function InstructionsScreen(props) {
       <View style={styles.buttonSpacing}>
         <Button
           title="Setup Profile"
-          onPress={() => navigation.navigate("SetupProfileScreen")}
+          onPress={() => setTimeout(() => navigation.navigate("SetupProfileScreen"), 550)}
           buttonStyle={styles.button}
           titleStyle={{ fontSize: 28 }}
           raised

@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  FlatList,
-  Text,
-  View,
-  Alert,
-} from "react-native";
+import { StyleSheet, FlatList, Text, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import { toggleFood } from "../../redux/FoodsListRedux";
 import { ListItem, Icon } from "react-native-elements";
@@ -14,7 +8,7 @@ import Toast from "react-native-simple-toast";
 
 const Food = ({ item, toggleFood }) => {
   return (
-    <>
+    <View>
       {item.addedToList === true && (
         <ListItem
           key={item.id}
@@ -53,7 +47,7 @@ const Food = ({ item, toggleFood }) => {
           }
         />
       )}
-    </>
+    </View>
   );
 };
 
@@ -85,16 +79,19 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
   listItemTitle: {
-    fontSize: 18,
+    fontSize: 15,
     color: "#0c090a",
-    // marginRight: 60,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   listItem: {
     borderWidth: 1,
-    borderColor: "#c0c0c0",
+    borderColor: "white",
+    borderTopColor: "white",
+    borderBottomColor: "white",
     alignSelf: "center",
-    width: 330
+    width: 330,
+    height: 50,
+    alignItems: "center",
   },
 });
 

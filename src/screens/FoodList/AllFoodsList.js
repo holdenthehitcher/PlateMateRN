@@ -30,11 +30,14 @@ const AllFoodsList = (props) => {
             }}
             titleStyle={{
               fontFamily: "Livvic_600SemiBold",
-              fontSize: 16,
+              fontSize: 20,
               color: "#34282c",
+              marginLeft: 45
             }}
+            subtitleStyle={{marginLeft: 45, fontSize: 11}}
             key={item.id}
-            title={`${item.name} - ${item.calories} cal./${item.amount} ${item.amountType}`}
+            title={`${item.name}`}
+            subtitle={`${item.calories} cals./ ${item.amount} ${item.amountType}`}
             bottomDivider
             rightIcon={
               <View style={{ marginRight: 18 }}>

@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
-  TransitionSpecs,
-  HeaderStyleInterpolators,
+  TransitionPresets,
+  CardStyleInterpolators,
 } from "@react-navigation/stack";
 
 import HomeScreen from "../screens/Home/HomeScreen";
@@ -58,45 +58,7 @@ function MainStackNavigator() {
             },
             headerTintColor: "white",
             gestureDirection: "horizontal",
-            transitionSpec: {
-              open: TransitionSpecs.TransitionIOSSpec,
-              close: TransitionSpecs.TransitionIOSSpec,
-            },
-            headerStyleInterpolator: HeaderStyleInterpolators.forFade,
-            cardStyleInterpolator: ({ current, next, layouts }) => {
-              return {
-                cardStyle: {
-                  transform: [
-                    {
-                      translateX: current.progress.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [layouts.screen.width, 0],
-                      }),
-                    },
-                    {
-                      rotate: current.progress.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1, 0],
-                      }),
-                    },
-                    {
-                      scale: next
-                        ? next.progress.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [1, 0.9],
-                          })
-                        : 1,
-                    },
-                  ],
-                },
-                overlayStyle: {
-                  opacity: current.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, 0.5],
-                  }),
-                },
-              };
-            },
+            ...TransitionPresets.SlideFromRightIOS,
           }}
         />
         <Stack.Screen
@@ -130,7 +92,7 @@ function MainStackNavigator() {
               color: "white",
               fontSize: 22,
               alignSelf: "center",
-              marginRight: 90,
+              marginRight: 65,
             },
             headerTintColor: "white",
             gestureDirection: "horizontal-inverted",
@@ -142,7 +104,8 @@ function MainStackNavigator() {
           options={{
             title: "Portion Your Meal",
             headerStyle: { backgroundColor: "white" },
-            gestureDirection: "horizontal-inverted",
+            gestureDirection: "horizontal",
+            ...TransitionPresets.SlideFromRightIOS,
           }}
         />
         <Stack.Screen

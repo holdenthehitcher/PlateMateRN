@@ -56,7 +56,6 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
 
   return (
     <>
-      <ScrollView>
         <FlatList
           data={chosenFoodsList}
           keyExtractor={(food) => food.id.toString()}
@@ -87,7 +86,6 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
             />
           )}
         />
-      </ScrollView>
     </>
   );
 };
