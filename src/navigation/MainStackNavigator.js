@@ -42,7 +42,17 @@ function MainStackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: "", headerStyle: { height: 60 } }}
+          options={{
+            title: "PlateMate",
+            headerStyle: { backgroundColor: "#4cbb17" },
+            headerTitleStyle: {
+              color: "white",
+              fontSize: 25,
+              alignSelf: "center",
+              marginRight: 8,
+            },
+            headerTintColor: "white",
+          }}
         />
         <Stack.Screen
           name="FoodListScreen"

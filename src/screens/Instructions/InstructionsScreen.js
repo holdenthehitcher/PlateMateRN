@@ -98,9 +98,9 @@ export default function InstructionsScreen(props) {
             rightIcon={
               <MaterialCommunityIcons
                 name={section.icon}
-                size={58}
+                size={60}
                 color="#ff4440"
-                style={{ marginRight: 9, marginTop: 6 }}
+                style={{ marginRight: 10, marginBottom: 10 }}
               />
             }
           />
@@ -159,21 +159,21 @@ const styles = StyleSheet.create({
   },
   thirdHeader: {
     marginTop: 28,
-    color: "#ff4440",
+    color: "white",
     fontSize: 17,
     fontFamily: "Capriola_400Regular",
   },
   fourthHeader: {
     marginTop: 10,
     fontSize: 22,
-    color: "#0c97aa",
+    color: "#ff4440",
     fontFamily: "Capriola_400Regular",
     marginBottom: 10,
     marginRight: 5,
     textAlign: "center",
   },
   regularText: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#0c97aa",
     justifyContent: "center",
     marginHorizontal: 20,
@@ -191,11 +191,13 @@ const styles = StyleSheet.create({
     color: "#ff4440",
     fontSize: 24,
     fontWeight: "bold",
+    marginLeft: 8
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#008ecc",
     fontWeight: "bold",
+    marginLeft: 10
   },
   button: {
     backgroundColor: "#71c800",

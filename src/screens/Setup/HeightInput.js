@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   button: {
-    backgroundColor: "#cc7700",
+    backgroundColor: "#ef820d",
     width: 200,
     height: 58,
   },

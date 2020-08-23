@@ -105,8 +105,8 @@ function SetupProfileScreen(props) {
             onPress={() => {
               {
                 Alert.alert(
-                  "Update Your Stats?",
-                  `You can change them later if needed`,
+                  "Done updating your stats?",
+                  `You can change them anytime`,
                   [
                     {
                       text: "Go Back",

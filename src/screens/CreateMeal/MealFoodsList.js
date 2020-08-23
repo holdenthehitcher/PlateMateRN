@@ -46,8 +46,8 @@ const Food = ({ item, toggleFood }) => {
               onPress={() => {
                 {
                   Alert.alert(
-                    `Delete ${item.name}?`,
-                    `Do you want to remove ${item.name} from this meal?`,
+                    `Remove ${item.name}`,
+                    `Take out ${item.name} from this meal?`,
                     [
                       {
                         text: "Wait",
@@ -58,7 +58,7 @@ const Food = ({ item, toggleFood }) => {
                         text: "Remove",
                         onPress: () => {
                           toggleFood(item.id);
-                          Toast.show(`${item.name} has been removed`);
+                          Toast.showWithGravity(`${item.name} has been removed`, Toast.SHORT, Toast.TOP);
                         },
                       },
                     ]

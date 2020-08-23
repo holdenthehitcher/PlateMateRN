@@ -80,10 +80,10 @@ function PortionScreen(props) {
           style={{ alignItems: "center", justifyContent: "center" }}
         >
           <View>
-            <Text style={{ fontSize: 16 }}>Calories Left:</Text>
+            <Text style={{ fontSize: 15 }}>Calories Left Today:</Text>
           </View>
           <View>
-            <Text style={{ fontSize: 18 }}> {caloriesLeft} cal. /</Text>
+            <Text style={{ fontSize: 19 }}> {caloriesLeft} cal. /</Text>
           </View>
           <View>
             <Text style={{ fontSize: 18 }}> {percentCaloriesLeft} %</Text>
@@ -105,7 +105,7 @@ function PortionScreen(props) {
         }}
       >
         <View style={{ marginLeft: 10 }}>
-          <Text style={{ fontSize: 13 }}>Meal Calories</Text>
+          <Text style={{ fontSize: 13 }}>This Meal's Calories</Text>
           <View
             flexDirection="row"
             style={{
@@ -126,23 +126,18 @@ function PortionScreen(props) {
             onPress={() => {
               {
                 Alert.alert(
-                  "All Finished?",
-                  `You will have ${percentCaloriesLeft}% of your calories left for today`,
+                  "Subtract These Calories?",
+                  `You will have ${percentCaloriesLeft}% left for today`,
                   [
                     {
-                      text: "Not Yet",
-                      onPress: () => "Cancel Pressed",
-                      style: "cancel",
-                    },
-                    {
-                      text: "Submit Meal",
+                      text: "Eat Meal",
                       onPress: () => {
                         props.setProfileCaloriesLeft(caloriesLeft);
                         console.log(props.stats);
                         {
                           Alert.alert(
                             "Success!",
-                            `Your meal has been successfully added. You have ${caloriesLeft} calories left for today`,
+                            `Your meal has been added. You have ${caloriesLeft} calories left for today`,
                             [
                               {
                                 text: "Home",
@@ -158,6 +153,11 @@ function PortionScreen(props) {
                           );
                         }
                       },
+                    },
+                    {
+                      text: "Wait",
+                      onPress: () => "Cancel Pressed",
+                      style: "cancel",
                     },
                   ],
                   { onDismiss: () => {} }
@@ -181,8 +181,8 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#3bb143",
-    marginLeft: 50,
-    width: 170,
+    marginLeft: 40,
+    width: 175,
   },
   buttonTitle: {
     fontSize: 20,

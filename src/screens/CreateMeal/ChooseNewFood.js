@@ -18,7 +18,6 @@ import Toast from "react-native-simple-toast";
 import * as Animatable from "react-native-animatable";
 import withPressAnimated from "../../animations/withPressAnimated";
 const AnimatedPressButton = withPressAnimated(Button);
-const AnimatedIcon = Animatable.createAnimatableComponent(Entypo);
 
 const ChooseNewFood = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,22 +26,16 @@ const ChooseNewFood = (props) => {
     setTimeout(() => setModalVisible(!modalVisible), 1100);
   };
 
-  // const [isRotated, setIsRotated] = useState(false);
-
-  const animatedValue = useRef(new Animated.Value(0)).current;
-  const animation = (toValue) => {
-    Animated.timing(animatedValue, {
-      toValue,
-      duration: 3000,
-      useNativeDriver: false,
-    });
-  };
-  const [index, setIndex] = useState(0);
-  const rotateIcon = (item) => {
+  const toggleFood = (item) => {
     props.toggleFood(item.id);
     item.addedToList === false
-      ? Toast.showWithGravity(`${item.name} has been added to this meal`, Toast.SHORT, Toast.TOP)
+      ? Toast.showWithGravity(
+          `${item.name} has been added to this meal`,
+          Toast.SHORT,
+          Toast.TOP
+        )
       : Toast.show(`${item.name} has been removed from this meal`, Toast.SHORT);
+    console.log(item);
   };
 
   return (
@@ -75,7 +68,6 @@ const ChooseNewFood = (props) => {
                 }}
               />
             </View>
-
             <FlatList
               data={props.foods}
               keyExtractor={(food) => food.id.toString()}
@@ -89,40 +81,23 @@ const ChooseNewFood = (props) => {
                   subtitleStyle={styles.listItemSubtitle}
                   bottomDivider
                   onPress={() => {
-                    rotateIcon(item);
+                    toggleFood(item);
                   }}
                   rightIcon={
-                    <Animated.View
-                      style={[styles.icon,
-                        {
-                          transform: [
-                            {
-                              rotateY: animatedValue.interpolate({
-                                inputRange: [0, 0.5, 1],
-                                outputRange: ["0deg", "-90deg", "360deg"],
-                              }),
-                            },
-                          ],
-                        },
-                      ]}
-                    >
-                      <TouchableOpacity
-                        
-                      >
-                        <Entypo
-                           onPress={() => {
-                            rotateIcon(item);
-                          }}
-                          name={
-                            item.addedToList === false
-                              ? "circle-with-plus"
-                              : "check"
-                          }
-                          size={30}
-                          color={item.addedToList === false ? "green" : "red"}
-                        />
-                      </TouchableOpacity>
-                    </Animated.View>
+                    <TouchableOpacity>
+                      <Entypo
+                        onPress={() => {
+                          toggleFood(item);
+                        }}
+                        name={
+                          item.addedToList === false
+                            ? "circle-with-plus"
+                            : "check"
+                        }
+                        size={30}
+                        color={item.addedToList === false ? "green" : "red"}
+                      />
+                    </TouchableOpacity>
                   }
                 />
               )}
@@ -197,7 +172,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 95,
-  }
+  },
 });
 
 const mapStateToProps = (state) => {

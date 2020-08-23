@@ -80,7 +80,7 @@ function HomeScreen(props) {
       </View>
       <View>
         <Text style={styles.text}>You have</Text>
-        <Text style={styles.caloriesText}>{props.stats.caloriesLeft} calories ({props.stats.caloriesLeft/props.stats.dailyCalories * 100}%)</Text>
+        <Text style={styles.caloriesText}>{props.stats.caloriesLeft} calories ({Math.round(props.stats.caloriesLeft/props.stats.dailyCalories * 100)}%)</Text>
         <Text style={styles.text}>left for today</Text>
       </View>
       <View style={styles.buttonMargin}>

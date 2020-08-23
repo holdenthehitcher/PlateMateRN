@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import Toast from "react-native-simple-toast";
-import { View, Text, StyleSheet, Picker, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Picker,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 import { AppLoading } from "expo";
+import { Formik, Form, FormikProps } from "formik";
+import * as yup from "yup";
 import withPressAnimated from "../../animations/withPressAnimated";
 const AnimatedPressButton = withPressAnimated(Button);
 
@@ -33,8 +42,8 @@ const AddFoodModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [foodValues, setFoodValues] = useState({
     name: "****",
-    calories: 0,
-    amount: 0,
+    calories: 5,
+    amount: 5,
     amountType: "Cups",
     addedToList: false,
   });
@@ -48,8 +57,8 @@ const AddFoodModal = (props) => {
   const resetFoodValues = () => {
     setFoodValues({
       name: "****",
-      calories: 0,
-      amount: 0,
+      calories: 5,
+      amount: 5,
       amountType: "Cups",
       addedToList: false,
     });
@@ -76,6 +85,26 @@ const AddFoodModal = (props) => {
     setTimeout(() => fun(param), 1100);
   };
 
+  const validationSchema = yup.object().shape({
+    name: yup
+      .string()
+      .label("Food Name")
+      .required()
+      .min(1, "Seems a bit short...")
+      .max(15, "Name must be fewer than 15 characters."),
+    calories: yup
+      .number()
+      .label("Calories")
+      .required()
+      .min(1, "Your food must be at least one calorie")
+      .max(999, "You food must be less than 1000 calories"),
+    amount: yup
+      .number()
+      .label("Food Amount")
+      .required()
+      .min(0.001, "Amount must be greater than 0")
+      .max(399, "Amount must be less than 400"),
+  });
 
   return (
     <>
@@ -89,7 +118,7 @@ const AddFoodModal = (props) => {
       >
         <View style={{ margin: 10 }}>
           <AnimatedPressButton
-          animation="bounce"
+            animation="bounce"
             title="Create A New Food"
             onPress={() => animateButton(setModalVisible, !modalVisible)}
             buttonStyle={styles.addButton}
@@ -103,93 +132,139 @@ const AddFoodModal = (props) => {
         animationType="slide"
         onBackdropPress={() => setModalVisible(!modalVisible)}
       >
-        <View style={styles.overlayContainer}>
-          <View style={styles.headerSpacing}>
-            <Text style={styles.header}>Create A New Food</Text>
-          </View>
-          <View style={styles.inputSpacing}>
-            <Input
-              placeholder="Food Name"
-              style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("name", value)}
-            />
-          </View>
-          <View style={styles.inputSpacing}>
-            <Input
-              keyboardType="decimal-pad"
-              placeholder="Portion Amount"
-              style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("amount", +value)}
-            />
-          </View>
-          <View style={{marginBottom: 20, marginTop: 10}}>
-            <Picker
-              selectedValue={foodValues.amountType}
-              onValueChange={(value) => updateFoodValues("amountType", value)}
-            >
-              {items.map(({ label, amountType }) => (
-                <Picker.Item
-                  key={amountType}
-                  value={amountType}
-                  label={label}
+        <Formik
+          initialValues={{
+            name: "",
+            calories: 0,
+            amount: 0,
+            amountType: "Cups",
+            addedToList: false,
+          }}
+          onSubmit={(values) => {
+            handleSubmit(values);
+          }}
+          validationSchema={validationSchema}
+        >
+          {({
+            touched,
+            errors,
+            handleChange,
+            handleBlur,
+            handleReset,
+            handleSubmit,
+            dirty,
+            values,
+            isValid
+          }) => (
+            <View style={styles.overlayContainer}>
+              <View style={styles.headerSpacing}>
+                <Text style={styles.header}>Create A New Food</Text>
+              </View>
+              <View style={styles.inputSpacing}>
+                <Text style={{ color: "red" }}>
+                  {touched.name && errors.name}
+                </Text>
+                <Input
+                  placeholder="Food Name"
+                  style={styles.foodInput}
+                  onChangeText={handleChange("name")}
+                  onBlur={handleBlur("name")}
                 />
-              ))}
-            </Picker>
-          </View>
-          <View style={styles.inputSpacing}>
-            <Input
-              keyboardType="decimal-pad"
-              placeholder="Calories"
-              style={styles.foodInput}
-              onChangeText={(value) => updateFoodValues("calories", +value)}
-            />
-          </View>
-          <View style={styles.buttonSpacingDouble}>
-            <Button
-              buttonStyle={styles.submitButton}
-              titleStyle={styles.submitButtonTitle}
-              title="Submit Food"
-              onPress={() => {
-                {
-                  Alert.alert(
-                    `Create Food?`,
-                    `Add ${foodValues.name} at ${foodValues.calories} calories for every ${foodValues.amount} ${foodValues.amountType}?`,
-                    [
-                      {
-                        text: "No Thanks",
-                        onPress: () => {
-                          Toast.show(`Cancelled Adding a Food`);
-                        },
-                        style: "cancel",
-                      },
-                      {
-                        text: "Add Food",
-                        onPress: () => {
-                          props.add(foodValues);
-                          setModalVisible(!modalVisible);
-                          resetFoodValues();
-                          Toast.show(`${foodValues.name} has been added`);
-                        },
-                      },
-                    ]
-                  );
-                }
-              }}
-            />
-          </View>
-          <View style={styles.buttonSpacing}>
-            <Button
-              buttonStyle={styles.cancelButton}
-              titleStyle={styles.cancelButtonTitle}
-              title="Cancel"
-              onPress={() => {
-                setModalVisible(!modalVisible);
-                resetFoodValues();
-                Toast.show(`No food added`);
-              }}
-            />
-          </View>
-        </View>
+              </View>
+              <View style={styles.inputSpacing}>
+                <Text style={{ color: "red" }}>
+                  {touched.amount && errors.amount}
+                </Text>
+                <Input
+                  keyboardType="decimal-pad"
+                  placeholder="Portion Amount"
+                  style={styles.foodInput}
+                  onChangeText={handleChange("amount")}
+                  onBlur={handleBlur("amount")}
+                />
+              </View>
+              <View style={{ marginBottom: 20, marginTop: 10 }}>
+                <Picker
+                  selectedValue={values.amountType}
+                  onValueChange={(value) =>
+                    updateFoodValues("amountType", value)
+                  }
+                >
+                  {items.map(({ label, amountType }) => (
+                    <Picker.Item
+                      key={amountType}
+                      value={amountType}
+                      label={label}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={styles.inputSpacing}>
+                <Text style={{ color: "red" }}>
+                  {touched.calories && errors.calories}
+                </Text>
+                <Input
+                  keyboardType="decimal-pad"
+                  placeholder="Calories"
+                  style={styles.foodInput}
+                  onChangeText={handleChange("calories")}
+                  onBlur={handleBlur("calories")}
+                />
+              </View>
+
+              {/* {isSubmitting ? (
+                <ActivityIndicator />
+              ) : (
+                <> */}
+              <View style={styles.buttonSpacingDouble}>
+                <Button
+                  buttonStyle={styles.submitButton}
+                  titleStyle={styles.submitButtonTitle}
+                  title="Submit Food"
+                  disabled={!(isValid && dirty)}
+                  onPress={() => {
+                    {
+                      Alert.alert(
+                        `Create Food?`,
+                        `Add ${values.name} at ${values.calories} calories for every ${values.amount} ${values.amountType}?`,
+                        [
+                          {
+                            text: "No Thanks",
+                            onPress: () => {
+                              Toast.show(`Cancelled Adding a Food`);
+                            },
+                            style: "cancel",
+                          },
+                          {
+                            text: "Add Food",
+                            onPress: () => {
+                              props.add(values);
+                              setModalVisible(!modalVisible);
+                              resetFoodValues();
+                              Toast.show(`${values.name} has been added`);
+                            },
+                          },
+                        ]
+                      );
+                    }
+                  }}
+                />
+              </View>
+              <View style={styles.buttonSpacing}>
+                <Button
+                  buttonStyle={styles.cancelButton}
+                  titleStyle={styles.cancelButtonTitle}
+                  title="Cancel"
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    resetFoodValues();
+                    Toast.show(`No food added`);
+                  }}
+                />
+              </View>
+            </View>
+          )}
+        </Formik>
       </Overlay>
     </>
   );
@@ -203,7 +278,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   overlayContainer: {
-    height: 620,
+    height: 650,
     width: 350,
     justifyContent: "center",
   },
