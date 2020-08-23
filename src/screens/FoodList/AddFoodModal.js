@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Toast from "react-native-simple-toast";
 import {
   View,
@@ -140,9 +140,6 @@ const AddFoodModal = (props) => {
             amountType: "Cups",
             addedToList: false,
           }}
-          onSubmit={(values) => {
-            handleSubmit(values);
-          }}
           validationSchema={validationSchema}
         >
           {({
@@ -150,44 +147,43 @@ const AddFoodModal = (props) => {
             errors,
             handleChange,
             handleBlur,
-            handleReset,
-            handleSubmit,
             dirty,
             values,
-            isValid
+            isValid,
+            setFieldValue,
           }) => (
             <View style={styles.overlayContainer}>
               <View style={styles.headerSpacing}>
                 <Text style={styles.header}>Create A New Food</Text>
               </View>
               <View style={styles.inputSpacing}>
-                <Text style={{ color: "red" }}>
-                  {touched.name && errors.name}
-                </Text>
                 <Input
                   placeholder="Food Name"
                   style={styles.foodInput}
-                  onChangeText={handleChange("name")}
+                  onChangeText={(value) => setFieldValue("name", value)}
                   onBlur={handleBlur("name")}
                 />
+                <Text style={styles.errorText}>
+                  {touched.name && errors.name}
+                </Text>
               </View>
               <View style={styles.inputSpacing}>
-                <Text style={{ color: "red" }}>
-                  {touched.amount && errors.amount}
-                </Text>
                 <Input
                   keyboardType="decimal-pad"
                   placeholder="Portion Amount"
                   style={styles.foodInput}
-                  onChangeText={handleChange("amount")}
+                  onChangeText={(value) => setFieldValue("amount", +value)}
                   onBlur={handleBlur("amount")}
                 />
+                <Text style={styles.errorText}>
+                  {touched.amount && errors.amount}
+                </Text>
               </View>
               <View style={{ marginBottom: 20, marginTop: 10 }}>
                 <Picker
                   selectedValue={values.amountType}
                   onValueChange={(value) =>
-                    updateFoodValues("amountType", value)
+                    setFieldValue("amountType", value)
                   }
                 >
                   {items.map(({ label, amountType }) => (
@@ -200,16 +196,16 @@ const AddFoodModal = (props) => {
                 </Picker>
               </View>
               <View style={styles.inputSpacing}>
-                <Text style={{ color: "red" }}>
-                  {touched.calories && errors.calories}
-                </Text>
                 <Input
                   keyboardType="decimal-pad"
                   placeholder="Calories"
                   style={styles.foodInput}
-                  onChangeText={handleChange("calories")}
+                  onChangeText={(value) => setFieldValue("calories", +value)}
                   onBlur={handleBlur("calories")}
                 />
+                <Text style={styles.errorText}>
+                  {touched.calories && errors.calories}
+                </Text>
               </View>
 
               {/* {isSubmitting ? (
@@ -242,6 +238,7 @@ const AddFoodModal = (props) => {
                               setModalVisible(!modalVisible);
                               resetFoodValues();
                               Toast.show(`${values.name} has been added`);
+                              console.log(props.foods);
                             },
                           },
                         ]
@@ -284,7 +281,7 @@ const styles = StyleSheet.create({
   },
   headerSpacing: {
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 20,
   },
   header: {
     fontFamily: "Mada_700Bold",
@@ -292,10 +289,17 @@ const styles = StyleSheet.create({
     color: "#3bb143",
     textAlign: "center",
   },
-  inputSpacing: { marginVertical: 5 },
+  // inputSpacing: { marginVertical: 5 },
   text: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    marginBottom: 30,
+    marginTop: -30,
+    marginRight: 20,
   },
   buttonSpacingDouble: {
     marginTop: 10,
