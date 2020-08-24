@@ -110,7 +110,7 @@ function MainStackNavigator() {
           component={PortionScreen}
           options={{
             title: "Portion Meal",
-            headerStyle: { backgroundColor: "white" },
+            headerStyle: { backgroundColor: "#4cbb17" },
             headerTitleStyle: {
               alignSelf: "center",
               marginRight: 57,

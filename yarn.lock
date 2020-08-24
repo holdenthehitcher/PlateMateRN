@@ -965,6 +965,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/coustard/-/coustard-0.1.0.tgz#ab6bc12880491d08023207ea52793023742b27c7"
   integrity sha512-WLA99ozj5nDkz9EYtxCJqIAyaGhSFPQcIfn9D2qQawo6Eblb7sjvE8byePaJYW1hXjF5FUnMBQZZIPl+jaBo+g==
 
+"@expo-google-fonts/dev@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/dev/-/dev-0.1.0.tgz#68fa1756d4596283968d1e6f618ddbd752c17eee"
+  integrity sha512-OiKO8z9rauIlWHGSJgbGyklbRJ07vEqhqM2rdcPy4LO98KEeFcpwV2cSHLrL3VFdWM/tpVQHYKDZVtwg+nDywQ==
+
 "@expo-google-fonts/inter@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
@@ -994,6 +999,16 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/oregano/-/oregano-0.1.0.tgz#b37bc1eac5a873f159341a3a62f8b559e7eb6230"
   integrity sha512-7RutwBveoFq1etYi7S0oN4rCH0iWQHxydwN03CJPupI5kmvRXTiujIfKQ87endKVrNd3zCR9QcHLE1cIH2A/sw==
+
+"@expo-google-fonts/pacifico@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/pacifico/-/pacifico-0.1.0.tgz#f46da10e9eeed7aa3abc2d3e15a1a3b2e4bad6eb"
+  integrity sha512-XA5hJ7aqyi+Uz4hRXD3NGmIHzUpjDoudKrFOQ/lIF+0Niu0D5v+rXV8iODy6WzhhHMmVx+kyWU0foBhG5cCsOg==
+
+"@expo-google-fonts/sniglet@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/sniglet/-/sniglet-0.1.0.tgz#0a143e83b4319c125a999cb4c69585d7bd52d021"
+  integrity sha512-e8JzF/4iK1bSSK6UOIq9OxJVCrref29oeiJv947V1Q7FklNfOpf05iYkTDh+TlhN4bw8gCxXKgmVvDY2uTnxXw==
 
 "@expo-google-fonts/sunflower@^0.1.0":
   version "0.1.0"

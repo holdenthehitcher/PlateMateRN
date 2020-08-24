@@ -130,7 +130,7 @@ function PortionScreen(props) {
                   `You will have ${percentCaloriesLeft}% left for today`,
                   [
                     {
-                      text: "Eat Meal",
+                      text: "Let's Eat!",
                       onPress: () => {
                         props.setProfileCaloriesLeft(caloriesLeft);
                         console.log(props.stats);

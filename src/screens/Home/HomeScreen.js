@@ -7,21 +7,30 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+import { AppLoading } from "expo";
 import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
 import * as Animatable from "react-native-animatable";
 import Toast from "react-native-simple-toast";
+import { useFonts, Sniglet_400Regular } from "@expo-google-fonts/sniglet";
 import withPressAnimated from "../../animations/withPressAnimated";
 const AnimatedPressButton = withPressAnimated(Button);
 const AnimatedView = withPressAnimated(TouchableOpacity);
 
 function HomeScreen(props) {
   const { navigation } = props;
-
   const animateNavigate = (screen) => {
     setTimeout(() => navigation.navigate(screen), 1100);
   };
+
+  let [fontsLoaded] = useFonts({
+    Sniglet_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View style={styles.container}>
@@ -66,6 +75,18 @@ function HomeScreen(props) {
         ></AnimatedPressButton>
       </View> */}
       <View>
+        <Text style={styles.text}>You have</Text>
+        <Text style={styles.caloriesText}>
+          {props.stats.caloriesLeft}
+          {" / "}
+          {Math.round(
+            (props.stats.caloriesLeft / props.stats.dailyCalories) * 100
+          )}
+          %
+        </Text>
+        <Text style={styles.text}>Calories left for today</Text>
+      </View>
+      <View>
         <AnimatedView
           onPress={() => {
             animateNavigate("InstructionsScreen");
@@ -77,11 +98,6 @@ function HomeScreen(props) {
             style={{ width: 210, height: 200, marginBottom: 12 }}
           />
         </AnimatedView>
-      </View>
-      <View>
-        <Text style={styles.text}>You have</Text>
-        <Text style={styles.caloriesText}>{props.stats.caloriesLeft} calories ({Math.round(props.stats.caloriesLeft/props.stats.dailyCalories * 100)}%)</Text>
-        <Text style={styles.text}>left for today</Text>
       </View>
       <View style={styles.buttonMargin}>
         <AnimatedPressButton
@@ -192,12 +208,15 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   text: {
-    fontSize: 16,
+    fontSize: 19,
     textAlign: "center",
     marginVertical: 8,
+    fontFamily: "Sniglet_400Regular",
+    color: "#4cbb17",
   },
   caloriesText: {
-    fontSize: 23,
+    fontSize: 25,
+    fontFamily: "Sniglet_400Regular",
     textAlign: "center",
   },
   buttonMargin: {
