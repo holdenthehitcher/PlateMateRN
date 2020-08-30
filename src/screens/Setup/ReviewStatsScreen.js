@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  StyleSheet,
-  TouchableOpacity,
+
   Button,
   Text,
   View,
@@ -19,7 +18,6 @@ function ReviewStatsScreen(props) {
     sex,
     feet,
     inches,
-    dailyCalories,
   } = newStats;
 
   const gender = sex > 0 ? "man" : "female";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Slider } from "react-native-elements";
 import { View, Text, StyleSheet } from "react-native";
 
@@ -19,6 +19,8 @@ export default function WeightInput(props) {
           minimumTrackTintColor="#1c2951"
           maximumTrackTintColor="#1c2951"
           thumbTintColor="#ef820d"
+          thumbTouchSize={{ width: 150, height: 150 }}
+          allowTouchTrack={true}
         />
       </View>
     </View>

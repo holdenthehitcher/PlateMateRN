@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from "@react-native-community/async-storage";
 import { createStore, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { ProfileActions } from "./ProfileStatsRedux";
@@ -7,7 +7,7 @@ import { MealsList } from "./MealsListRedux";
 
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage
+  storage: AsyncStorage,
 };
 
 const rootReducer = combineReducers({

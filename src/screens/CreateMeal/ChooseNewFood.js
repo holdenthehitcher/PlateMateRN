@@ -57,17 +57,6 @@ const ChooseNewFood = (props) => {
             <View style={styles.header}>
               <Text style={styles.headerText}>Choose Your Foods</Text>
             </View>
-            <View style={styles.buttonSpacing}>
-              <AnimatedPressButton
-                animation="bounce"
-                buttonStyle={styles.finishedButton}
-                titleStyle={styles.finishedButtonTitle}
-                title="Finished"
-                onPress={() => {
-                  animateModal();
-                }}
-              />
-            </View>
             <FlatList
               data={props.foods}
               keyExtractor={(food) => food.id.toString()}
@@ -86,6 +75,7 @@ const ChooseNewFood = (props) => {
                   rightIcon={
                     <TouchableOpacity>
                       <Entypo
+                        style={{marginRight:100, marginBottom:15}}
                         onPress={() => {
                           toggleFood(item);
                         }}
@@ -102,6 +92,17 @@ const ChooseNewFood = (props) => {
                 />
               )}
             />
+            <View style={styles.buttonSpacing}>
+              <AnimatedPressButton
+                animation="bounce"
+                buttonStyle={styles.finishedButton}
+                titleStyle={styles.finishedButtonTitle}
+                title="Finished"
+                onPress={() => {
+                  animateModal();
+                }}
+              />
+            </View>
           </View>
         </View>
       </Modal>
@@ -111,12 +112,13 @@ const ChooseNewFood = (props) => {
 
 const styles = StyleSheet.create({
   addButton: {
-    width: 200,
-    height: 70,
+    width: 240,
+    height: 80,
     alignSelf: "center",
-    marginBottom: 15,
-    marginRight: 20,
     backgroundColor: "#3bb143",
+    marginTop: 30,
+    marginBottom: 10,
+    borderRadius: 40
   },
   addButtonTitle: {
     fontSize: 20,
@@ -149,26 +151,29 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   buttonSpacing: {
-    marginBottom: 10,
+    marginVertical: 15,
   },
   finishedButton: {
-    width: 210,
-    height: 60,
+    width: 230,
+    height: 65,
     alignSelf: "center",
     marginBottom: 8,
     backgroundColor: "#b80c00",
+    borderRadius: 30
   },
   finishedButtonTitle: {
     fontSize: 20,
   },
-  listItem: {},
+  listItem: {
+    height: 70
+  },
   listItemTitle: {
     fontSize: 19,
-    marginLeft: 90,
+    marginLeft: 100,
   },
   listItemSubtitle: {
     fontSize: 10,
-    marginLeft: 90,
+    marginLeft: 101,
   },
   icon: {
     marginRight: 95,

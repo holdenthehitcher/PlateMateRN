@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FlatList, Text, View, ScrollView } from "react-native";
+import { FlatList } from "react-native";
 import { ListItem, Slider } from "react-native-elements";
-import { WheelPicker } from "react-native-wheel-picker-android";
+import { AppLoading } from "expo";
+import { useFonts, Sniglet_400Regular } from "@expo-google-fonts/sniglet";
 
 export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
   const [chosenFoodsList, setChosenFoodsList] = useState([...chosenFoods]);
@@ -61,6 +62,15 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
     fractionValues.push(i);
   }
 
+  let [fontsLoaded] = useFonts({
+    Sniglet_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+
   return (
     <>
       <FlatList
@@ -72,6 +82,8 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
             title={`${item.name}`}
             subtitle={`${item.amount} ${item.amountType}`}
             bottomDivider
+            titleStyle={{ marginLeft: 10, fontFamily: "Sniglet_400Regular", fontSize: 14}}
+            subtitleStyle={{ marginLeft: 12, fontFamily: "Sniglet_400Regular", fontSize: 15}}
             rightIcon={
               <>
                 <Slider
@@ -87,6 +99,7 @@ export default PortionWheelList = ({ chosenFoods, handleFoodCalories }) => {
                   maximumTrackTintColor="#c0c0c0"
                   thumbTintColor="#0082b1"
                   thumbTouchSize={{ width: 150, height: 150 }}
+                  allowTouchTrack={true}
                 />
               </>
             }

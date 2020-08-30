@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Modal, StyleSheet, Picker } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Picker } from "react-native";
 import { Button, Overlay, Slider } from "react-native-elements";
 
 const HeightInput = (props) => {
@@ -93,10 +93,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ef820d",
     width: 200,
     height: 58,
+    borderRadius: 25
   },
   okButton: {
     backgroundColor: "#008ecc",
     height: 70,
+    borderRadius: 35
   },
   buttonSpacing: {
     marginTop: 60,

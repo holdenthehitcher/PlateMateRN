@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Slider } from "react-native-elements";
 
@@ -20,6 +20,8 @@ export default function AgeInput(props) {
           maximumTrackTintColor="#1c2951"
           thumbTintColor="#ef820d"
           trackStyle={styles.sliderTrack}
+          thumbTouchSize={{ width: 150, height: 150 }}
+          allowTouchTrack={true}
         />
       </View>
     </View>
@@ -43,7 +45,4 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
-  // sliderTrack: {
-  //   width: 200
-  // }
 });

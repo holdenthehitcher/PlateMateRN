@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, Alert, Text } from "react-native";
-import { ListItem, SearchBar, Icon, Tooltip } from "react-native-elements";
+import React, { useState } from "react";
+import { FlatList, View, Alert } from "react-native";
+import { ListItem, SearchBar, Icon } from "react-native-elements";
 import Toast from "react-native-simple-toast";
 import { connect } from "react-redux";
 import { deleteFood } from "../../redux/FoodsListRedux";
 import { AppLoading } from "expo";
 import { useFonts, Livvic_600SemiBold } from "@expo-google-fonts/livvic";
+import {
+  Mada_400Regular,
+  Mada_600SemiBold,
+  Mada_700Bold,
+} from "@expo-google-fonts/mada";
 
 const AllFoodsList = (props) => {
   const [searchedFood, setSearchedFood] = useState("");
@@ -13,33 +18,28 @@ const AllFoodsList = (props) => {
 
   let [fontsLoaded] = useFonts({
     Livvic_600SemiBold,
+    Mada_400Regular,
+    Mada_600SemiBold,
+    Mada_700Bold,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-  
+
   const filterList = () => {
-    return props.foods.filter(
-      (food) =>
-        food.name
-          .toLowerCase()
-          .includes(searchedFood.toLowerCase())
+    return props.foods.filter((food) =>
+      food.name.toLowerCase().includes(searchedFood.toLowerCase())
     );
-  }
+  };
+
 
   return (
     <>
-      {/* <SearchBar
-        placeholder="Type Here..."
-        onChangeText={() => setSearchedFood(newFood)}
-        value={newFood}
-      /> */}
       <View>
         <FlatList
           data={searchedFood === "" ? props.foods : filterList()}
           keyExtractor={(food) => food.id.toString()}
           renderItem={({ item }) => (
-            // <Tooltip popover={<Text>Info here</Text>} toggleAction="onLongPress">
             <ListItem
               containerStyle={{
                 height: 71,
@@ -48,23 +48,22 @@ const AllFoodsList = (props) => {
                 borderColor: "#efba0d",
               }}
               titleStyle={{
-                fontFamily: "Livvic_600SemiBold",
+                fontFamily: "Mada_400Regular",
                 fontSize: 20,
                 color: "#34282c",
-                marginLeft: 45,
+                marginLeft: 100,
               }}
-              subtitleStyle={{ marginLeft: 45, fontSize: 11 }}
+              subtitleStyle={{ marginLeft: 100, fontSize: 10 }}
               key={item.id}
               title={`${item.name}`}
               subtitle={`${item.calories} cals./ ${item.amount} ${item.amountType}`}
               bottomDivider
-              onPress={() => console.log(item)}
               rightIcon={
-                <View style={{ marginRight: 18 }}>
+                <View style={{ marginRight: 30 }}>
                   <Icon
                     type="font-awesome"
                     name="trash"
-                    size={30}
+                    size={26}
                     color="#ef490d"
                     onPress={() => {
                       {
@@ -92,7 +91,6 @@ const AllFoodsList = (props) => {
                 </View>
               }
             />
-            // </Tooltip>
           )}
         />
       </View>
@@ -100,14 +98,13 @@ const AllFoodsList = (props) => {
   );
 };
 
-//maps state from store
 const mapStateToProps = (state) => {
+  console.log(state.foodsActions.allFoods)
   return {
     foods: state.foodsActions.allFoods,
   };
 };
 
-// maps actions
 const mapDispatchToProps = (dispatch) => {
   return {
     delete: (id) => dispatch(deleteFood(id)),

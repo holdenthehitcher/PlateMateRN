@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Alert } from "react-native";
 import PortionPieChart from "./PortionPieChart";
 import PortionListItems from "./PortionListItems";
@@ -6,6 +6,8 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
 import Toast from "react-native-simple-toast";
+import { AppLoading } from "expo";
+import { useFonts, Sniglet_400Regular } from "@expo-google-fonts/sniglet";
 
 function PortionScreen(props) {
   const { navigation } = props;
@@ -33,14 +35,12 @@ function PortionScreen(props) {
   );
   const [mealCaloriePercent, setMealCaloriePercent] = useState(
     Math.ceil(
-      // (chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e)
       (mealCalories / props.stats.dailyCalories) * 100
     )
   );
 
   const [caloriesLeft, setCaloriesLeft] = useState(
     props.stats.caloriesLeft - mealCalories
-    // chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e)
   );
   const [percentCaloriesLeft, setPercentCaloriesLeft] = useState(
     Math.ceil((caloriesLeft / props.stats.dailyCalories) * 100)
@@ -58,7 +58,6 @@ function PortionScreen(props) {
     setCaloriesLeft(
       Math.ceil(
         props.stats.caloriesLeft - mealCalories
-        // chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e)
       )
     );
     setPercentCaloriesLeft(
@@ -66,31 +65,39 @@ function PortionScreen(props) {
     );
     setMealCaloriePercent(
       Math.ceil(
-        // (chosenFoods.map((item) => item.totalCalories).reduce((a, e) => a + e) /
         (mealCalories / props.stats.dailyCalories) * 100
       )
     );
   };
 
+  let [fontsLoaded] = useFonts({
+    Sniglet_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+
   return (
     <View style={styles.container}>
+      <PortionPieChart chosenFoods={chosenFoods} />
       <View style={styles.caloriesFlex}>
         <View
           flexDirection="row"
-          style={{ alignItems: "center", justifyContent: "center" }}
+          style={{ alignItems: "center", justifyContent: "center", marginVertical: 8}}
         >
           <View>
-            <Text style={{ fontSize: 15 }}>Calories Left Today:</Text>
+            <Text style={{ fontSize: 15, fontFamily: "Sniglet_400Regular" }}>Total Meal Calories: </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 19 }}> {caloriesLeft} cal. /</Text>
+            <Text style={{ fontSize: 20, fontFamily: "Sniglet_400Regular"}}> {mealCalories} cal. /</Text>
           </View>
           <View>
-            <Text style={{ fontSize: 18 }}> {percentCaloriesLeft} %</Text>
+            <Text style={{ fontSize: 19, fontFamily: "Sniglet_400Regular", marginRight: 5}}> {mealCaloriePercent}% daily</Text>
           </View>
         </View>
       </View>
-      <PortionPieChart chosenFoods={chosenFoods} />
       <PortionListItems
         chosenFoods={chosenFoods}
         handleFoodCalories={handleFoodCalories}
@@ -105,7 +112,7 @@ function PortionScreen(props) {
         }}
       >
         <View style={{ marginLeft: 10 }}>
-          <Text style={{ fontSize: 13 }}>This Meal's Calories</Text>
+          <Text style={{ fontSize: 13, fontFamily: "Sniglet_400Regular" }}>Calories Left Today:</Text>
           <View
             flexDirection="row"
             style={{
@@ -113,8 +120,8 @@ function PortionScreen(props) {
               justifyContent: "center",
             }}
           >
-            <Text style={{ fontSize: 21 }}>
-              {mealCalories} / {mealCaloriePercent}%{" "}
+            <Text style={{ fontSize: 21, fontFamily: "Sniglet_400Regular" }}>
+              {caloriesLeft} / {percentCaloriesLeft}%{" "}
             </Text>
           </View>
         </View>
@@ -182,7 +189,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#3bb143",
     marginLeft: 40,
-    width: 175,
+    width: 183,
+    borderRadius: 20
   },
   buttonTitle: {
     fontSize: 20,

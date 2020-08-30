@@ -1,4 +1,6 @@
-import DEFAULT_FOODS from "./DEFAULT_FOODS";
+import DEFAULT_FOODS from "./FoodsDatabase/DEFAULT_FOODS";
+
+
 
 /// Action Types
 
@@ -27,6 +29,7 @@ export const toggleFood = (id) => ({
 export const resetList = () => ({
   type: RESET_LIST,
 });
+
 // Reducers
 
 const initialState = {

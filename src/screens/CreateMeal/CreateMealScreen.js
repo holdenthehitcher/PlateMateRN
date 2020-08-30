@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  View,
-  Platform,
-  Animated,
-} from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import Toast from "react-native-simple-toast";
@@ -27,8 +20,8 @@ function CreateMealScreen(props) {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={styles.helpLink}></View>
-      <ChooseNewFood />
       <MealFoodsList />
+      <ChooseNewFood />
       <View style={styles.helpLink}>
         <AnimatedPressButton
           animation="swing"
@@ -73,10 +66,11 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    width: 220,
-    height: 80,
+    width: 250,
+    height: 85,
     backgroundColor: "#b80c00",
-    marginVertical: 25,
+    marginBottom: 31,
+    borderRadius: 30,
   },
   buttonTitle: {
     fontSize: 22,

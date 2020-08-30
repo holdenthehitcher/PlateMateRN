@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Text, View, Alert } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Alert } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/ProfileStatsRedux";
@@ -7,16 +7,7 @@ import Toast from "react-native-simple-toast";
 import { AppLoading } from "expo";
 import {
   useFonts,
-  OpenSans_300Light,
-  OpenSans_300Light_Italic,
-  OpenSans_400Regular,
-  OpenSans_400Regular_Italic,
-  OpenSans_600SemiBold,
-  OpenSans_600SemiBold_Italic,
-  OpenSans_700Bold,
-  OpenSans_700Bold_Italic,
   OpenSans_800ExtraBold,
-  OpenSans_800ExtraBold_Italic,
 } from "@expo-google-fonts/open-sans";
 
 import HeightInput from "./HeightInput";
@@ -29,16 +20,7 @@ import GoalWeightInput from "./GoalWeightInput";
 function SetupProfileScreen(props) {
   const { navigation } = props;
   let [fontsLoaded] = useFonts({
-    OpenSans_300Light,
-    OpenSans_300Light_Italic,
-    OpenSans_400Regular,
-    OpenSans_400Regular_Italic,
-    OpenSans_600SemiBold,
-    OpenSans_600SemiBold_Italic,
-    OpenSans_700Bold,
-    OpenSans_700Bold_Italic,
     OpenSans_800ExtraBold,
-    OpenSans_800ExtraBold_Italic,
   });
 
   const [newStats, setNewStats] = useState(props.stats);
@@ -109,9 +91,9 @@ function SetupProfileScreen(props) {
                   `You can change them anytime`,
                   [
                     {
-                      text: "Go Back",
+                      text: "Not Yet",
                       onPress: () => {
-                        "Cancel Pressed", Toast.show("Profile not updated");
+                        "Cancel Pressed", Toast.show("Cancelled update");
                       },
                       style: "cancel",
                     },
@@ -156,6 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#008ecc",
     width: 280,
     height: 85,
+    borderRadius: 40
   },
   buttonTitle: {
     fontSize: 26,

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Modal, StyleSheet, Picker } from "react-native";
-import { Icon, Button, Overlay } from "react-native-elements";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Picker } from "react-native";
+import { Button, Overlay } from "react-native-elements";
 
 const PhysicalActivityInput = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,10 +69,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ef820d",
     width: 240,
     height: 63,
+    borderRadius: 25
   },
   okButton: {
     backgroundColor: "#008ecc",
     height: 70,
+    borderRadius: 25
   },
   buttonSpacing: {
     marginTop: 55,

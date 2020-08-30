@@ -6,6 +6,8 @@ import {
   TransitionPresets,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
+import { AppLoading } from "expo";
+import { useFonts, Sniglet_400Regular } from "@expo-google-fonts/sniglet";
 
 import HomeScreen from "../screens/Home/HomeScreen";
 import FoodListScreen from "../screens/FoodList/FoodListScreen";
@@ -30,7 +32,17 @@ const config = {
   },
 };
 
+
 function MainStackNavigator() {
+
+  let [fontsLoaded] = useFonts({
+    Sniglet_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -47,9 +59,10 @@ function MainStackNavigator() {
             headerStyle: { backgroundColor: "#4cbb17" },
             headerTitleStyle: {
               color: "white",
-              fontSize: 25,
+              fontSize: 28,
               alignSelf: "center",
               marginRight: 8,
+              fontFamily: "Sniglet_400Regular"
             },
             headerTintColor: "white",
           }}
@@ -58,13 +71,14 @@ function MainStackNavigator() {
           name="FoodListScreen"
           component={FoodListScreen}
           options={{
-            title: "Complete List of Foods",
+            title: "Your Custom Foods List",
             headerStyle: { backgroundColor: "#ef820d", height: 70 },
             headerTitleStyle: {
               color: "white",
-              fontSize: 18,
+              fontSize: 19,
               alignSelf: "center",
               marginRight: 70,
+              fontFamily: "Sniglet_400Regular"
             },
             headerTintColor: "white",
             gestureDirection: "horizontal",
@@ -75,14 +89,14 @@ function MainStackNavigator() {
           name="SetupProfileScreen"
           component={SetupProfileScreen}
           options={{
-            title: "My Body Stats",
+            title: "Your Body Stats",
             headerStyle: { backgroundColor: "#008ecc", height: 74 },
             headerTitleStyle: {
               color: "white",
               fontSize: 23,
-              fontWeight: "bold",
               alignSelf: "center",
               marginRight: 50,
+              fontFamily: "Sniglet_400Regular"
             },
             headerTintColor: "white",
             gestureDirection: "horizontal",
@@ -97,9 +111,10 @@ function MainStackNavigator() {
             headerStyle: { backgroundColor: "#4cbb17" },
             headerTitleStyle: {
               color: "white",
-              fontSize: 22,
+              fontSize: 24,
               alignSelf: "center",
               marginRight: 65,
+              fontFamily: "Sniglet_400Regular"
             },
             headerTintColor: "white",
             gestureDirection: "horizontal-inverted",
@@ -109,12 +124,14 @@ function MainStackNavigator() {
           name="PortionScreen"
           component={PortionScreen}
           options={{
-            title: "Portion Meal",
+            title: "Portion-A-Meal",
             headerStyle: { backgroundColor: "#4cbb17" },
             headerTitleStyle: {
+              color: "white",
               alignSelf: "center",
               marginRight: 57,
-              fontSize: 20,
+              fontSize: 22,
+              fontFamily: "Sniglet_400Regular"
             },
             gestureDirection: "horizontal",
             ...TransitionPresets.SlideFromRightIOS,
@@ -134,7 +151,8 @@ function MainStackNavigator() {
             headerTitleStyle: {
               alignSelf: "center",
               marginRight: 57,
-              fontSize: 24,
+              fontSize: 22,
+              fontFamily: "Sniglet_400Regular"
             },
             headerTintColor: "#fff",
             gestureDirection: "horizontal",

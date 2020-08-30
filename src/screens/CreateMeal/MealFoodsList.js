@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList, Text, View, Alert } from "react-native";
+import { AppLoading } from "expo";
 import { connect } from "react-redux";
 import { toggleFood } from "../../redux/FoodsListRedux";
 import { ListItem, Icon } from "react-native-elements";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Toast from "react-native-simple-toast";
+import { useFonts, Livvic_600SemiBold } from "@expo-google-fonts/livvic";
 
 const Food = ({ item, toggleFood }) => {
+  let [fontsLoaded] = useFonts({
+    Livvic_600SemiBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View>
       {item.addedToList === true && (
@@ -58,7 +68,11 @@ const Food = ({ item, toggleFood }) => {
                         text: "Remove",
                         onPress: () => {
                           toggleFood(item.id);
-                          Toast.showWithGravity(`${item.name} has been removed`, Toast.SHORT, Toast.TOP);
+                          Toast.showWithGravity(
+                            `${item.name} has been removed`,
+                            Toast.SHORT,
+                            Toast.TOP
+                          );
                         },
                       },
                     ]
@@ -104,6 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#0c090a",
     alignSelf: "center",
+    fontFamily: "Livvic_600SemiBold",
   },
   listItem: {
     borderWidth: 1,
@@ -114,7 +129,7 @@ const styles = StyleSheet.create({
     width: 330,
     height: 55,
     alignItems: "center",
-    marginLeft: 20
+    marginLeft: 20,
   },
 });
 

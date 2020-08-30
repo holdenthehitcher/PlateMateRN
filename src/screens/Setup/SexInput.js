@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Picker, StyleSheet, Text } from "react-native";
 import { Button, Overlay } from "react-native-elements";
 
@@ -70,10 +70,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ef820d",
     width: 200,
     height: 57,
+    borderRadius: 20
   },
   okButton: {
     backgroundColor: "#008ecc",
     height: 70,
+    borderRadius: 25
   },
   buttonSpacing: {
     marginTop: 60,

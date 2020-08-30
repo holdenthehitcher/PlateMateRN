@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -11,7 +11,6 @@ import { AppLoading } from "expo";
 import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { setProfileCaloriesLeft } from "../../redux/ProfileStatsRedux";
-import * as Animatable from "react-native-animatable";
 import Toast from "react-native-simple-toast";
 import { useFonts, Sniglet_400Regular } from "@expo-google-fonts/sniglet";
 import withPressAnimated from "../../animations/withPressAnimated";
@@ -34,46 +33,6 @@ function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      {/* <View style={styles.buttonMargin}>
-        <AnimatedPressButton
-          buttonStyle={{ backgroundColor: "#d21f3c", width: 290, height: 65 }}
-          title="How to Use PlateMate"
-          animation="wobble"
-          mode="contained"
-          onPress={() => {
-            animateNavigate("InstructionsScreen");
-          }}
-          iconRight={true}
-          icon={
-            <Icon
-              name="arrow-circle-right"
-              type="font-awesome"
-              color={"white"}
-              size={35}
-              style={{ marginLeft: 12 }}
-            />
-          }
-        ></AnimatedPressButton>
-      </View>
-      <View>
-        <AnimatedPressButton
-          buttonStyle={{ backgroundColor: "#008ecc", width: 260, height: 72 }}
-          title="Update Profile"
-          onPress={() => animateNavigate("SetupProfileScreen")}
-          raised
-          animation="rubberBand"
-          icon={
-            <Icon
-              name="odnoklassniki"
-              type="font-awesome"
-              color={"white"}
-              size={39}
-              style={{ marginRight: 15 }}
-            />
-          }
-          iconContainerStyle={styles.iconContainerStyle}
-        ></AnimatedPressButton>
-      </View> */}
       <View>
         <Text style={styles.text}>You have</Text>
         <Text style={styles.caloriesText}>
@@ -84,7 +43,7 @@ function HomeScreen(props) {
           )}
           %
         </Text>
-        <Text style={styles.text}>Calories left for today</Text>
+        <Text style={styles.text}>Calories Left Today</Text>
       </View>
       <View>
         <AnimatedView
@@ -95,14 +54,15 @@ function HomeScreen(props) {
         >
           <Image
             source={require("../../../assets/images/PlateMate2.png")}
-            style={{ width: 210, height: 200, marginBottom: 12 }}
+            style={{ width: 210, height: 200, marginTop: 5, marginBottom: 15 }}
           />
         </AnimatedView>
       </View>
       <View style={styles.buttonMargin}>
         <AnimatedPressButton
-          buttonStyle={{ backgroundColor: "#eb9605", width: 250, height: 75 }}
+          buttonStyle={{ backgroundColor: "#eb9605", width: 250, height: 75, borderRadius: 20}}
           title="List of Foods"
+          titleStyle={{fontFamily: "Sniglet_400Regular", fontSize: 19}}
           onPress={() => animateNavigate("FoodListScreen")}
           animation="fadeInRight"
           raised
@@ -120,8 +80,9 @@ function HomeScreen(props) {
       </View>
       <View style={styles.buttonMargin}>
         <AnimatedPressButton
-          buttonStyle={{ backgroundColor: "#4cbb17", width: 300, height: 90 }}
+          buttonStyle={{ backgroundColor: "#4cbb17", width: 300, height: 90, borderRadius: 35 }}
           title="Portion Your Meal"
+          titleStyle={{fontFamily: "Sniglet_400Regular", fontSize: 19}}
           animation="bounceInDown"
           onPress={() => animateNavigate("CreateMealScreen")}
           raised
@@ -142,7 +103,7 @@ function HomeScreen(props) {
           raised
           animation="pulse"
           title="Reset Your Daily Calories"
-          titleStyle={styles.resetButtonTitle}
+          titleStyle={{fontFamily: "Sniglet_400Regular", fontSize: 16}}          
           onPress={() => {
             {
               Alert.alert(
@@ -215,7 +176,7 @@ const styles = StyleSheet.create({
     color: "#4cbb17",
   },
   caloriesText: {
-    fontSize: 25,
+    fontSize: 32,
     fontFamily: "Sniglet_400Regular",
     textAlign: "center",
   },
@@ -231,8 +192,8 @@ const styles = StyleSheet.create({
   resetButton: {
     height: 70,
     backgroundColor: "#008ecc",
-  },
-  resetButtonTitle: {},
+    borderRadius: 30
+  }
 });
 
 const mapStateToProps = (state) => {

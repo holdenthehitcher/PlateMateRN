@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Toast from "react-native-simple-toast";
 import {
   View,
@@ -6,37 +6,26 @@ import {
   StyleSheet,
   Picker,
   Alert,
-  ActivityIndicator,
-} from "react-native";
+  } from "react-native";
 import { Overlay, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { addFood } from "../../redux/FoodsListRedux";
 import { AppLoading } from "expo";
-import { Formik, Form, FormikProps } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import withPressAnimated from "../../animations/withPressAnimated";
 const AnimatedPressButton = withPressAnimated(Button);
 
 import {
   useFonts,
-  Mada_200ExtraLight,
-  Mada_300Light,
-  Mada_400Regular,
-  Mada_500Medium,
   Mada_600SemiBold,
   Mada_700Bold,
-  Mada_900Black,
 } from "@expo-google-fonts/mada";
 
 const AddFoodModal = (props) => {
   let [fontsLoaded] = useFonts({
-    Mada_200ExtraLight,
-    Mada_300Light,
-    Mada_400Regular,
-    Mada_500Medium,
     Mada_600SemiBold,
     Mada_700Bold,
-    Mada_900Black,
   });
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -182,9 +171,7 @@ const AddFoodModal = (props) => {
               <View style={{ marginBottom: 20, marginTop: 10 }}>
                 <Picker
                   selectedValue={values.amountType}
-                  onValueChange={(value) =>
-                    setFieldValue("amountType", value)
-                  }
+                  onValueChange={(value) => setFieldValue("amountType", value)}
                 >
                   {items.map(({ label, amountType }) => (
                     <Picker.Item
@@ -207,11 +194,6 @@ const AddFoodModal = (props) => {
                   {touched.calories && errors.calories}
                 </Text>
               </View>
-
-              {/* {isSubmitting ? (
-                <ActivityIndicator />
-              ) : (
-                <> */}
               <View style={styles.buttonSpacingDouble}>
                 <Button
                   buttonStyle={styles.submitButton}
@@ -222,7 +204,7 @@ const AddFoodModal = (props) => {
                     {
                       Alert.alert(
                         `Create Food?`,
-                        `Add ${values.name} at ${values.calories} calories for every ${values.amount} ${values.amountType}?`,
+                        `${values.name} - ${values.calories} calories for ${values.amount} ${values.amountType}?`,
                         [
                           {
                             text: "No Thanks",
@@ -289,7 +271,6 @@ const styles = StyleSheet.create({
     color: "#3bb143",
     textAlign: "center",
   },
-  // inputSpacing: { marginVertical: 5 },
   text: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
@@ -310,17 +291,19 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: "#008ecc",
     width: "100%",
-    height: 60,
-    width: 180,
+    height: 70,
+    width: 230,
+    borderRadius: 30,
   },
   addButtonTitle: {
-    fontFamily: "",
-    fontSize: 17,
+    fontFamily: "Mada_600SemiBold",
+    fontSize: 20,
   },
   portionButton: {
     height: 80,
     width: 150,
     backgroundColor: "#ef490d",
+    borderRadius: 10,
   },
   portionButtonTitle: {
     fontFamily: "Mada_600SemiBold",
@@ -331,9 +314,11 @@ const styles = StyleSheet.create({
     height: 68,
     width: 320,
     alignSelf: "center",
+    borderRadius: 30,
   },
   submitButtonTitle: {
-    fontSize: 22,
+    fontSize: 26,
+    fontFamily: "Mada_600SemiBold",
   },
   cancelButton: {
     backgroundColor: "#b13d3b",
@@ -341,9 +326,11 @@ const styles = StyleSheet.create({
     width: 310,
     alignSelf: "center",
     marginBottom: 15,
+    borderRadius: 20,
   },
   cancelButtonTitle: {
-    fontSize: 21,
+    fontSize: 25,
+    fontFamily: "Mada_600SemiBold",
   },
 });
 
@@ -353,7 +340,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// maps actions
 const mapDispatchToProps = (dispatch) => {
   return {
     add: (food) => dispatch(addFood(food)),

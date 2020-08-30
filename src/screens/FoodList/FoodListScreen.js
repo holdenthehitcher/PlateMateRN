@@ -8,21 +8,19 @@ export default function AddFoodScreen(props) {
   const { navigation } = props;
 
   return (
-
-      <View style={styles.container}>
-        <View style={{ flex: 1 }}>
-          <AddFoodModal navigation={navigation} />
-          <AllFoodsList />
-        </View>
+    <View style={styles.container}>
+      <View style={{ flex: 1 }}>
+        <AllFoodsList />
+        <AddFoodModal navigation={navigation} />
       </View>
-
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 116
+    marginBottom: 116,
   },
   title: {
     fontSize: 33,
